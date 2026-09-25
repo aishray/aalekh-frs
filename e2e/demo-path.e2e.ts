@@ -132,5 +132,52 @@ test('demo path', async ({ page }) => {
   const after = Number(await page.getByTestId('score-total').innerText());
   expect(after).toBeGreaterThan(before);
   await shot(page, '07b-quality-fixed');
+
+  // 8. Approve as Director (baseline v1.0); Corrigendum 2 impact; vendor CR scope check.
+  await page.goto('/projects/pms-scholarship/review');
+  await page.getByRole('button', { name: 'Submit for review' }).click();
+  await page.getByTestId('persona-menu').click();
+  await page.getByRole('menuitemradio', { name: /S\. Raghavan/ }).click();
+  await page.getByRole('button', { name: 'Approve and freeze baseline' }).click();
+  await expect(page.getByText('Baseline v1.0').first()).toBeVisible();
+  await expect(page.getByTestId('noting')).toContainText('S. Raghavan');
+  await shot(page, '08-approved');
+
+  await page.goto('/projects/pms-scholarship/changes');
+  await page.getByRole('button', { name: 'Add corrigendum' }).click();
+  await page.getByRole('button', { name: 'Corrigendum 2 (grievance timeline)' }).click();
+  await page.getByRole('button', { name: 'Index clauses' }).click();
+  await page.getByRole('button', { name: 'Run impact analysis' }).click({ timeout: 20000 });
+  const impact = page.getByTestId('impact').first();
+  await expect(impact).toContainText('supersedes', { timeout: 20000 });
+  const imp = page.locator('table').filter({ hasText: 'Affected item' }).first();
+  await expect(imp).toContainText('FR-GRV-004');
+  await expect(imp).toContainText('TC-FR-GRV-004-1');
+  await expect(imp).toContainText('5 working days');
+  await shot(page, '08b-impact');
+  await page.getByRole('button', { name: 'Apply as tracked changes' }).click();
+
+  await page.getByRole('tab', { name: 'Vendor change request scope check' }).click();
+  await page.getByRole('button', { name: 'Load sample CR-07' }).click();
+  await page.getByRole('button', { name: 'Check scope' }).click();
+  const cr = page.getByTestId('cr-result');
+  await expect(cr).toBeVisible({ timeout: 20000 });
+  await expect(cr.locator('tr[data-classification="In scope"]')).toHaveCount(2);
+  await expect(cr.locator('tr[data-classification="New scope"]')).toHaveCount(1);
+  await expect(cr.locator('tr[data-classification="In scope"]').first()).toContainText('FR-NOT-001');
+  await expect(cr.locator('tr[data-classification="New scope"]')).toContainText('Income Tax');
+  await shot(page, '08c-cr');
+
+  // 9. Export: Word FRS and UAT test cases in Excel.
+  await page.goto('/projects/pms-scholarship/export');
+  const [word] = await Promise.all([page.waitForEvent('download'), page.getByRole('listitem').filter({ hasText: 'FRS in Word' }).getByRole('button', { name: 'Download' }).click()]);
+  expect(word.suggestedFilename()).toMatch(/\.docx$/);
+  await word.saveAs('test-results/demo-frs.docx');
+  const [xl] = await Promise.all([page.waitForEvent('download'), page.getByRole('listitem').filter({ hasText: 'UAT test cases' }).getByRole('button', { name: 'Download' }).click()]);
+  expect(xl.suggestedFilename()).toMatch(/\.xlsx$/);
+  await xl.saveAs('test-results/demo-uat.xlsx');
+  const [note] = await Promise.all([page.waitForEvent('download'), page.getByRole('listitem').filter({ hasText: 'CR assessment note' }).getByRole('button', { name: 'Download' }).click()]);
+  await note.saveAs('test-results/demo-cr-note.docx');
+  await shot(page, '09-export');
 });
 

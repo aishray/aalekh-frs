@@ -1,0 +1,52 @@
+{
+ "step": "impact",
+ "variant": "COR2",
+ "note": "Recorded impact analysis of Corrigendum 2 (grievance timeline 7 to 5 working days).",
+ "response": {
+  "affected": [
+   {
+    "targetId": "FR-GRV-004",
+    "kind": "Requirement",
+    "reason": "States the 7 working day grievance resolution timeline of GO para 7.3, now 5 working days under COR2-1.",
+    "proposedChange": "Change the resolution timeline to 5 working days and escalate on the 6th working day.",
+    "newDescription": "The system shall track every grievance against a resolution timeline of 5 working days from receipt, show the working days remaining to the District Social Welfare Officer, and escalate a grievance not resolved within 5 working days to the Joint Director, Social Welfare.",
+    "newAcceptanceCriteria": [
+     "Given a grievance received on a Monday, when the DSWO opens the grievance list, then the grievance shows the working days remaining out of 5.",
+     "Given a grievance not resolved within 5 working days, when the daily job runs on the 6th working day, then it is escalated to the Joint Director, Social Welfare and both officers are notified by email."
+    ],
+    "newSlaDays": null
+   },
+   {
+    "targetId": "TC-FR-GRV-004-1",
+    "kind": "Test",
+    "reason": "Derived from FR-GRV-004.",
+    "proposedChange": "Expected remaining days shown out of 5 instead of 7.",
+    "newDescription": null,
+    "newAcceptanceCriteria": null,
+    "newSlaDays": null
+   },
+   {
+    "targetId": "TC-FR-GRV-004-2",
+    "kind": "Test",
+    "reason": "Derived from FR-GRV-004.",
+    "proposedChange": "Escalation expected on the 6th working day instead of the 8th.",
+    "newDescription": null,
+    "newAcceptanceCriteria": null,
+    "newSlaDays": null
+   },
+   {
+    "targetId": "FR-GRV-002",
+    "kind": "Requirement",
+    "reason": "Grievance disposal by the DSWO must now be completed within 5 working days; the requirement does not state the timeline the officer is held to.",
+    "proposedChange": "Add the 5 working day disposal timeline to the acceptance criteria.",
+    "newDescription": "The system shall allow the District Social Welfare Officer to record the action taken and close a grievance within 5 working days of receipt, and send an SMS to the applicant with the action taken.",
+    "newAcceptanceCriteria": [
+     "Given an action taken report of at least 50 characters, when the DSWO closes the grievance, then the applicant receives an SMS with the action taken.",
+     "Given a grievance received 5 working days ago, when the DSWO opens the grievance list, then it is marked as due today."
+    ],
+    "newSlaDays": null
+   }
+  ],
+  "timelineImpact": "Low. Text changes to two requirements and their test cases, and the grievance escalation parameter changes from 7 to 5 working days. No change to the data model, integrations or the application workflow. Indicative effort 2 to 3 person-days including regression testing of grievance escalation."
+ }
+}

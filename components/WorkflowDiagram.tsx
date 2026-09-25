@@ -7,8 +7,8 @@ import { Skeleton } from '@/components/ui';
 const safe = (s: string) => s.replace(/[^A-Za-z0-9_]/g, '_');
 const label = (s: string) => s.replace(/[:"#;]/g, ' ').replace(/\s+/g, ' ').trim();
 
-export function workflowToMermaid(wf: Workflow, highlight: string[] = []) {
-  const lines = ['stateDiagram-v2', '  direction LR'];
+export function workflowToMermaid(wf: Workflow, highlight: string[] = [], direction: 'LR' | 'TB' = 'LR') {
+  const lines = ['stateDiagram-v2', `  direction ${direction}`];
   for (const s of wf.states) lines.push(`  state "${label(s.name)}" as ${safe(s.id)}`);
   const first = wf.states[0];
   if (first) lines.push(`  [*] --> ${safe(first.id)}`);
@@ -37,6 +37,8 @@ async function ensureMermaid() {
       fontFamily: 'IBM Plex Sans, Segoe UI, Arial, sans-serif',
       themeVariables: { primaryColor: '#E8EEF6', primaryBorderColor: '#1D3F6E', primaryTextColor: '#16202E', lineColor: '#4A5565', fontSize: '15px', background: '#FFFFFF' },
       state: { useMaxWidth: false },
+      htmlLabels: false,
+      flowchart: { htmlLabels: false },
     });
     initialised = true;
   }
@@ -44,9 +46,9 @@ async function ensureMermaid() {
 }
 
 /** Renders the workflow to SVG markup; also used by the Word export (converted to PNG). */
-export async function renderWorkflowSvg(wf: Workflow, id = 'wf-export') {
+export async function renderWorkflowSvg(wf: Workflow, id = 'wf-export', direction: 'LR' | 'TB' = 'TB') {
   const mermaid = await ensureMermaid();
-  const { svg } = await mermaid.render(id + Date.now(), workflowToMermaid(wf));
+  const { svg } = await mermaid.render(id + Date.now(), workflowToMermaid(wf, [], direction));
   return svg;
 }
 

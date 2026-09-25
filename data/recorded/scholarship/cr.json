@@ -1,0 +1,40 @@
+{
+ "step": "cr",
+ "note": "Recorded CR-07 scope check (hand-authored to match F11 acceptance). Quotes are replaced with the baseline acceptance criteria at run time.",
+ "response": {
+  "items": [
+   {
+    "ask": "Add SMS alerts to applicants at each stage of application processing.",
+    "effort": "25 person-days",
+    "classification": "In scope",
+    "matchedReqs": [
+     "FR-NOT-001",
+     "FR-NOT-002",
+     "FR-NOT-004",
+     "FR-NOT-005",
+     "FR-NOT-010"
+    ],
+    "quotes": [],
+    "reasoning": "GO-7.2 mandates an SMS at every stage, and the baseline already requires an SMS on submission, verification, sanction, rejection and every other workflow transition (FR-NOT-001 to FR-NOT-009), in Hindi or English with delivery status (FR-NOT-010). No additional cost is justified."
+   },
+   {
+    "ask": "Provide a district-wise dashboard of pending applications for District Social Welfare Officers.",
+    "effort": "15 person-days",
+    "classification": "In scope",
+    "matchedReqs": [
+     "FR-RPT-001"
+    ],
+    "quotes": [],
+    "reasoning": "FR-RPT-001 already requires a district dashboard with pending applications of each institution and days pending (GO-8.1, VB-2). No additional cost is justified."
+   },
+   {
+    "ask": "Integrate with the Income Tax department API for verification of the declared family income.",
+    "effort": "40 person-days",
+    "classification": "New scope",
+    "matchedReqs": [],
+    "quotes": [],
+    "reasoning": "No baseline requirement or source clause requires income verification with the Income Tax department; income is evidenced by the income certificate from DigiLocker (GO-4.3). This is a potential genuine change request and needs a policy decision by the department."
+   }
+  ]
+ }
+}

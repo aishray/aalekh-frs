@@ -18,8 +18,17 @@ export async function POST(req: Request) {
   if (!hasKey())
     return NextResponse.json({ error: 'Translation needs the AI engine. Add SARVAM_API_KEY to .env.local.' }, { status: 503 });
   try {
-    const out: string[] = [];
-    for (const t of body.texts) out.push(await translate(t, body.source, body.target));
+    // Up to 4 translations in parallel.
+    const out: string[] = new Array(body.texts.length);
+    let next = 0;
+    await Promise.all(
+      Array.from({ length: Math.min(4, body.texts.length) }, async () => {
+        while (next < body.texts.length) {
+          const i = next++;
+          out[i] = await translate(body.texts[i], body.source, body.target);
+        }
+      }),
+    );
     return NextResponse.json({ data: out, source: 'live' });
   } catch (e) {
     if (fromRec.every(Boolean)) return NextResponse.json({ data: fromRec, source: 'fallback' });

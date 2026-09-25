@@ -45,8 +45,9 @@ export function unique<T>(arr: T[]) {
   return Array.from(new Set(arr));
 }
 
-/** Display form of a ref: "GO-4.2" -> "GO 4.2" */
+/** Display form of a source clause ref: "GO-4.2" -> "GO 4.2". Model IDs (FR-, BR-, RES-, WF-T...) keep their dashes. */
 export function refLabel(ref: string) {
+  if (/^(FR|NFR|IR|BR|RES|ANS|ASM|WF|STD|FLD|TC|CMP|IMP|CRA)-/.test(ref)) return ref;
   return ref.replace(/^([A-Z0-9]+)-/, '$1 ');
 }
 
