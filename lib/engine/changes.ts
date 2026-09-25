@@ -13,13 +13,13 @@ export function applyChange(p: Project, c: TrackedChange) {
   } else if (c.kind === 'Add' && c.after) {
     const a = c.after as Requirement;
     const kind = a.kind ?? 'FR';
-    const module = a.module ?? 'APP';
-    const prefix = kind === 'NFR' ? 'NFR-' : kind === 'IR' ? 'IR-' : `FR-${module}-`;
+    const mod = a.module ?? 'APP';
+    const prefix = kind === 'NFR' ? 'NFR-' : kind === 'IR' ? 'IR-' : `FR-${mod}-`;
     let n = 0;
     for (const r of p.requirements) if (r.id.startsWith(prefix)) n = Math.max(n, parseInt(r.id.slice(prefix.length), 10) || 0);
-    const id = idFor(module, kind, n + 1);
+    const id = idFor(mod, kind, n + 1);
     p.requirements.push({
-      id, kind, module, title: a.title ?? 'New requirement', description: a.description ?? '', actor: a.actor, priority: a.priority ?? 'Must',
+      id, kind, module: mod, title: a.title ?? 'New requirement', description: a.description ?? '', actor: a.actor, priority: a.priority ?? 'Must',
       acceptanceCriteria: a.acceptanceCriteria ?? [], refs: a.refs ?? [], origin: a.origin ?? 'Generated', status: 'Draft', generatedAt: at, reusedFrom: a.reusedFrom,
     });
     c.targetId = id;

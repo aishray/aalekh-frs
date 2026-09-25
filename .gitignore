@@ -4,6 +4,7 @@ out/
 test-results/
 playwright-report/
 screenshots/
+.env.local
 .env*.local
 next-env.d.ts
 *.tsbuildinfo

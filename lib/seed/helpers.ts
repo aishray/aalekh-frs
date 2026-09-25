@@ -13,11 +13,11 @@ export function R(
 ): Requirement {
   const parts = id.split('-');
   const kind = (parts[0] === 'NFR' ? 'NFR' : parts[0] === 'IR' ? 'IR' : parts[1] === 'RPT' ? 'RPT' : 'FR') as Requirement['kind'];
-  const module = parts[0] === 'NFR' ? 'NFR' : parts[0] === 'IR' ? 'INT' : parts[1];
+  const mod = parts[0] === 'NFR' ? 'NFR' : parts[0] === 'IR' ? 'INT' : parts[1];
   return {
     id,
     kind,
-    module,
+    module: mod,
     title,
     description,
     actor,

@@ -1,6 +1,6 @@
 # Aalekh FRS: build plan
 
-Self-contained Next.js 14 app in `aalekh-frs/`. Nothing outside this folder is modified.
+Self-contained Next.js 14 app.
 
 ## Architecture
 
@@ -55,6 +55,6 @@ Out-of-date tracking: editing an artefact (workflow transition, rule, field, cla
 13. Dashboard, projects, overview, activity, standards, settings
 14. Recordings, e2e demo-path test (`e2e/demo-path.e2e.ts`), screenshot review, README
 
-## Repo constraints
+## Test file naming
 
-The host repository's CI runs root-level `jest` over every path. To keep it green without touching root files, this app never uses `*.test.*` / `*.spec.*` filenames: unit tests are `tests/*.unit.ts` (vitest) and Playwright tests are `e2e/*.e2e.ts`.
+Unit tests are `tests/*.unit.ts` (vitest) and Playwright tests are `e2e/*.e2e.ts`. This naming dates from when the app lived inside another repository whose root Jest run matched `*.test.*` and `*.spec.*`.

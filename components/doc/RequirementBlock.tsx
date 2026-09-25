@@ -120,7 +120,7 @@ export function RequirementBlock({
               <span className="font-mono text-navy">{reuse.item.req.id}</span>
               <span>in {reuse.item.projectName}</span>
               <span className="text-ink-faint">({Math.round(reuse.score * 100)}% match)</span>
-              <span className="truncate text-ink-muted" title={reuse.item.req.description}>"{reuse.item.req.title}"</span>
+              <span className="truncate text-ink-muted" title={reuse.item.req.description}>&ldquo;{reuse.item.req.title}&rdquo;</span>
               <button onClick={onUseReuse} className="ml-auto font-medium text-navy underline">Use this</button>
             </div>
           )}
