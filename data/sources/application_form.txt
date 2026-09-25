@@ -1,0 +1,22 @@
+GOVERNMENT OF RAJYAPRADESH - SOCIAL WELFARE DEPARTMENT
+APPLICATION FOR POST-MATRIC SCHOLARSHIP (FRESH / RENEWAL)
+Field 1: Name of the applicant (as in Aadhaar)
+Field 2: Father's / Guardian's name
+Field 3: Date of birth (DD/MM/YYYY)
+Field 4: Gender (Male / Female / Transgender)
+Field 5: Category (SC / ST / OBC / EWS)
+Field 6: Aadhaar number
+Field 7: Mobile number
+Field 8: Permanent address
+Field 9: District
+Field 10: PIN code
+Field 11: Name of the institution
+Field 12: Course
+Field 13: Year of study
+Field 14: Annual family income (Rs.)
+Field 15: Bank account number
+Field 16: IFSC code
+Field 17: Attendance in previous year (%) (for renewal only)
+Field 18: Caste certificate number
+Field 19: Income certificate number
+Field 20: Declaration: I declare that the information given above is true. Signature of applicant and date.

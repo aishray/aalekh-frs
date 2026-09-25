@@ -1,0 +1,12 @@
+Minutes of the kick-off meeting on the Post-Matric Scholarship Portal
+Held on 22 August 2026 at 11:00 in the chamber of the Director (IT)
+
+Present: Director (IT); Joint Director, Social Welfare; Joint Director (IT); Senior Systems Analyst, Directorate of IT; District Social Welfare Officer, Nagarpur.
+
+Item 1: CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number.
+Item 2: For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again.
+Item 3: The portal shall be available in Hindi and English.
+Item 4: Institution verification shall be completed within 10 days of submission.
+Item 5: The portal shall work on low-end Android phones on 3G connections.
+
+Action: Directorate of IT to prepare the FRS within four weeks.

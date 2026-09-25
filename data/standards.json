@@ -1,0 +1,12 @@
+[
+  { "id": "STD-GIGW", "name": "Guidelines for Indian Government Websites and Apps (GIGW 3.0)", "authority": "MeitY / NIC", "summary": "Accessibility, usability, bilingual content, security and content management requirements for government websites and mobile apps." },
+  { "id": "STD-WCAG", "name": "WCAG 2.1 Level AA", "authority": "W3C", "summary": "Web accessibility conformance referenced by GIGW 3.0." },
+  { "id": "STD-DPDP", "name": "Digital Personal Data Protection Act, 2023", "authority": "Government of India", "summary": "Notice, consent, purpose limitation, retention, erasure and grievance obligations for personal data." },
+  { "id": "STD-CERTIN", "name": "CERT-In Directions of 28 April 2022", "authority": "CERT-In", "summary": "Report cyber incidents within 6 hours; retain ICT system logs for 180 days within India; synchronise clocks with NTP servers of NIC or NPL." },
+  { "id": "STD-AADHAAR", "name": "Aadhaar Act, 2016 and UIDAI regulations", "authority": "UIDAI", "summary": "Authentication through an AUA/KUA, Aadhaar number masking, storage only in an Aadhaar Data Vault, consent for authentication." },
+  { "id": "STD-RTS", "name": "Rajyapradesh Right to Service Act", "authority": "Government of Rajyapradesh", "summary": "Notified services must be delivered within notified timelines, with appeal to a designated officer on failure." },
+  { "id": "STD-SECAUDIT", "name": "Security audit before go-live", "authority": "MeitY / CERT-In", "summary": "Application security audit by a CERT-In empanelled auditor with a safe-to-host certificate before go-live." },
+  { "id": "STD-HOST", "name": "MeitY cloud and data localisation policy", "authority": "MeitY", "summary": "Hosting in the State Data Centre or a MeitY empanelled cloud with data resident in India." },
+  { "id": "STD-EGOV", "name": "MeitY e-Governance standards (metadata, data and API)", "authority": "MeitY", "summary": "Standard code directories (LGD for districts), open API policy and interoperability standards." },
+  { "id": "STD-PFMS", "name": "PFMS DBT guidelines", "authority": "Controller General of Accounts", "summary": "Direct Benefit Transfer through PFMS to Aadhaar-seeded or validated bank accounts, with payment status reconciliation." }
+]

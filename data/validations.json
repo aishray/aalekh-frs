@@ -1,0 +1,12 @@
+[
+  { "key": "mobile", "match": ["mobile", "phone", "contact number"], "type": "String", "length": 10, "validation": "10 digits, first digit 6 to 9 (^[6-9][0-9]{9}$); verified by OTP" },
+  { "key": "pin", "match": ["pin code", "pincode", "pin"], "type": "String", "length": 6, "validation": "6 digits, first digit 1 to 9 (^[1-9][0-9]{5}$)" },
+  { "key": "ifsc", "match": ["ifsc"], "type": "String", "length": 11, "validation": "^[A-Z]{4}0[A-Z0-9]{6}$; bank and branch name fetched and shown for confirmation" },
+  { "key": "aadhaar", "match": ["aadhaar"], "type": "String", "length": 12, "validation": "12 digits with Verhoeff checksum; never stored in full; stored in Aadhaar Data Vault, reference token only in application tables; displayed as XXXX-XXXX-1234", "pii": "Aadhaar" },
+  { "key": "email", "match": ["email", "e-mail"], "type": "String", "length": 100, "validation": "RFC 5322 address format; optional unless stated" },
+  { "key": "dob", "match": ["date of birth", "dob"], "type": "Date", "validation": "Valid date, not in the future; age computed as on 1 July of the academic year" },
+  { "key": "account", "match": ["account number", "bank account"], "type": "String", "length": 18, "validation": "9 to 18 digits; must be Aadhaar-seeded for DBT (checked through PFMS account validation)", "pii": "Financial" },
+  { "key": "income", "match": ["income"], "type": "Number", "validation": "Whole rupees, 0 to 99,99,999; must match the income certificate value", "pii": "Financial" },
+  { "key": "percent", "match": ["attendance", "percentage"], "type": "Number", "validation": "0 to 100, up to one decimal place" },
+  { "key": "name", "match": ["name"], "type": "String", "length": 100, "validation": "Letters, spaces, dot and apostrophe only; as per Aadhaar where e-KYC is used" }
+]

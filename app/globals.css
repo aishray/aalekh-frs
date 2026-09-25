@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html, body { background: #F3F4F6; color: #16202E; }
+body { font-size: 14px; -webkit-font-smoothing: antialiased; }
+:lang(hi) { font-family: "IBM Plex Sans Devanagari", "Noto Sans Devanagari", "Nirmala UI", sans-serif; }
+.doc :lang(hi), .doc [lang="hi"] { font-family: "Noto Serif Devanagari", "Nirmala UI", serif; }
+*:focus-visible { outline: 2px solid #1D3F6E; outline-offset: 1px; }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+.ins { background: #E6F2EB; color: #1F7A4D; text-decoration: underline; text-decoration-color: #1F7A4D; }
+.del { background: #F9E7E5; color: #B3362D; text-decoration: line-through; }
+.mermaid-host svg { max-width: 100%; height: auto; }
+@media print { nav, header { display: none !important; } main { padding: 0 !important; } }

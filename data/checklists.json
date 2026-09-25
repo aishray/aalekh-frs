@@ -1,0 +1,277 @@
+{
+ "gap": {
+  "benefit": [
+   "Application channels",
+   "Assisted mode (CSC)",
+   "Identity verification",
+   "Document sourcing",
+   "Eligibility rules",
+   "Verification hierarchy",
+   "SLA per stage",
+   "Right to Service timeline",
+   "Escalation on SLA breach",
+   "Rejection and re-application",
+   "Appeal against rejection",
+   "Payment method",
+   "Payment failure handling",
+   "Notifications",
+   "Grievance",
+   "Renewal",
+   "Data retention",
+   "Legacy data migration",
+   "MIS and reports",
+   "Audit"
+  ],
+  "permit": [
+   "Application channels",
+   "Identity verification",
+   "Document sourcing",
+   "Fee payment",
+   "Scrutiny rules",
+   "Site inspection",
+   "Approval hierarchy",
+   "SLA per stage",
+   "Right to Service timeline",
+   "Deemed approval",
+   "Rejection and resubmission",
+   "Appeal",
+   "Certificate issue",
+   "Notifications",
+   "MIS and reports",
+   "Audit"
+  ],
+  "grievance": [
+   "Grievance channels",
+   "Categorisation",
+   "Routing rules",
+   "SLA per level",
+   "Escalation",
+   "Closure and feedback",
+   "Reopening",
+   "Notifications",
+   "MIS and reports",
+   "Audit"
+  ],
+  "mis": [
+   "Data sources",
+   "Refresh frequency",
+   "Indicators",
+   "Access by jurisdiction",
+   "Export",
+   "Audit"
+  ],
+  "licence": [
+   "Application channels",
+   "Identity verification",
+   "Fee payment",
+   "Inspection",
+   "Approval hierarchy",
+   "Renewal reminders",
+   "Right to Service timeline",
+   "Certificate issue",
+   "Notifications",
+   "Audit"
+  ]
+ },
+ "compliance": {
+  "benefit": [
+   {
+    "id": "CMP-GIGW",
+    "title": "GIGW 3.0 and WCAG 2.1 AA",
+    "std": "STD-GIGW",
+    "category": "Accessibility",
+    "keyword": "GIGW"
+   },
+   {
+    "id": "CMP-BILINGUAL",
+    "title": "Bilingual interface (Hindi and English)",
+    "std": "STD-GIGW",
+    "category": "Usability",
+    "keyword": "Hindi"
+   },
+   {
+    "id": "CMP-DPDP",
+    "title": "DPDP notice, consent, retention and erasure",
+    "std": "STD-DPDP",
+    "category": "Privacy",
+    "keyword": "consent"
+   },
+   {
+    "id": "CMP-AADHAAR",
+    "title": "Aadhaar masking and Data Vault",
+    "std": "STD-AADHAAR",
+    "category": "Privacy",
+    "keyword": "Data Vault"
+   },
+   {
+    "id": "CMP-CERTIN",
+    "title": "CERT-In 6-hour reporting and 180-day logs",
+    "std": "STD-CERTIN",
+    "category": "Security",
+    "keyword": "180 days"
+   },
+   {
+    "id": "CMP-AUDIT",
+    "title": "Audit trail with before and after values",
+    "std": "STD-CERTIN",
+    "category": "Security",
+    "keyword": "audit"
+   },
+   {
+    "id": "CMP-SECAUDIT",
+    "title": "Security audit by CERT-In empanelled auditor",
+    "std": "STD-SECAUDIT",
+    "category": "Security",
+    "keyword": "safe-to-host"
+   },
+   {
+    "id": "CMP-HOST",
+    "title": "Hosting and data in India",
+    "std": "STD-HOST",
+    "category": "Hosting",
+    "keyword": "India"
+   },
+   {
+    "id": "CMP-RTS",
+    "title": "Right to Service timeline within notified days",
+    "std": "STD-RTS",
+    "category": "Compliance",
+    "keyword": "Right to Service"
+   },
+   {
+    "id": "CMP-PFMS",
+    "title": "DBT through PFMS with reconciliation",
+    "std": "STD-PFMS",
+    "category": "Integration",
+    "keyword": "PFMS"
+   }
+  ],
+  "permit": [
+   {
+    "id": "CMP-GIGW",
+    "title": "GIGW 3.0 and WCAG 2.1 AA",
+    "std": "STD-GIGW",
+    "category": "Accessibility",
+    "keyword": "GIGW"
+   },
+   {
+    "id": "CMP-DPDP",
+    "title": "DPDP notice, consent, retention and erasure",
+    "std": "STD-DPDP",
+    "category": "Privacy",
+    "keyword": "consent"
+   },
+   {
+    "id": "CMP-CERTIN",
+    "title": "CERT-In 6-hour reporting and 180-day logs",
+    "std": "STD-CERTIN",
+    "category": "Security",
+    "keyword": "180 days"
+   },
+   {
+    "id": "CMP-SECAUDIT",
+    "title": "Security audit by CERT-In empanelled auditor",
+    "std": "STD-SECAUDIT",
+    "category": "Security",
+    "keyword": "safe-to-host"
+   },
+   {
+    "id": "CMP-HOST",
+    "title": "Hosting and data in India",
+    "std": "STD-HOST",
+    "category": "Hosting",
+    "keyword": "India"
+   },
+   {
+    "id": "CMP-RTS",
+    "title": "Right to Service timeline within notified days",
+    "std": "STD-RTS",
+    "category": "Compliance",
+    "keyword": "Right to Service"
+   }
+  ],
+  "grievance": [
+   {
+    "id": "CMP-GIGW",
+    "title": "GIGW 3.0 and WCAG 2.1 AA",
+    "std": "STD-GIGW",
+    "category": "Accessibility",
+    "keyword": "GIGW"
+   },
+   {
+    "id": "CMP-DPDP",
+    "title": "DPDP notice, consent, retention and erasure",
+    "std": "STD-DPDP",
+    "category": "Privacy",
+    "keyword": "consent"
+   },
+   {
+    "id": "CMP-CERTIN",
+    "title": "CERT-In 6-hour reporting and 180-day logs",
+    "std": "STD-CERTIN",
+    "category": "Security",
+    "keyword": "180 days"
+   },
+   {
+    "id": "CMP-HOST",
+    "title": "Hosting and data in India",
+    "std": "STD-HOST",
+    "category": "Hosting",
+    "keyword": "India"
+   }
+  ],
+  "mis": [
+   {
+    "id": "CMP-GIGW",
+    "title": "GIGW 3.0 and WCAG 2.1 AA",
+    "std": "STD-GIGW",
+    "category": "Accessibility",
+    "keyword": "GIGW"
+   },
+   {
+    "id": "CMP-CERTIN",
+    "title": "CERT-In 6-hour reporting and 180-day logs",
+    "std": "STD-CERTIN",
+    "category": "Security",
+    "keyword": "180 days"
+   },
+   {
+    "id": "CMP-HOST",
+    "title": "Hosting and data in India",
+    "std": "STD-HOST",
+    "category": "Hosting",
+    "keyword": "India"
+   }
+  ],
+  "licence": [
+   {
+    "id": "CMP-GIGW",
+    "title": "GIGW 3.0 and WCAG 2.1 AA",
+    "std": "STD-GIGW",
+    "category": "Accessibility",
+    "keyword": "GIGW"
+   },
+   {
+    "id": "CMP-DPDP",
+    "title": "DPDP notice, consent, retention and erasure",
+    "std": "STD-DPDP",
+    "category": "Privacy",
+    "keyword": "consent"
+   },
+   {
+    "id": "CMP-CERTIN",
+    "title": "CERT-In 6-hour reporting and 180-day logs",
+    "std": "STD-CERTIN",
+    "category": "Security",
+    "keyword": "180 days"
+   },
+   {
+    "id": "CMP-RTS",
+    "title": "Right to Service timeline within notified days",
+    "std": "STD-RTS",
+    "category": "Compliance",
+    "keyword": "Right to Service"
+   }
+  ]
+ }
+}

@@ -1,0 +1,3 @@
+There should also be a mobile application for students, because most students have only a mobile phone.
+The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.
+If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again.

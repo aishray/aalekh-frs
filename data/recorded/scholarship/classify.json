@@ -1,0 +1,220 @@
+{
+ "step": "classify",
+ "note": "Clause typing for all sample sources (hand-authored, see README).",
+ "response": {
+  "types": [
+   {
+    "id": "GO-1",
+    "type": "Info"
+   },
+   {
+    "id": "GO-2",
+    "type": "Info"
+   },
+   {
+    "id": "GO-3.1",
+    "type": "Rule"
+   },
+   {
+    "id": "GO-3.2",
+    "type": "Rule"
+   },
+   {
+    "id": "GO-3.3",
+    "type": "Rule"
+   },
+   {
+    "id": "GO-3.4",
+    "type": "Rule"
+   },
+   {
+    "id": "GO-4.1",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-4.2",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-4.3",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-5.1",
+    "type": "Timeline"
+   },
+   {
+    "id": "GO-5.2",
+    "type": "Timeline"
+   },
+   {
+    "id": "GO-5.3",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-6.1",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-6.2",
+    "type": "Timeline"
+   },
+   {
+    "id": "GO-7.1",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-7.2",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-7.3",
+    "type": "Timeline"
+   },
+   {
+    "id": "GO-8.1",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-8.2",
+    "type": "Mandate"
+   },
+   {
+    "id": "GO-9",
+    "type": "Timeline"
+   },
+   {
+    "id": "GO-10",
+    "type": "Mandate"
+   },
+   {
+    "id": "COR1-1",
+    "type": "Rule"
+   },
+   {
+    "id": "COR1-2",
+    "type": "Info"
+   },
+   {
+    "id": "COR2-1",
+    "type": "Timeline"
+   },
+   {
+    "id": "COR2-2",
+    "type": "Info"
+   },
+   {
+    "id": "MIN-1",
+    "type": "Mandate"
+   },
+   {
+    "id": "MIN-2",
+    "type": "Mandate"
+   },
+   {
+    "id": "MIN-3",
+    "type": "Mandate"
+   },
+   {
+    "id": "MIN-4",
+    "type": "Timeline"
+   },
+   {
+    "id": "MIN-5",
+    "type": "Mandate"
+   },
+   {
+    "id": "VB-1",
+    "type": "Mandate"
+   },
+   {
+    "id": "VB-2",
+    "type": "Mandate"
+   },
+   {
+    "id": "VB-3",
+    "type": "Mandate"
+   },
+   {
+    "id": "FORM-1",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-2",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-3",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-4",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-5",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-6",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-7",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-8",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-9",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-10",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-11",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-12",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-13",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-14",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-15",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-16",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-17",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-18",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-19",
+    "type": "Info"
+   },
+   {
+    "id": "FORM-20",
+    "type": "Info"
+   }
+  ]
+ }
+}

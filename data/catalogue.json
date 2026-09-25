@@ -1,0 +1,112 @@
+[
+  {
+    "id": "aadhaar-ekyc", "name": "Aadhaar e-KYC", "keywords": ["aadhaar", "e-kyc", "ekyc", "uidai"], "provider": "UIDAI through the State AUA/KUA",
+    "summary": "OTP or biometric e-KYC to prefill name, date of birth, gender and address from UIDAI.",
+    "template": {
+      "title": "Aadhaar e-KYC through the State AUA/KUA",
+      "description": "The system shall perform Aadhaar OTP e-KYC through the State AUA/KUA for {actor} after recording consent, prefill name, date of birth, gender and address from the e-KYC response as read-only fields, and store the Aadhaar number only in the Aadhaar Data Vault.",
+      "acceptance": ["Given consent is recorded and a valid Aadhaar number is entered, when the OTP is verified, then name, date of birth, gender and address are prefilled and cannot be edited.", "Given e-KYC fails three times, when the applicant retries, then the system offers the CSC-assisted biometric route and logs the failures."]
+    },
+    "questions": ["Is biometric e-KYC required at CSCs in addition to OTP?", "Which AUA/KUA licence will be used?"],
+    "refs": ["STD-AADHAAR"]
+  },
+  {
+    "id": "digilocker", "name": "DigiLocker (via API Setu)", "keywords": ["digilocker", "api setu", "certificate"], "provider": "MeitY, NeGD",
+    "summary": "Pull issued documents (caste, income, marksheets) from DigiLocker with applicant consent.",
+    "template": {
+      "title": "Document pull from DigiLocker",
+      "description": "The system shall fetch {documents} from DigiLocker through API Setu with the applicant's consent, store the document URI and issuer metadata, and allow upload of a scanned copy only when the document is not available in DigiLocker.",
+      "acceptance": ["Given the applicant grants DigiLocker consent, when an issued document exists, then it is attached to the application with issuer and date and marked as verified at source.", "Given the document is not available in DigiLocker, when the applicant proceeds, then upload of a PDF or JPEG of up to 2 MB is enabled."]
+    },
+    "questions": ["Which certificates are issued into DigiLocker by the state today?"],
+    "refs": ["STD-EGOV"]
+  },
+  {
+    "id": "pfms-dbt", "name": "PFMS DBT", "keywords": ["pfms", "dbt", "direct benefit", "disbursement"], "provider": "Controller General of Accounts",
+    "summary": "Push beneficiary payment files to PFMS, receive payment status and failure reasons.",
+    "template": {
+      "title": "Disbursement through PFMS DBT",
+      "description": "The system shall generate DBT payment batches for sanctioned applications, push them to PFMS, receive payment status and failure reasons, and update each application to Paid or Payment failed.",
+      "acceptance": ["Given a sanctioned application with an Aadhaar-seeded account, when the batch is pushed, then PFMS acknowledgement is recorded against the application.", "Given PFMS returns a failure, when the status file is processed, then the application moves to Payment failed with the PFMS reason code."]
+    },
+    "questions": ["Which PFMS scheme code applies?", "Who signs payment batches in PFMS?"],
+    "refs": ["STD-PFMS"]
+  },
+  {
+    "id": "sms", "name": "State SMS gateway", "keywords": ["sms", "text message", "otp"], "provider": "NIC SMS gateway / State gateway",
+    "summary": "DLT-registered transactional SMS and OTP.",
+    "template": {
+      "title": "SMS through the State SMS gateway",
+      "description": "The system shall send transactional SMS and OTP through the State SMS gateway using DLT-registered templates in Hindi and English, and record delivery status for each message.",
+      "acceptance": ["Given a status change that requires an SMS, when the event occurs, then an SMS with the registered template is sent within 5 minutes and its delivery status is recorded."]
+    },
+    "questions": ["Are DLT templates registered in the department's name?"],
+    "refs": ["STD-EGOV"]
+  },
+  {
+    "id": "esign", "name": "e-Sign (ESP)", "keywords": ["e-sign", "esign", "digital signature"], "provider": "Empanelled e-Sign Service Provider",
+    "summary": "Aadhaar-based e-Sign of sanction orders and certificates.",
+    "template": {
+      "title": "e-Sign of orders",
+      "description": "The system shall allow {actor} to e-Sign {document} through an empanelled e-Sign Service Provider and embed the signature in the PDF.",
+      "acceptance": ["Given an approved order, when the officer completes e-Sign OTP, then the PDF carries a valid signature verifiable in a standard PDF reader."]
+    },
+    "questions": ["Which orders must be signed, and by whom?"],
+    "refs": ["STD-AADHAAR"]
+  },
+  {
+    "id": "paygov", "name": "Payment gateway", "keywords": ["fee", "payment gateway", "online payment"], "provider": "State payment gateway / PayGov",
+    "summary": "Collection of fees with reconciliation.",
+    "template": {
+      "title": "Fee collection through payment gateway",
+      "description": "The system shall collect {fee} through the State payment gateway, update the application only on a verified success response, and reconcile transactions daily.",
+      "acceptance": ["Given a successful payment, when the gateway callback is verified, then the receipt is generated and the application proceeds.", "Given a debited but unconfirmed payment, when daily reconciliation runs, then the status is corrected."]
+    },
+    "questions": ["Is the fee refundable on rejection?"],
+    "refs": ["STD-EGOV"]
+  },
+  {
+    "id": "sso", "name": "State SSO / Jan Parichay", "keywords": ["sso", "jan parichay", "single sign-on", "login"], "provider": "NIC",
+    "summary": "Single sign-on for officers and citizens.",
+    "template": {
+      "title": "Officer sign-in through Jan Parichay",
+      "description": "The system shall authenticate departmental users through Jan Parichay single sign-on with two-factor authentication and map each user to a role and jurisdiction.",
+      "acceptance": ["Given an officer with a Jan Parichay account, when they sign in, then they land on the dashboard for their role and jurisdiction."]
+    },
+    "questions": ["Do all institution nodal officers have Jan Parichay IDs?"],
+    "refs": ["STD-EGOV"]
+  },
+  {
+    "id": "umang", "name": "UMANG", "keywords": ["umang"], "provider": "MeitY, NeGD",
+    "summary": "Expose the service on the UMANG app through APIs.",
+    "template": {
+      "title": "Service on UMANG",
+      "description": "The system shall expose application status and submission APIs for onboarding on UMANG.",
+      "acceptance": ["Given the UMANG onboarding test suite, when run, then all mandatory APIs pass."]
+    },
+    "questions": ["Is UMANG onboarding in scope for phase 1?"],
+    "refs": ["STD-EGOV"]
+  },
+  {
+    "id": "csc", "name": "CSC Digital Seva", "keywords": ["csc", "common service centre", "common service center", "digital seva", "assisted"], "provider": "CSC SPV",
+    "summary": "Assisted applications by Village Level Entrepreneurs.",
+    "template": {
+      "title": "Assisted application at Common Service Centres",
+      "description": "The system shall allow CSC operators authenticated through CSC Digital Seva to submit applications on behalf of applicants, record the CSC ID on the application, and send the acknowledgement to the applicant's mobile number.",
+      "acceptance": ["Given a CSC operator signed in through Digital Seva, when an application is submitted on behalf of an applicant, then the application records the CSC ID and the applicant receives the acknowledgement SMS."]
+    },
+    "questions": ["What service charge may a CSC collect?"],
+    "refs": ["STD-EGOV"]
+  },
+  {
+    "id": "nic-email", "name": "NIC email", "keywords": ["email", "e-mail"], "provider": "NIC",
+    "summary": "Official email notifications through NIC relay.",
+    "template": {
+      "title": "Email through NIC relay",
+      "description": "The system shall send official email notifications through the NIC mail relay from a gov.in sender address.",
+      "acceptance": ["Given an email notification event, when it fires, then the email is relayed through NIC and the message ID is logged."]
+    },
+    "questions": [],
+    "refs": ["STD-EGOV"]
+  }
+]

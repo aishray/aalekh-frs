@@ -1,0 +1,41 @@
+{
+  "default": [
+    { "key": "control", "title": "Document control", "mode": "model" },
+    { "key": "introduction", "title": "Introduction", "mode": "llm" },
+    { "key": "asis", "title": "As-Is process", "mode": "llm" },
+    { "key": "tobe", "title": "To-Be process", "mode": "llm" },
+    { "key": "stakeholders", "title": "Stakeholders and roles", "mode": "model" },
+    { "key": "workflow", "title": "Application workflow", "mode": "model" },
+    { "key": "functional", "title": "Functional requirements", "mode": "llm" },
+    { "key": "data", "title": "Data dictionary", "mode": "model" },
+    { "key": "rules", "title": "Business rules", "mode": "model" },
+    { "key": "permissions", "title": "Role-permission matrix", "mode": "model" },
+    { "key": "integrations", "title": "Integration requirements", "mode": "llm" },
+    { "key": "reports", "title": "Reports and MIS", "mode": "llm" },
+    { "key": "nfr", "title": "Non-functional requirements", "mode": "llm" },
+    { "key": "assumptions", "title": "Assumptions", "mode": "model" },
+    { "key": "openissues", "title": "Open issues", "mode": "model" },
+    { "key": "traceability", "title": "Traceability matrix", "mode": "model" },
+    { "key": "signoff", "title": "Sign-off", "mode": "model" }
+  ],
+  "modules": {
+    "REG": "Registration and identity",
+    "APP": "Application",
+    "DOC": "Documents",
+    "VER": "Verification and approval",
+    "PAY": "Payment and disbursement",
+    "NOT": "Notifications",
+    "GRV": "Grievance",
+    "ADM": "Administration",
+    "RPT": "Reports and MIS",
+    "INT": "Integrations",
+    "NFR": "Non-functional",
+    "VAL": "Data validation",
+    "BR": "Business rules",
+    "ESC": "Escalation",
+    "SCR": "Scrutiny",
+    "INS": "Inspection",
+    "CRT": "Certificates",
+    "FEE": "Fees"
+  }
+}
