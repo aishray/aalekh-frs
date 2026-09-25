@@ -147,6 +147,7 @@ test('demo path', async ({ page }) => {
   await page.goto('/projects/pms-scholarship/changes');
   await page.getByRole('button', { name: 'Add corrigendum' }).click();
   await page.getByRole('button', { name: 'Corrigendum 2 (grievance timeline)' }).click();
+  await expect(page.getByLabel('Name')).toHaveValue(/Corrigendum 2/); // the sample file is fetched first
   await page.getByRole('button', { name: 'Index clauses' }).click();
   await page.getByRole('button', { name: 'Run impact analysis' }).click({ timeout: 20000 });
   const impact = page.getByTestId('impact').first();
