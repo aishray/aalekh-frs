@@ -1,24 +1,20 @@
 {
- "step": "fix",
- "variant": "REV-1",
- "response": {
-  "title": "DBT payment failure handling",
-  "description": "The system shall record the PFMS failure reason for every failed DBT payment, move the application to Payment failed, notify the applicant by SMS to correct bank details within 30 days, re-validate the corrected account through PFMS, and include the application in the next weekly payment batch.",
-  "actor": "System",
-  "priority": "Must",
-  "acceptanceCriteria": [
-   "Given PFMS returns \"account not Aadhaar-seeded\" for a payment, when the status file is processed, then the application moves to Payment failed with that reason and the applicant receives an SMS within 5 minutes.",
-   "Given the applicant updates bank details and PFMS validation succeeds, when the next weekly batch runs, then the application is included and its status is Payment initiated.",
-   "Given 30 days pass without correction, when the daily job runs, then the application is listed to the DSWO for follow-up."
-  ],
-  "refs": [
-   "ANS-1",
-   "GO-6.1",
-   "WF-T14",
-   "WF-T15",
-   "STD-PFMS"
-  ],
-  "module": "PAY",
-  "rationale": "Adds the missing exception flow for failed DBT payments defined in ANS-1."
- }
+  "provenance": "live",
+  "model": "sarvam-105b-conversations",
+  "recordedAt": "2026-09-25T14:50:06.083Z",
+  "response": {
+    "title": "PFMS payment failure handling and re-initiation",
+    "description": "The system shall record the PFMS failure reason, notify the applicant by SMS to correct bank details within 30 days, re-validate the Aadhaar-seeded bank account through PFMS, and include the application in the next weekly payment batch.",
+    "actor": "System",
+    "priority": "Must",
+    "acceptanceCriteria": [
+      "Given a PFMS payment fails due to an unseeded, closed, or frozen account, when the weekly batch is processed, then the system records the failure reason, sends an SMS notification to the applicant to correct bank details, and queues the application for re-initiation in the subsequent weekly batch."
+    ],
+    "refs": [
+      "GO-6.1",
+      "ANS-1"
+    ],
+    "module": "Payment",
+    "rationale": "The existing FR-PAY-001 and FR-PAY-003 requirements address only successful credit, and ANS-1 mandates a 30-day notification window and weekly batch re-initiation for failed DBT payments."
+  }
 }

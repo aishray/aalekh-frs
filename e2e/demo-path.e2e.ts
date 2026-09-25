@@ -13,6 +13,7 @@ async function fresh(page: Page) {
 }
 
 test('demo path', async ({ page }) => {
+  if (process.env.RECORD) test.setTimeout(900_000);
   await fresh(page);
 
   // 1. Dashboard: items needing attention across 8 projects.
@@ -204,5 +205,19 @@ test('demo path', async ({ page }) => {
   await page.getByLabel('Search the library').fill('assisted application consent OTP');
   await expect(page.getByText('FR-APP-011').first()).toBeVisible();
   await shot(page, '13-library');
-});
 
+  // `npm run record` only: exercise the remaining AI steps so their live responses are captured too.
+  if (process.env.RECORD) {
+    await page.goto('/projects/pms-scholarship/discovery');
+    await page.getByRole('tab', { name: /Interview/ }).click();
+    await page.getByRole('button', { name: 'Generate questions' }).click();
+    await expect(page.getByText(/^Questions for /)).toBeVisible({ timeout: 30000 });
+    await page.goto('/projects/pms-scholarship/sources');
+    await page.getByRole('button', { name: 'Add source' }).first().click();
+    await page.getByLabel('Type').selectOption('Form');
+    await page.getByLabel('Name').fill('Scanned application form (recording)');
+    await page.locator('input[type=file][accept*=".pdf"]').setInputFiles('public/samples/application_form.png');
+    await page.getByRole('button', { name: 'Index clauses' }).click();
+    await expect(page.getByRole('button', { name: /Scanned application form \(recording\)/ })).toBeVisible({ timeout: 60000 });
+  }
+});

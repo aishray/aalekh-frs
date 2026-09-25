@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-09-25T14:50:08.203Z",
+  "ms": 490,
+  "ok": true,
+  "model": "sarvam-105b-conversations",
+  "reasoning": "off",
+  "usage": [
+    {
+      "model": "sarvam-105b-conversations",
+      "promptTokens": 405,
+      "completionTokens": 64,
+      "latencyMs": 489
+    }
+  ],
+  "response": {
+    "types": [
+      {
+        "id": "COR2-1",
+        "type": "Timeline"
+      },
+      {
+        "id": "COR2-2",
+        "type": "Info"
+      }
+    ]
+  },
+  "request": {
+    "step": "classify",
+    "blocks": {
+      "INPUT": "[COR2-1] In paragraph 7.3 of the G.O. read above, for \"within 7 working days\" read \"within 5 working days\". Grievances shall accordingly be resolved within 5 working days of receipt.\n[COR2-2] All other conditions of the G.O. and of Corrigendum No. SW/2026/SCH/118-A remain unchanged."
+    }
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "capturedAt": "2026-09-25T14:50:29.751Z",
+  "ms": 13024,
+  "ok": true,
+  "model": "sarvam-105b",
+  "reasoning": "off",
+  "usage": [
+    {
+      "model": "sarvam-105b",
+      "promptTokens": 1793,
+      "completionTokens": 1948,
+      "latencyMs": 13020
+    }
+  ],
+  "response": {
+    "entities": [
+      {
+        "name": "applicant",
+        "fields": [
+          {
+            "label": "Name of the applicant (as in Aadhaar)",
+            "labelOriginal": "Name of the applicant (as in Aadhaar)",
+            "name": "name",
+            "type": "String",
+            "length": 100,
+            "mandatory": true,
+            "validation": "Must match Aadhaar record",
+            "valueSource": "Aadhaar eKYC",
+            "masterList": null,
+            "pii": "Aadhaar",
+            "refs": [
+              "FORM-1",
+              "GO-4.2"
+            ]
+          },
+          {
+            "label": "Father's / Guardian's name",
+            "labelOriginal": "Father's / Guardian's name",
+            "name": "fatherGuardianName",
+            "type": "String",
+            "length": 100,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-2"
+            ]
+          },
+          {
+            "label": "Date of birth",
+            "labelOriginal": "Date of birth (DD/MM/YYYY)",
+            "name": "dateOfBirth",
+            "type": "Date",
+            "length": 10,
+            "mandatory": true,
+            "validation": "DD/MM/YYYY format",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-3",
+              "GO-3.1"
+            ]
+          },
+          {
+            "label": "Gender",
+            "labelOriginal": "Gender (Male / Female / Transgender)",
+            "name": "gender",
+            "type": "String",
+            "length": 10,
+            "mandatory": true,
+            "validation": "Male / Female / Transgender",
+            "valueSource": "Master",
+            "masterList": "Gender Master",
+            "pii": "Personal",
+            "refs": [
+              "FORM-4"
+            ]
+          },
+          {
+            "label": "Category",
+            "labelOriginal": "Category (SC / ST / OBC / EWS)",
+            "name": "category",
+            "type": "String",
+            "length": 10,
+            "mandatory": true,
+            "validation": "SC / ST / OBC / EWS",
+            "valueSource": "Master",
+            "masterList": "Category Master",
+            "pii": "Sensitive",
+            "refs": [
+              "FORM-5"
+            ]
+          },
+          {
+            "label": "Aadhaar number",
+            "labelOriginal": "Aadhaar number",
+            "name": "aadhaarNumber",
+            "type": "String",
+            "length": 12,
+            "mandatory": true,
+            "validation": "12-digit numeric",
+            "valueSource": "Aadhaar eKYC",
+            "masterList": null,
+            "pii": "Aadhaar",
+            "refs": [
+              "FORM-6",
+              "GO-4.2"
+            ]
+          },
+          {
+            "label": "Mobile number",
+            "labelOriginal": "Mobile number",
+            "name": "mobileNumber",
+            "type": "String",
+            "length": 10,
+            "mandatory": true,
+            "validation": "10-digit numeric",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-7",
+              "GO-4.2",
+              "GO-7.2",
+              "MIN-1"
+            ]
+          },
+          {
+            "label": "Permanent address",
+            "labelOriginal": "Permanent address",
+            "name": "permanentAddress",
+            "type": "String",
+            "length": 255,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-8"
+            ]
+          },
+          {
+            "label": "District",
+            "labelOriginal": "District",
+            "name": "district",
+            "type": "String",
+            "length": 50,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": "District Master",
+            "pii": "Personal",
+            "refs": [
+              "FORM-9",
+              "GO-8.1"
+            ]
+          },
+          {
+            "label": "PIN code",
+            "labelOriginal": "PIN code",
+            "name": "pinCode",
+            "type": "String",
+            "length": 6,
+            "mandatory": true,
+            "validation": "6-digit numeric",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-10"
+            ]
+          },
+          {
+            "label": "Name of the institution",
+            "labelOriginal": "Name of the institution",
+            "name": "institutionName",
+            "type": "String",
+            "length": 255,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": "Institution Master",
+            "pii": "Personal",
+            "refs": [
+              "FORM-11"
+            ]
+          },
+          {
+            "label": "Course",
+            "labelOriginal": "Course",
+            "name": "course",
+            "type": "String",
+            "length": 100,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": "Course Master",
+            "pii": "Personal",
+            "refs": [
+              "FORM-12",
+              "GO-3.3"
+            ]
+          },
+          {
+            "label": "Year of study",
+            "labelOriginal": "Year of study",
+            "name": "yearOfStudy",
+            "type": "String",
+            "length": 10,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": "Year of Study Master",
+            "pii": "Personal",
+            "refs": [
+              "FORM-13"
+            ]
+          },
+          {
+            "label": "Annual family income",
+            "labelOriginal": "Annual family income (Rs.)",
+            "name": "annualFamilyIncome",
+            "type": "Number",
+            "length": 15,
+            "mandatory": true,
+            "validation": "Must not exceed Rs. 3,00,000 per annum as per COR1-1",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Financial",
+            "refs": [
+              "FORM-14",
+              "COR1-1",
+              "GO-3.2"
+            ]
+          },
+          {
+            "label": "Bank account number",
+            "labelOriginal": "Bank account number",
+            "name": "bankAccountNumber",
+            "type": "String",
+            "length": 20,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Financial",
+            "refs": [
+              "FORM-15"
+            ]
+          },
+          {
+            "label": "IFSC code",
+            "labelOriginal": "IFSC code",
+            "name": "ifscCode",
+            "type": "String",
+            "length": 11,
+            "mandatory": true,
+            "validation": "11-character alphanumeric",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Financial",
+            "refs": [
+              "FORM-16"
+            ]
+          },
+          {
+            "label": "Attendance in previous year",
+            "labelOriginal": "Attendance in previous year (%) (for renewal only)",
+            "name": "attendancePreviousYear",
+            "type": "Number",
+            "length": 5,
+            "mandatory": false,
+            "validation": "Must be at least 75% for renewal as per GO-3.4",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-17",
+              "GO-3.4"
+            ]
+          },
+          {
+            "label": "Caste certificate number",
+            "labelOriginal": "Caste certificate number",
+            "name": "casteCertificateNumber",
+            "type": "String",
+            "length": 50,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "DigiLocker",
+            "masterList": null,
+            "pii": "Sensitive",
+            "refs": [
+              "FORM-18",
+              "GO-4.3"
+            ]
+          },
+          {
+            "label": "Income certificate number",
+            "labelOriginal": "Income certificate number",
+            "name": "incomeCertificateNumber",
+            "type": "String",
+            "length": 50,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "DigiLocker",
+            "masterList": null,
+            "pii": "Sensitive",
+            "refs": [
+              "FORM-19",
+              "GO-4.3"
+            ]
+          },
+          {
+            "label": "Declaration",
+            "labelOriginal": "Declaration: I declare that the information given above is true. Signature of applicant and date.",
+            "name": "declaration",
+            "type": "String",
+            "length": 500,
+            "mandatory": true,
+            "validation": "Required field",
+            "valueSource": "Master",
+            "masterList": null,
+            "pii": "Personal",
+            "refs": [
+              "FORM-20"
+            ]
+          }
+        ]
+      }
+    ],
+    "masters": [
+      {
+        "name": "Gender Master",
+        "values": [
+          "Male",
+          "Female",
+          "Transgender"
+        ],
+        "owner": "Social Welfare Department"
+      },
+      {
+        "name": "Category Master",
+        "values": [
+          "SC",
+          "ST",
+          "OBC",
+          "EWS"
+        ],
+        "owner": "Social Welfare Department"
+      },
+      {
+        "name": "District Master",
+        "values": [],
+        "owner": "State Administration"
+      },
+      {
+        "name": "Institution Master",
+        "values": [],
+        "owner": "Education Department"
+      },
+      {
+        "name": "Course Master",
+        "values": [],
+        "owner": "Education Department"
+      },
+      {
+        "name": "Year of Study Master",
+        "values": [],
+        "owner": "Education Department"
+      }
+    ]
+  },
+  "request": {
+    "step": "fields",
+    "blocks": {
+      "SOURCES": "[GO-3.1] (Rule) The applicant shall be a domicile of Rajyapradesh.\n[GO-3.3] (Rule) The applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh.\n[GO-3.4] (Rule) For renewal, the applicant shall have attended at least 75% of classes in the previous academic year, as certified by the institution.\n[GO-4.1] (Mandate) Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs).\n[GO-4.2] (Mandate) Aadhaar-based e-KYC of the applicant shall be mandatory.\n[GO-4.3] (Mandate) Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A.\n[GO-5.3] (Mandate) Reasons shall be recorded in writing for every rejection and communicated to the applicant.\n[GO-6.1] (Mandate) The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant.\n[GO-7.1] (Mandate) An online grievance facility shall be provided to applicants.\n[GO-7.2] (Mandate) The applicant shall be informed by SMS at every stage of processing of the application.\n[GO-8.1] (Mandate) A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications.\n[GO-8.2] (Mandate) A monthly report shall be submitted to the Principal Secretary, Social Welfare Department.\n[GO-10] (Mandate) Personal data collected under the scheme shall be used only for the purposes of the scheme.\n[COR1-1] (Rule) In paragraph 3.2 of the G.O. read above, for \"Rs. 2,50,000 (Rupees two lakh fifty thousand only)\" read \"Rs. 3,00,000 (Rupees three lakh only)\". The annual family income limit for eligibility is accordingly Rs. 3,00,000 per annum.\n[MIN-1] (Mandate) CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number.\n[MIN-2] (Mandate) For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again.\n[MIN-3] (Mandate) The portal shall be available in Hindi and English.\n[MIN-5] (Mandate) The portal shall work on low-end Android phones on 3G connections.\n[VB-1] (Mandate) There should also be a mobile application for students, because most students have only a mobile phone.\n[VB-2] (Mandate) The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.\n[VB-3] (Mandate) If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again.",
+      "SUPERSEDED": "[GO-3.2] superseded by COR1-1: The annual income of the applicant's family from all sources shall not exceed Rs. 2,50,000 (Rupees two lakh fifty thousand only).\n[GO-7.3] superseded by COR2-1: Grievances shall be resolved within 7 working days of receipt.\n[MIN-4] superseded by GO-5.1: Institution verification shall be completed within 10 days of submission.",
+      "RESOLUTIONS": "[RES-1] Supersession GO-3.2, COR1-1: COR1-1 prevails.\n[RES-2] Conflict GO-5.1, MIN-4: GO-5.1 prevails.\n[RES-3] MissingReference GO-4.3: deferred to the department (open issue).\n[RES-4] Supersession GO-7.3, COR2-1: COR2-1 prevails.",
+      "ANSWERS": "[ANS-1] When a DBT payment fails in PFMS (for example the account is not Aadhaar-seeded or is closed), what should happen to the application? Answer: Notify the student by SMS to correct bank details within 30 days; re-initiate in the next weekly batch\n[ANS-2] Can a student appeal against rejection by the District Social Welfare Officer, and to whom? Answer: Appeal to the Director, Social Welfare within 30 days",
+      "ASSUMPTIONS": "[ASM-3] Legacy data migration: Only 2025-26 beneficiaries are migrated as a beneficiary master for renewal; pending paper applications are not migrated.\n[ASM-4] Escalation on SLA breach: Institution delays are escalated to the District Social Welfare Officer, and DSWO delays to the Joint Director, Social Welfare.\n[ASM-5] Renewal: The renewal window opens on 1 July and last year's beneficiaries receive a prefilled renewal application.\n[ASM-6] Data retention: Applicant data is retained for 8 years after the last payment and then anonymised.\n[ASM-7] Audit: All status changes, data edits and exports are logged, and the audit trail is viewable by the State administrator.",
+      "INPUT": "[FORM-1] Name of the applicant (as in Aadhaar)\n[FORM-2] Father's / Guardian's name\n[FORM-3] Date of birth (DD/MM/YYYY)\n[FORM-4] Gender (Male / Female / Transgender)\n[FORM-5] Category (SC / ST / OBC / EWS)\n[FORM-6] Aadhaar number\n[FORM-7] Mobile number\n[FORM-8] Permanent address\n[FORM-9] District\n[FORM-10] PIN code\n[FORM-11] Name of the institution\n[FORM-12] Course\n[FORM-13] Year of study\n[FORM-14] Annual family income (Rs.)\n[FORM-15] Bank account number\n[FORM-16] IFSC code\n[FORM-17] Attendance in previous year (%) (for renewal only)\n[FORM-18] Caste certificate number\n[FORM-19] Income certificate number\n[FORM-20] Declaration: I declare that the information given above is true. Signature of applicant and date."
+    }
+  }
+}

@@ -1,18 +1,19 @@
 {
- "step": "fix",
- "variant": "AMB-FR-GRV-001-quickly",
- "response": {
-  "title": "Online grievance registration",
-  "description": "The system shall allow an applicant to register a grievance online against an application, with category and description, and shall route it to the District Social Welfare Officer of the applicant's district within 5 minutes of registration.",
-  "actor": "Applicant",
-  "priority": "Must",
-  "acceptanceCriteria": [
-   "Given a grievance registered against an application, when it is saved, then a grievance number is shown and it appears in the DSWO's grievance list within 5 minutes."
-  ],
-  "refs": [
-   "GO-7.1"
-  ],
-  "module": "GRV",
-  "rationale": "Replaced the ambiguous \"quickly\" with a measurable routing time of 5 minutes."
- }
+  "provenance": "live",
+  "model": "sarvam-105b-conversations",
+  "recordedAt": "2026-09-25T14:50:03.853Z",
+  "response": {
+    "title": "Online grievance registration",
+    "description": "The system shall allow an applicant to register a grievance online against an application, with category and description, and shall route it to the District Social Welfare Officer of the applicant's district within 24 hours.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+      "Given a grievance registered against an application, when it is saved, then a grievance number is shown and it appears in the DSWO's grievance list."
+    ],
+    "refs": [
+      "GO-7.1"
+    ],
+    "module": "GRV",
+    "rationale": "The term 'quickly' is ambiguous and has been replaced with the measurable time limit of 24 hours to ensure precise routing."
+  }
 }

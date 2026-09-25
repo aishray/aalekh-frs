@@ -1,0 +1,452 @@
+{
+  "capturedAt": "2026-09-25T14:14:32.608Z",
+  "ms": 34723,
+  "ok": true,
+  "model": "sarvam-105b",
+  "reasoning": "off",
+  "usage": [
+    {
+      "model": "sarvam-105b",
+      "promptTokens": 1937,
+      "completionTokens": 2536,
+      "latencyMs": 34718
+    }
+  ],
+  "response": {
+    "objective": "To transition the State Post-Matric Scholarship Scheme to an online platform from the academic year 2026-27 to ensure transparent, time-bound, and accessible scholarship delivery to eligible students (GO-2).",
+    "objectiveRefs": [
+      "GO-2"
+    ],
+    "scopeIn": [
+      {
+        "text": "All applications under the scheme, including both fresh and renewal applications, shall be processed online (GO-2, GO-4.1).",
+        "refs": [
+          "GO-2",
+          "GO-4.1"
+        ]
+      },
+      {
+        "text": "The scheme applies to students studying in post-matric courses in institutions recognised by the competent authority in Rajyapradesh (GO-3.3).",
+        "refs": [
+          "GO-3.3"
+        ]
+      },
+      {
+        "text": "The scheme covers students who are domiciles of Rajyapradesh and have an annual family income not exceeding Rs. 3,00,000 (GO-3.1, COR1-1).",
+        "refs": [
+          "GO-3.1",
+          "COR1-1"
+        ]
+      },
+      {
+        "text": "The scheme includes Direct Benefit Transfer (DBT) of funds via PFMS to the applicant's Aadhaar-seeded bank account (GO-6.1).",
+        "refs": [
+          "GO-6.1"
+        ]
+      },
+      {
+        "text": "The scheme includes online grievance redressal and status tracking (GO-7.1, GO-7.2).",
+        "refs": [
+          "GO-7.1",
+          "GO-7.2"
+        ]
+      }
+    ],
+    "scopeOut": [
+      {
+        "text": "Paper-based application processing (superseded) (GO-3.2).",
+        "refs": [
+          "GO-3.2"
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "name": "Applicant",
+        "description": "The student applying for the scholarship, required to submit applications, undergo Aadhaar-based e-KYC, and receive payments.",
+        "refs": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-4.1",
+          "GO-4.2",
+          "GO-4.3",
+          "GO-6.1",
+          "GO-6.2"
+        ]
+      },
+      {
+        "name": "Institution Nodal Officer",
+        "description": "Responsible for verifying applications within 15 days of submission.",
+        "refs": [
+          "GO-5.1"
+        ]
+      },
+      {
+        "name": "District Social Welfare Officer",
+        "description": "Responsible for sanctioning or rejecting verified applications within 15 days and managing district-wise dashboards.",
+        "refs": [
+          "GO-5.2",
+          "GO-8.1"
+        ]
+      },
+      {
+        "name": "CSC Operator",
+        "description": "Permitted to apply on behalf of students without internet access; acknowledgement is sent to the student.",
+        "refs": [
+          "GO-4.1",
+          "MIN-1"
+        ]
+      }
+    ],
+    "channels": [
+      {
+        "text": "Online via scholarship portal",
+        "refs": [
+          "GO-4.1"
+        ]
+      },
+      {
+        "text": "Common Service Centres (CSCs)",
+        "refs": [
+          "GO-4.1",
+          "MIN-1"
+        ]
+      },
+      {
+        "text": "Mobile application",
+        "refs": [
+          "VB-1"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "text": "Applicant",
+        "refs": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-4.2",
+          "GO-4.3",
+          "GO-6.1",
+          "GO-6.2",
+          "GO-7.1",
+          "GO-7.2",
+          "FORM-1",
+          "FORM-2",
+          "FORM-3",
+          "FORM-4",
+          "FORM-5",
+          "FORM-6",
+          "FORM-7",
+          "FORM-8",
+          "FORM-9",
+          "FORM-10",
+          "FORM-15",
+          "FORM-16",
+          "FORM-17",
+          "FORM-18",
+          "FORM-19",
+          "FORM-20"
+        ]
+      },
+      {
+        "text": "Institution",
+        "refs": [
+          "GO-3.3",
+          "GO-5.1",
+          "VB-2"
+        ]
+      },
+      {
+        "text": "District Social Welfare Office",
+        "refs": [
+          "GO-2",
+          "GO-5.2",
+          "GO-8.1",
+          "GO-8.2",
+          "GO-9"
+        ]
+      },
+      {
+        "text": "DigiLocker",
+        "refs": [
+          "GO-4.3"
+        ]
+      },
+      {
+        "text": "PFMS",
+        "refs": [
+          "GO-6.1"
+        ]
+      },
+      {
+        "text": "CSC Operator",
+        "refs": [
+          "GO-4.1",
+          "MIN-1"
+        ]
+      },
+      {
+        "text": "Nodal Officer",
+        "refs": [
+          "GO-5.1"
+        ]
+      },
+      {
+        "text": "District Social Welfare Officer",
+        "refs": [
+          "GO-5.2",
+          "GO-8.1",
+          "GO-8.2"
+        ]
+      }
+    ],
+    "integrations": [
+      {
+        "name": "Aadhaar-based e-KYC",
+        "refs": [
+          "GO-4.2"
+        ]
+      },
+      {
+        "name": "DigiLocker",
+        "refs": [
+          "GO-4.3"
+        ]
+      },
+      {
+        "name": "PFMS (Public Financial Management System)",
+        "refs": [
+          "GO-6.1"
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "code": "APP",
+        "name": "Application",
+        "refs": [
+          "GO-2",
+          "GO-4.1",
+          "GO-4.2",
+          "GO-4.3",
+          "GO-5.1",
+          "GO-5.2",
+          "GO-6.1",
+          "GO-6.2",
+          "GO-7.1",
+          "GO-7.2",
+          "GO-7.3",
+          "GO-8.1",
+          "GO-8.2",
+          "GO-9",
+          "MIN-1",
+          "MIN-2",
+          "MIN-3",
+          "MIN-5",
+          "VB-1",
+          "VB-2",
+          "VB-3",
+          "FORM-1",
+          "FORM-2",
+          "FORM-3",
+          "FORM-4",
+          "FORM-5",
+          "FORM-6",
+          "FORM-7",
+          "FORM-8",
+          "FORM-9",
+          "FORM-10",
+          "FORM-11",
+          "FORM-12",
+          "FORM-13",
+          "FORM-14",
+          "FORM-15",
+          "FORM-16",
+          "FORM-17",
+          "FORM-18",
+          "FORM-19",
+          "FORM-20"
+        ]
+      }
+    ],
+    "checklist": [
+      {
+        "topic": "Application channels",
+        "status": "Covered",
+        "refs": [
+          "GO-4.1",
+          "GO-2"
+        ],
+        "note": "Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs)."
+      },
+      {
+        "topic": "Assisted mode (CSC)",
+        "status": "Covered",
+        "refs": [
+          "GO-4.1",
+          "MIN-1"
+        ],
+        "note": "CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number."
+      },
+      {
+        "topic": "Identity verification",
+        "status": "Covered",
+        "refs": [
+          "GO-4.2"
+        ],
+        "note": "Aadhaar-based e-KYC of the applicant shall be mandatory."
+      },
+      {
+        "topic": "Document sourcing",
+        "status": "Partial",
+        "refs": [
+          "GO-4.3",
+          "MIN-2"
+        ],
+        "note": "Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A. For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again. Details of Annexure A format and document validation logic are missing."
+      },
+      {
+        "topic": "Eligibility rules",
+        "status": "Covered",
+        "refs": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "note": "The applicant shall be a domicile of Rajyapradesh, studying in a post-matric course in a recognised institution, with an annual family income not exceeding Rs. 3,00,000. For renewal, the applicant shall have attended at least 75% of classes."
+      },
+      {
+        "topic": "Verification hierarchy",
+        "status": "Covered",
+        "refs": [
+          "GO-5.1",
+          "GO-5.2"
+        ],
+        "note": "The nodal officer of the institution shall verify the application within 15 days of submission. The District Social Welfare Officer shall sanction or reject the verified application within 15 days of receipt."
+      },
+      {
+        "topic": "SLA per stage",
+        "status": "Covered",
+        "refs": [
+          "GO-5.1",
+          "GO-5.2",
+          "GO-7.3",
+          "GO-9"
+        ],
+        "note": "Institution verification: 15 days. District sanction/reject: 15 days. Grievance resolution: 7 working days. Total sanction timeline: 30 working days from submission of a complete application."
+      },
+      {
+        "topic": "Right to Service timeline",
+        "status": "Covered",
+        "refs": [
+          "GO-9"
+        ],
+        "note": "The scholarship shall be sanctioned within 30 working days of submission of a complete application, and the service is notified under the Rajyapradesh Right to Service Act."
+      },
+      {
+        "topic": "Escalation on SLA breach",
+        "status": "Missing",
+        "refs": [],
+        "note": "No escalation mechanism or consequences for SLA breach are mentioned."
+      },
+      {
+        "topic": "Rejection and re-application",
+        "status": "Partial",
+        "refs": [
+          "GO-5.3",
+          "VB-3"
+        ],
+        "note": "Reasons shall be recorded in writing for every rejection and communicated to the applicant. If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again. Re-application process details are missing."
+      },
+      {
+        "topic": "Appeal against rejection",
+        "status": "Missing",
+        "refs": [],
+        "note": "No appeal mechanism against rejection is mentioned."
+      },
+      {
+        "topic": "Payment method",
+        "status": "Covered",
+        "refs": [
+          "GO-6.1",
+          "GO-6.2"
+        ],
+        "note": "The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant. The scholarship shall be paid in a single instalment not later than 31 March of the academic year."
+      },
+      {
+        "topic": "Payment failure handling",
+        "status": "Missing",
+        "refs": [],
+        "note": "No handling mechanism for payment failures is mentioned."
+      },
+      {
+        "topic": "Notifications",
+        "status": "Covered",
+        "refs": [
+          "GO-7.2"
+        ],
+        "note": "The applicant shall be informed by SMS at every stage of processing of the application."
+      },
+      {
+        "topic": "Grievance",
+        "status": "Covered",
+        "refs": [
+          "GO-7.1",
+          "GO-7.2",
+          "GO-7.3"
+        ],
+        "note": "An online grievance facility shall be provided to applicants. Grievances shall be resolved within 7 working days of receipt."
+      },
+      {
+        "topic": "Renewal",
+        "status": "Covered",
+        "refs": [
+          "GO-2",
+          "GO-3.4",
+          "MIN-2"
+        ],
+        "note": "All applications under the scheme, fresh and renewal, shall be received, verified, sanctioned and paid online. For renewal, the applicant shall have attended at least 75% of classes. Documents already verified in the previous year shall be reused."
+      },
+      {
+        "topic": "Data retention",
+        "status": "Missing",
+        "refs": [],
+        "note": "No data retention policy or duration is mentioned."
+      },
+      {
+        "topic": "Legacy data migration",
+        "status": "Missing",
+        "refs": [],
+        "note": "No legacy data migration strategy is mentioned."
+      },
+      {
+        "topic": "MIS and reports",
+        "status": "Covered",
+        "refs": [
+          "GO-8.1",
+          "GO-8.2"
+        ],
+        "note": "A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications. A monthly report shall be submitted to the Principal Secretary, Social Welfare Department."
+      },
+      {
+        "topic": "Audit",
+        "status": "Missing",
+        "refs": [],
+        "note": "No audit trail or audit mechanism is mentioned."
+      }
+    ]
+  },
+  "request": {
+    "step": "discovery",
+    "blocks": {
+      "SOURCES": "[GO-1] (Info) The State Post-Matric Scholarship Scheme is presently administered through paper applications submitted at institutions and forwarded to District Social Welfare Offices. Applications take 6 to 9 months to be sanctioned, files are lost in transit, and students have no means of knowing the status of their application.\n[GO-2] (Info) Government has decided that all applications under the scheme, fresh and renewal, shall be received, verified, sanctioned and paid online from the academic year 2026-27, so that eligible students receive the scholarship in a transparent and time-bound manner.\n[GO-3.1] (Rule) The applicant shall be a domicile of Rajyapradesh.\n[GO-3.3] (Rule) The applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh.\n[GO-3.4] (Rule) For renewal, the applicant shall have attended at least 75% of classes in the previous academic year, as certified by the institution.\n[GO-4.1] (Mandate) Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs).\n[GO-4.2] (Mandate) Aadhaar-based e-KYC of the applicant shall be mandatory.\n[GO-4.3] (Mandate) Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A.\n[GO-5.1] (Timeline) The nodal officer of the institution shall verify the application within 15 days of submission.\n[GO-5.2] (Timeline) The District Social Welfare Officer shall sanction or reject the verified application within 15 days of receipt.\n[GO-5.3] (Mandate) Reasons shall be recorded in writing for every rejection and communicated to the applicant.\n[GO-6.1] (Mandate) The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant.\n[GO-6.2] (Timeline) The scholarship shall be paid in a single instalment not later than 31 March of the academic year.\n[GO-7.1] (Mandate) An online grievance facility shall be provided to applicants.\n[GO-7.2] (Mandate) The applicant shall be informed by SMS at every stage of processing of the application.\n[GO-7.3] (Timeline) Grievances shall be resolved within 7 working days of receipt.\n[GO-8.1] (Mandate) A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications.\n[GO-8.2] (Mandate) A monthly report shall be submitted to the Principal Secretary, Social Welfare Department.\n[GO-9] (Timeline) The scholarship shall be sanctioned within 30 working days of submission of a complete application, and the service is notified under the Rajyapradesh Right to Service Act.\n[GO-10] (Mandate) Personal data collected under the scheme shall be used only for the purposes of the scheme.\n[COR1-1] (Rule) In paragraph 3.2 of the G.O. read above, for \"Rs. 2,50,000 (Rupees two lakh fifty thousand only)\" read \"Rs. 3,00,000 (Rupees three lakh only)\". The annual family income limit for eligibility is accordingly Rs. 3,00,000 per annum.\n[COR1-2] (Info) All other conditions of the G.O. remain unchanged.\n[MIN-1] (Mandate) CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number.\n[MIN-2] (Mandate) For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again.\n[MIN-3] (Mandate) The portal shall be available in Hindi and English.\n[MIN-5] (Mandate) The portal shall work on low-end Android phones on 3G connections.\n[VB-1] (Mandate) There should also be a mobile application for students, because most students have only a mobile phone.\n[VB-2] (Mandate) The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.\n[VB-3] (Mandate) If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again.\n[FORM-1] (Info) Name of the applicant (as in Aadhaar)\n[FORM-2] (Info) Father's / Guardian's name\n[FORM-3] (Info) Date of birth (DD/MM/YYYY)\n[FORM-4] (Info) Gender (Male / Female / Transgender)\n[FORM-5] (Info) Category (SC / ST / OBC / EWS)\n[FORM-6] (Info) Aadhaar number\n[FORM-7] (Info) Mobile number\n[FORM-8] (Info) Permanent address\n[FORM-9] (Info) District\n[FORM-10] (Info) PIN code\n[FORM-11] (Info) Name of the institution\n[FORM-12] (Info) Course\n[FORM-13] (Info) Year of study\n[FORM-14] (Info) Annual family income (Rs.)\n[FORM-15] (Info) Bank account number\n[FORM-16] (Info) IFSC code\n[FORM-17] (Info) Attendance in previous year (%) (for renewal only)\n[FORM-18] (Info) Caste certificate number\n[FORM-19] (Info) Income certificate number\n[FORM-20] (Info) Declaration: I declare that the information given above is true. Signature of applicant and date.",
+      "SUPERSEDED": "[GO-3.2] superseded by COR1-1: The annual income of the applicant's family from all sources shall not exceed Rs. 2,50,000 (Rupees two lakh fifty thousand only).\n[MIN-4] superseded by GO-5.1: Institution verification shall be completed within 10 days of submission.",
+      "RESOLUTIONS": "[RES-1] Supersession GO-3.2, COR1-1: COR1-1 prevails.\n[RES-2] Conflict GO-5.1, MIN-4: GO-5.1 prevails.\n[RES-3] MissingReference GO-4.3: deferred to the department (open issue).",
+      "ANSWERS": "",
+      "ASSUMPTIONS": "",
+      "INPUT": "CHECKLIST for project type \"benefit\":\n- Application channels\n- Assisted mode (CSC)\n- Identity verification\n- Document sourcing\n- Eligibility rules\n- Verification hierarchy\n- SLA per stage\n- Right to Service timeline\n- Escalation on SLA breach\n- Rejection and re-application\n- Appeal against rejection\n- Payment method\n- Payment failure handling\n- Notifications\n- Grievance\n- Renewal\n- Data retention\n- Legacy data migration\n- MIS and reports\n- Audit"
+    }
+  }
+}

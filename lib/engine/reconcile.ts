@@ -42,14 +42,21 @@ const key = (f: Finding) => `${f.kind}|${[...f.clauses].sort().join(',')}`;
  * Merges new findings into existing reconciliations. Existing records (and their resolutions and RES ids)
  * are kept; new findings get the next RES-n. AI findings win over deterministic ones for the description.
  */
+const ORDER: Finding['kind'][] = ['Supersession', 'Conflict', 'Duplicate', 'MissingReference'];
+const pair = (f: Finding) => [...f.clauses].sort().join(',');
+
 export function mergeFindings(existing: Reconciliation[], ai: Finding[], det: Finding[]): { all: Reconciliation[]; added: number } {
   const byKey = new Map<string, Finding>();
-  for (const f of ai) byKey.set(key(f), f);
+  // A corrigendum linked by metadata is a supersession, never also a conflict or duplicate of the clause it amends.
+  const superseded = new Set(det.filter((f) => f.kind === 'Supersession').map(pair));
+  for (const f of ai) if (f.kind === 'Supersession' || !superseded.has(pair(f))) byKey.set(key(f), f);
   for (const f of det) if (!byKey.has(key(f))) byKey.set(key(f), f);
   const all = existing.slice();
   const have = new Set(existing.map((r) => key(r)));
   let added = 0;
-  for (const [k, f] of Array.from(byKey.entries())) {
+  // Stable numbering: RES ids follow the kind order, not the order the AI engine returned.
+  const entries = Array.from(byKey.entries()).sort((a, b) => ORDER.indexOf(a[1].kind) - ORDER.indexOf(b[1].kind));
+  for (const [k, f] of entries) {
     if (have.has(k)) continue;
     all.push({ id: nextId(all.map((r) => r.id), 'RES'), kind: f.kind, clauses: f.clauses, description: f.description });
     added++;

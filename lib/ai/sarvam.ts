@@ -84,6 +84,8 @@ export type ChatOpts = {
   maxTokens?: number;
   temperature?: number;
   timeoutMs?: number;
+  /** Absolute time (ms since epoch) by which the whole operation, retries included, must finish. */
+  deadline?: number;
   /** Label for the usage log line. */
   task?: string;
 };
@@ -132,9 +134,17 @@ function stripFences(s: string) {
 }
 
 /** Plain chat call; returns the assistant content (reasoning_content is ignored). */
+function attemptTimeout(o: ChatOpts) {
+  const t = o.timeoutMs ?? DEFAULT_TIMEOUT_MS;
+  if (!o.deadline) return t;
+  const left = o.deadline - Date.now();
+  if (left < 5_000) throw new AiError('There is not enough time left in this request to call the AI engine. Try again.', 504, 'timeout');
+  return Math.min(t, left);
+}
+
 export async function chat(messages: Msg[], o: ChatOpts = {}, extra: Record<string, unknown> = {}): Promise<{ content: string; finish: string; usage: Usage }> {
   const t0 = Date.now();
-  const res = await call('/v1/chat/completions', { method: 'POST', json: chatBody(messages, o, extra), timeoutMs: o.timeoutMs });
+  const res = await call('/v1/chat/completions', { method: 'POST', json: chatBody(messages, o, extra), timeoutMs: attemptTimeout(o) });
   const data = await res.json();
   const choice = data?.choices?.[0];
   const usage = toUsage(data, o.model ?? 'sarvam-105b', t0);
@@ -190,19 +200,35 @@ export async function chatJSON<T>(
 /** Streams plain text content deltas (OpenAI-compatible SSE). Logs usage when the stream ends. */
 export async function chatStream(messages: Msg[], o: ChatOpts = {}): Promise<ReadableStream<Uint8Array>> {
   const t0 = Date.now();
-  const res = await call('/v1/chat/completions', { method: 'POST', json: chatBody(messages, o, { stream: true }), timeoutMs: o.timeoutMs });
+  const total = attemptTimeout(o);
+  const res = await call('/v1/chat/completions', { method: 'POST', json: chatBody(messages, o, { stream: true }), timeoutMs: total });
   const reader = res.body!.getReader();
+  // The fetch timeout only covers the response headers; guard the body with idle and total limits too.
+  const IDLE_MS = 30_000;
+  const read = () =>
+    new Promise<ReadableStreamReadResult<Uint8Array>>((resolve, reject) => {
+      const left = total - (Date.now() - t0);
+      const t = setTimeout(() => {
+        reader.cancel().catch(() => undefined);
+        reject(new AiError(left <= IDLE_MS ? 'The AI engine did not finish within the time limit.' : 'The AI engine stopped sending text for 30 seconds.', 504, 'timeout'));
+      }, Math.max(1_000, Math.min(IDLE_MS, left)));
+      reader.read().then((r) => { clearTimeout(t); resolve(r); }, (e) => { clearTimeout(t); reject(e); });
+    });
   const dec = new TextDecoder();
   const enc = new TextEncoder();
   let buf = '';
   let chars = 0;
   let usage: Record<string, unknown> | undefined;
   let model = o.model ?? 'sarvam-105b';
+  let finished = false;
   const handle = (ctrl: ReadableStreamDefaultController<Uint8Array>, line: string) => {
     const l = line.trim();
     if (!l.startsWith('data:')) return;
     const payload = l.slice(5).trim();
-    if (payload === '[DONE]') return;
+    if (payload === '[DONE]') {
+      finished = true;
+      return;
+    }
     try {
       const j = JSON.parse(payload);
       if (j.usage) usage = j.usage;
@@ -216,20 +242,31 @@ export async function chatStream(messages: Msg[], o: ChatOpts = {}): Promise<Rea
       /* partial line */
     }
   };
+  const close = (ctrl: ReadableStreamDefaultController<Uint8Array>) => {
+    const u = toUsage({ model, usage }, model, t0);
+    if (!usage) u.completionTokens = Math.round(chars / 4); // estimate when the stream carries no usage
+    logUsage(o.task ?? 'stream', u);
+    ctrl.close();
+    // Sarvam keeps the connection open after [DONE]; release it instead of waiting for the socket to close.
+    reader.cancel().catch(() => undefined);
+  };
   return new ReadableStream({
+    // Keep reading until text is enqueued or the stream ends: a pull that resolves without enqueuing is never
+    // called again, which would stall the response (the first SSE chunk carries only the role).
     async pull(ctrl) {
-      const { done, value } = await reader.read();
-      if (done) {
-        if (buf) handle(ctrl, buf);
-        const u = toUsage({ model, usage }, model, t0);
-        if (!usage) u.completionTokens = Math.round(chars / 4); // estimate when the stream carries no usage
-        logUsage(o.task ?? 'stream', u);
-        return ctrl.close();
+      const before = chars;
+      while (chars === before) {
+        const { done, value } = await read();
+        if (done) {
+          if (buf) handle(ctrl, buf);
+          return close(ctrl);
+        }
+        buf += dec.decode(value, { stream: true });
+        const lines = buf.split('\n');
+        buf = lines.pop() ?? '';
+        for (const line of lines) handle(ctrl, line);
+        if (finished) return close(ctrl);
       }
-      buf += dec.decode(value, { stream: true });
-      const lines = buf.split('\n');
-      buf = lines.pop() ?? '';
-      for (const line of lines) handle(ctrl, line);
     },
     cancel() {
       reader.cancel();

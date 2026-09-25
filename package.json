@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "unit": "vitest run",
     "e2e": "playwright test",
-    "record": "tsx --conditions=react-server scripts/record.ts",
+    "record": "tsx scripts/record.ts",
     "form-image": "tsx scripts/render-form.ts",
     "copy-pdf-worker": "node -e \"require('fs').copyFileSync(require.resolve('pdfjs-dist/build/pdf.worker.min.mjs'),'public/pdf.worker.min.mjs')\"",
     "predev": "npm run copy-pdf-worker && npm run index-recordings",

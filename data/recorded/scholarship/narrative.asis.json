@@ -1,7 +1,8 @@
 {
- "step": "narrative",
- "variant": "asis",
- "response": {
-  "text": "Applications under the scheme are submitted on paper at institutions and forwarded to District Social Welfare Offices. Sanction takes 6 to 9 months, files are lost in transit, and students have no means of knowing the status of their application [GO-1]. Most students have only a mobile phone [VB-1], and verification timelines are not monitored."
- }
+  "provenance": "live",
+  "model": "sarvam-105b",
+  "recordedAt": "2026-09-25T14:49:54.846Z",
+  "response": {
+    "text": "The State Post-Matric Scholarship Scheme is presently administered through paper applications submitted at educational institutions and forwarded to District Social Welfare Offices. Applications take 6 to 9 months to be sanctioned, files are lost in transit, and students have no means of knowing the status of their application [GO-1].\n\nGovernment has decided that all applications under the scheme, fresh and renewal, shall be received, verified, sanctioned and paid online from the academic year 2026-27, so that eligible students receive the scholarship in a transparent and time-bound manner [GO-2].\n\n{\"workflow\":[]}"
+  }
 }

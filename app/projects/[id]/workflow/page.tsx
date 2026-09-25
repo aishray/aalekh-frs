@@ -36,6 +36,10 @@ export default function WorkflowPage() {
     );
     if (!out) return;
     const d = out.data;
+    // Rule-based clean-up of the proposal: automatic and applicant steps carry no SLA or escalation, and
+    // from/to given as state names are mapped to state IDs.
+    const stateId = (v: string) => d.states.find((s) => s.id === v || s.name.toLowerCase() === v.toLowerCase())?.id ?? v;
+    const untimed = (actor: string) => /^(system|applicant)$/i.test(actor.trim());
     update(wf ? 'Replaced workflow with AI proposal' : 'Proposed workflow', `${d.states.length} states, ${d.transitions.length} transitions`, (x) => {
       x.workflow = {
         states: d.states,
@@ -44,8 +48,10 @@ export default function WorkflowPage() {
         transitions: d.transitions.map((t, i) => ({
           ...t,
           id: `WF-T${i + 1}`,
-          slaDays: t.slaDays ?? undefined,
-          escalation: t.escalation ?? undefined,
+          from: stateId(t.from),
+          to: stateId(t.to),
+          slaDays: untimed(t.actor) || !t.slaDays ? undefined : t.slaDays,
+          escalation: untimed(t.actor) || !t.slaDays ? undefined : t.escalation ?? undefined,
           notification: t.notification ?? undefined,
           refs: normalizeRefs(x, t.refs).kept,
           conditions: normalizeRefs(x, t.conditions, { forward: true }).kept,

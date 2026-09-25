@@ -1,0 +1,421 @@
+{
+  "capturedAt": "2026-09-25T14:14:24.136Z",
+  "ms": 19681,
+  "ok": true,
+  "model": "sarvam-105b",
+  "reasoning": "off",
+  "usage": [
+    {
+      "model": "sarvam-105b",
+      "promptTokens": 2142,
+      "completionTokens": 1564,
+      "latencyMs": 19677
+    }
+  ],
+  "response": {
+    "states": [
+      {
+        "id": "Draft",
+        "name": "Draft",
+        "terminal": false
+      },
+      {
+        "id": "Submitted",
+        "name": "Submitted",
+        "terminal": false
+      },
+      {
+        "id": "Pending_Institution_Verification",
+        "name": "Pending Institution Verification",
+        "terminal": false
+      },
+      {
+        "id": "Pending_DSWO_Sanction",
+        "name": "Pending District Social Welfare Officer Sanction",
+        "terminal": false
+      },
+      {
+        "id": "Sanctioned",
+        "name": "Sanctioned",
+        "terminal": false
+      },
+      {
+        "id": "Rejected",
+        "name": "Rejected",
+        "terminal": false
+      },
+      {
+        "id": "Payment_Initiated",
+        "name": "Payment Initiated",
+        "terminal": false
+      },
+      {
+        "id": "Payment_Completed",
+        "name": "Payment Completed",
+        "terminal": false
+      },
+      {
+        "id": "Grievance_Open",
+        "name": "Grievance Open",
+        "terminal": false
+      },
+      {
+        "id": "Grievance_Resolved",
+        "name": "Grievance Resolved",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "from": "Draft",
+        "to": "Submitted",
+        "action": "Submit Application",
+        "actor": "Applicant",
+        "conditions": [],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application submitted successfully"
+        },
+        "refs": [
+          "GO-2",
+          "GO-4.1",
+          "GO-4.2",
+          "GO-4.3",
+          "MIN-3",
+          "MIN-5",
+          "VB-1",
+          "FORM-1",
+          "FORM-2",
+          "FORM-3",
+          "FORM-4",
+          "FORM-5",
+          "FORM-6",
+          "FORM-7",
+          "FORM-8",
+          "FORM-9",
+          "FORM-10",
+          "FORM-11",
+          "FORM-12",
+          "FORM-13",
+          "FORM-14",
+          "FORM-15",
+          "FORM-16",
+          "FORM-17",
+          "FORM-18",
+          "FORM-19",
+          "FORM-20"
+        ]
+      },
+      {
+        "from": "Submitted",
+        "to": "Pending_Institution_Verification",
+        "action": "Route to Institution",
+        "actor": "System",
+        "conditions": [],
+        "slaDays": 15,
+        "escalation": null,
+        "notification": null,
+        "refs": [
+          "GO-5.1",
+          "MIN-4",
+          "RES-2"
+        ]
+      },
+      {
+        "from": "Pending_Institution_Verification",
+        "to": "Pending_DSWO_Sanction",
+        "action": "Forward Verified Application",
+        "actor": "Institution nodal officer",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application forwarded to District Social Welfare Office"
+        },
+        "refs": [
+          "GO-5.1",
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ]
+      },
+      {
+        "from": "Pending_Institution_Verification",
+        "to": "Rejected",
+        "action": "Reject Application",
+        "actor": "Institution nodal officer",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application rejected: {reason}"
+        },
+        "refs": [
+          "GO-5.1",
+          "GO-5.3",
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ]
+      },
+      {
+        "from": "Pending_DSWO_Sanction",
+        "to": "Sanctioned",
+        "action": "Sanction Application",
+        "actor": "District Social Welfare Officer",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 15,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application sanctioned successfully"
+        },
+        "refs": [
+          "GO-5.2",
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ]
+      },
+      {
+        "from": "Pending_DSWO_Sanction",
+        "to": "Rejected",
+        "action": "Reject Application",
+        "actor": "District Social Welfare Officer",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application rejected: {reason}"
+        },
+        "refs": [
+          "GO-5.2",
+          "GO-5.3",
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ]
+      },
+      {
+        "from": "Sanctioned",
+        "to": "Payment_Initiated",
+        "action": "Initiate DBT Payment",
+        "actor": "System",
+        "conditions": [
+          "GO-6.1"
+        ],
+        "slaDays": null,
+        "escalation": null,
+        "notification": null,
+        "refs": [
+          "GO-6.1"
+        ]
+      },
+      {
+        "from": "Payment_Initiated",
+        "to": "Payment_Completed",
+        "action": "Complete DBT Payment",
+        "actor": "System",
+        "conditions": [
+          "GO-6.1"
+        ],
+        "slaDays": null,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Scholarship amount credited to bank account"
+        },
+        "refs": [
+          "GO-6.1",
+          "GO-6.2"
+        ]
+      },
+      {
+        "from": "Payment_Initiated",
+        "to": "Rejected",
+        "action": "Handle Payment Failure",
+        "actor": "System",
+        "conditions": [
+          "GO-6.1"
+        ],
+        "slaDays": 30,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "DBT payment failed. Correct bank details within 30 days"
+        },
+        "refs": [
+          "ANS-1",
+          "GO-6.1"
+        ]
+      },
+      {
+        "from": "Rejected",
+        "to": "Submitted",
+        "action": "Reapply",
+        "actor": "Applicant",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Please reapply with corrected details"
+        },
+        "refs": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1",
+          "VB-3"
+        ]
+      },
+      {
+        "from": "Submitted",
+        "to": "Grievance_Open",
+        "action": "Register Grievance",
+        "actor": "Applicant",
+        "conditions": [
+          "GO-7.1"
+        ],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Grievance registered successfully"
+        },
+        "refs": [
+          "GO-7.1"
+        ]
+      },
+      {
+        "from": "Grievance_Open",
+        "to": "Grievance_Resolved",
+        "action": "Resolve Grievance",
+        "actor": "District Social Welfare Officer",
+        "conditions": [
+          "GO-7.1"
+        ],
+        "slaDays": 7,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Grievance resolved successfully"
+        },
+        "refs": [
+          "GO-7.2",
+          "GO-7.3"
+        ]
+      },
+      {
+        "from": "Grievance_Open",
+        "to": "Sanctioned",
+        "action": "Sanction Application",
+        "actor": "District Social Welfare Officer",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 15,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application sanctioned successfully"
+        },
+        "refs": [
+          "GO-5.2",
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ]
+      },
+      {
+        "from": "Grievance_Open",
+        "to": "Rejected",
+        "action": "Reject Application",
+        "actor": "District Social Welfare Officer",
+        "conditions": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ],
+        "slaDays": 0,
+        "escalation": null,
+        "notification": {
+          "channel": "SMS",
+          "recipient": "Applicant",
+          "template": "Application rejected: {reason}"
+        },
+        "refs": [
+          "GO-5.2",
+          "GO-5.3",
+          "GO-3.1",
+          "GO-3.3",
+          "GO-3.4",
+          "COR1-1"
+        ]
+      }
+    ],
+    "rtsDays": 30,
+    "rtsRef": "GO-9"
+  },
+  "request": {
+    "step": "workflow",
+    "blocks": {
+      "SOURCES": "[GO-1] (Info) The State Post-Matric Scholarship Scheme is presently administered through paper applications submitted at institutions and forwarded to District Social Welfare Offices. Applications take 6 to 9 months to be sanctioned, files are lost in transit, and students have no means of knowing the status of their application.\n[GO-2] (Info) Government has decided that all applications under the scheme, fresh and renewal, shall be received, verified, sanctioned and paid online from the academic year 2026-27, so that eligible students receive the scholarship in a transparent and time-bound manner.\n[GO-3.1] (Rule) The applicant shall be a domicile of Rajyapradesh.\n[GO-3.3] (Rule) The applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh.\n[GO-3.4] (Rule) For renewal, the applicant shall have attended at least 75% of classes in the previous academic year, as certified by the institution.\n[GO-4.1] (Mandate) Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs).\n[GO-4.2] (Mandate) Aadhaar-based e-KYC of the applicant shall be mandatory.\n[GO-4.3] (Mandate) Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A.\n[GO-5.1] (Timeline) The nodal officer of the institution shall verify the application within 15 days of submission.\n[GO-5.2] (Timeline) The District Social Welfare Officer shall sanction or reject the verified application within 15 days of receipt.\n[GO-5.3] (Mandate) Reasons shall be recorded in writing for every rejection and communicated to the applicant.\n[GO-6.1] (Mandate) The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant.\n[GO-6.2] (Timeline) The scholarship shall be paid in a single instalment not later than 31 March of the academic year.\n[GO-7.1] (Mandate) An online grievance facility shall be provided to applicants.\n[GO-7.2] (Mandate) The applicant shall be informed by SMS at every stage of processing of the application.\n[GO-7.3] (Timeline) Grievances shall be resolved within 7 working days of receipt.\n[GO-8.1] (Mandate) A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications.\n[GO-8.2] (Mandate) A monthly report shall be submitted to the Principal Secretary, Social Welfare Department.\n[GO-9] (Timeline) The scholarship shall be sanctioned within 30 working days of submission of a complete application, and the service is notified under the Rajyapradesh Right to Service Act.\n[GO-10] (Mandate) Personal data collected under the scheme shall be used only for the purposes of the scheme.\n[COR1-1] (Rule) In paragraph 3.2 of the G.O. read above, for \"Rs. 2,50,000 (Rupees two lakh fifty thousand only)\" read \"Rs. 3,00,000 (Rupees three lakh only)\". The annual family income limit for eligibility is accordingly Rs. 3,00,000 per annum.\n[COR1-2] (Info) All other conditions of the G.O. remain unchanged.\n[MIN-1] (Mandate) CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number.\n[MIN-2] (Mandate) For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again.\n[MIN-3] (Mandate) The portal shall be available in Hindi and English.\n[MIN-5] (Mandate) The portal shall work on low-end Android phones on 3G connections.\n[VB-1] (Mandate) There should also be a mobile application for students, because most students have only a mobile phone.\n[VB-2] (Mandate) The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.\n[VB-3] (Mandate) If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again.\n[FORM-1] (Info) Name of the applicant (as in Aadhaar)\n[FORM-2] (Info) Father's / Guardian's name\n[FORM-3] (Info) Date of birth (DD/MM/YYYY)\n[FORM-4] (Info) Gender (Male / Female / Transgender)\n[FORM-5] (Info) Category (SC / ST / OBC / EWS)\n[FORM-6] (Info) Aadhaar number\n[FORM-7] (Info) Mobile number\n[FORM-8] (Info) Permanent address\n[FORM-9] (Info) District\n[FORM-10] (Info) PIN code\n[FORM-11] (Info) Name of the institution\n[FORM-12] (Info) Course\n[FORM-13] (Info) Year of study\n[FORM-14] (Info) Annual family income (Rs.)\n[FORM-15] (Info) Bank account number\n[FORM-16] (Info) IFSC code\n[FORM-17] (Info) Attendance in previous year (%) (for renewal only)\n[FORM-18] (Info) Caste certificate number\n[FORM-19] (Info) Income certificate number\n[FORM-20] (Info) Declaration: I declare that the information given above is true. Signature of applicant and date.",
+      "SUPERSEDED": "[GO-3.2] superseded by COR1-1: The annual income of the applicant's family from all sources shall not exceed Rs. 2,50,000 (Rupees two lakh fifty thousand only).\n[MIN-4] superseded by GO-5.1: Institution verification shall be completed within 10 days of submission.",
+      "RESOLUTIONS": "[RES-1] Supersession GO-3.2, COR1-1: COR1-1 prevails.\n[RES-2] Conflict GO-5.1, MIN-4: GO-5.1 prevails.\n[RES-3] MissingReference GO-4.3: deferred to the department (open issue).",
+      "ANSWERS": "[ANS-1] When a DBT payment fails in PFMS (for example the account is not Aadhaar-seeded or is closed), what should happen to the application? Answer: Notify the student by SMS to correct bank details within 30 days; re-initiate in the next weekly batch\n[ANS-2] Can a student appeal against rejection by the District Social Welfare Officer, and to whom? Answer: Appeal to the Director, Social Welfare within 30 days",
+      "ASSUMPTIONS": "[ASM-3] Legacy data migration: Only 2025-26 beneficiaries are migrated as a beneficiary master for renewal; pending paper applications are not migrated.\n[ASM-4] Escalation on SLA breach: Institution delays are escalated to the District Social Welfare Officer, and DSWO delays to the Joint Director, Social Welfare.\n[ASM-5] Renewal: The renewal window opens on 1 July and last year's beneficiaries receive a prefilled renewal application.\n[ASM-6] Data retention: Applicant data is retained for 8 years after the last payment and then anonymised.\n[ASM-7] Audit: All status changes, data edits and exports are logged, and the audit trail is viewable by the State administrator.",
+      "MODEL": "{\"roles\":[\"Applicant\",\"CSC operator\",\"Institution nodal officer\",\"District Social Welfare Officer\",\"Principal Secretary, Social Welfare\",\"State administrator\"],\"rules\":[]}"
+    }
+  }
+}

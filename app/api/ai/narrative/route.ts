@@ -2,7 +2,7 @@ import { narrativeInstructions, NARRATIVE_SYSTEM_SUFFIX } from '@/lib/ai/prompts
 import { BASE_SYSTEM, userMessage, type Blocks } from '@/lib/ai/prompts/base';
 import { chatStream, hasKey } from '@/lib/ai/sarvam';
 import { findRecording, wait } from '@/lib/ai/recordings';
-import { TASKS } from '@/lib/ai/models';
+import { ROUTE_BUDGET_MS, TASKS } from '@/lib/ai/models';
 import { rateLimit, readJson } from '@/lib/ai/guard';
 import { capture } from '@/lib/ai/capture';
 
@@ -30,6 +30,7 @@ function replay(text: string, source: string) {
 
 /** Narrative FRS sections, streamed so long sections never hit the function time limit. */
 export async function POST(req: Request) {
+  const t0 = Date.now();
   const { body, error } = await readJson<{ section: string; recorded?: boolean; sample?: string; blocks?: Blocks }>(req);
   if (error || !body) return error;
   const instruction = narrativeInstructions[body.section];
@@ -41,10 +42,10 @@ export async function POST(req: Request) {
     { role: 'system' as const, content: `${BASE_SYSTEM}\n${NARRATIVE_SYSTEM_SUFFIX}` },
     { role: 'user' as const, content: userMessage(instruction, body.blocks ?? {}) },
   ];
-  const opts = { model: cfg.model, reasoning: cfg.reasoning, maxTokens: cfg.maxTokens, temperature: cfg.temperature, timeoutMs: cfg.timeoutMs, task: `narrative.${body.section}` };
+  const opts = { model: cfg.model, reasoning: cfg.reasoning, maxTokens: cfg.maxTokens, temperature: cfg.temperature, timeoutMs: cfg.timeoutMs, deadline: t0 + ROUTE_BUDGET_MS, task: `narrative.${body.section}` };
   if (body.recorded && text) {
     capture(body.sample, `narrative.${body.section}`, { section: body.section, blocks: body.blocks }, async () => {
-      const stream = await chatStream(messages, opts);
+      const stream = await chatStream(messages, { ...opts, deadline: Date.now() + ROUTE_BUDGET_MS });
       return { response: { text: (await new Response(stream).text()).trim() }, meta: { model: cfg.model } };
     });
     return replay(text, 'recorded');

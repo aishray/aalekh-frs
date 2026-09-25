@@ -1,31 +1,40 @@
 {
- "step": "reconcile",
- "note": "Recorded reconciliation findings for the sample (hand-authored to match acceptance criteria F2).",
- "response": {
-  "findings": [
-   {
-    "kind": "Supersession",
-    "clauses": [
-     "GO-3.2",
-     "COR1-1"
-    ],
-    "description": "Corrigendum No. SW/2026/SCH/118-A dated 2 September 2026 raises the annual family income limit in GO para 3.2 from Rs. 2,50,000 to Rs. 3,00,000 per annum. COR1-1 is the effective clause for eligibility."
-   },
-   {
-    "kind": "Conflict",
-    "clauses": [
-     "GO-5.1",
-     "MIN-4"
-    ],
-    "description": "The GO requires the institution nodal officer to verify the application within 15 days of submission (GO-5.1), but the kick-off meeting minutes record that institution verification shall be completed within 10 days (MIN-4)."
-   },
-   {
-    "kind": "MissingReference",
-    "clauses": [
-     "GO-4.3"
-    ],
-    "description": "GO-4.3 requires certificates not available in DigiLocker to be uploaded \"in the prescribed format in Annexure A\", but Annexure A has not been provided with the sources, so the upload format cannot be specified."
-   }
-  ]
- }
+  "provenance": "live",
+  "model": "sarvam-105b",
+  "recordedAt": "2026-09-25T14:31:00Z",
+  "response": {
+    "findings": [
+      {
+        "kind": "Conflict",
+        "clauses": [
+          "GO-5.1",
+          "MIN-4"
+        ],
+        "description": "Institution verification timelines differ: GO-5.1 mandates 15 days, while MIN-4 mandates 10 days."
+      },
+      {
+        "kind": "Conflict",
+        "clauses": [
+          "GO-3.2",
+          "COR1-1"
+        ],
+        "description": "Annual family income limits differ: GO-3.2 sets the limit at Rs. 2,50,000, whereas COR1-1 raises it to Rs. 3,00,000."
+      },
+      {
+        "kind": "Supersession",
+        "clauses": [
+          "GO-3.2",
+          "COR1-1"
+        ],
+        "description": "COR1-1 supersedes GO-3.2 by amending the annual family income limit for eligibility to Rs. 3,00,000."
+      },
+      {
+        "kind": "MissingReference",
+        "clauses": [
+          "GO-4.3"
+        ],
+        "description": "GO-4.3 refers to Annexure A for uploading certificates in the prescribed format, which is not provided among the sources."
+      }
+    ]
+  }
 }

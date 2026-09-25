@@ -21,5 +21,7 @@ export const rules: PromptDef<z.infer<typeof schema>> = {
   task: 'rules',
   name: 'decision_tables',
   schema,
-  instruction: `Convert every effective Rule clause into a decision table: one table per rule, with conditions (attribute in camelCase, label, operator, value as a plain number or text without currency symbols or commas, unit), the outcome when all conditions hold, the outcome when any fails, and refs. Use the effective value after corrigenda and resolutions, citing the clause that sets it.`,
+  instruction: `Convert every effective Rule clause into a decision table: one table per rule, named after what it tests (for example "Annual family income"), with at least one condition. Each condition: attribute in camelCase, a short label, operator, value, unit.
+Operators: a maximum ("up to", "not exceeding", "at most") is "<="; a minimum ("at least", "not less than") is ">="; a fixed value is "=". Numeric values are plain numbers without currency symbols, commas or words (300000, 75); put the unit (INR, %, years) in unit. A yes or no condition uses "=" with "Yes".
+Give the outcome when all conditions hold, the outcome when any fails, and refs. Use the effective value after corrigenda and resolutions, and cite the clause that sets it (the corrigendum clause, not the superseded one). appliesTo is "All" for rules that apply to every application; use "Renewal" only when the clause itself says the rule applies to renewals (for example an attendance requirement for renewal).`,
 };

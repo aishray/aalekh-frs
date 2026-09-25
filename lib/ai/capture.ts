@@ -28,6 +28,8 @@ function pump() {
 export function capture(sample: string | undefined, name: string, request: unknown, fn: () => Promise<{ response: unknown; meta?: Record<string, unknown> }>) {
   if (!DIR || !sample) return;
   const file = path.join(DIR, sample.replace(/[^A-Za-z0-9._-]/g, '_'), `${name.replace(/[^A-Za-z0-9._-]/g, '_')}.json`);
+  // --resume: keep captures that already succeeded.
+  if (process.env.AI_CAPTURE_RESUME && fs.existsSync(file) && JSON.parse(fs.readFileSync(file, 'utf8')).ok) return;
   queue.push(async () => {
     const t0 = Date.now();
     let out: Record<string, unknown>;

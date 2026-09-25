@@ -1,0 +1,332 @@
+{
+  "capturedAt": "2026-09-25T14:15:17.612Z",
+  "ms": 34146,
+  "ok": true,
+  "model": "sarvam-105b",
+  "reasoning": "off",
+  "usage": [
+    {
+      "model": "sarvam-105b",
+      "promptTokens": 2833,
+      "completionTokens": 2787,
+      "latencyMs": 34146
+    }
+  ],
+  "response": {
+    "requirements": [
+      {
+        "title": "Verify application",
+        "description": "The system shall verify the submitted application against the eligibility criteria and data completeness.",
+        "actor": "Institution nodal officer",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the application is submitted through the scholarship portal or CSC, When the institution nodal officer verifies the application, Then the application status is updated to 'Verified' or 'Returned for Correction' within 15 days of submission.",
+          "Given the applicant is a domicile of Rajyapradesh, When the verification is performed, Then the system shall validate the domicile criteria against BR-001.",
+          "Given the applicant is studying in a post-matric course in a recognised institution, When the verification is performed, Then the system shall validate the course and institution criteria against BR-003."
+        ],
+        "refs": [
+          "GO-3.1",
+          "GO-3.3",
+          "GO-5.1",
+          "RES-2",
+          "WF-T3"
+        ]
+      },
+      {
+        "title": "Return for correction",
+        "description": "The system shall return applications with discrepancies for correction by the applicant.",
+        "actor": "Institution nodal officer",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the application fails verification, When the institution nodal officer returns the application for correction, Then the system shall notify the applicant by SMS of the discrepancies and the 15-day timeline.",
+          "Given the application is returned for correction, When the applicant resubmits the corrected application, Then the system shall route the application back to the institution nodal officer for re-verification.",
+          "Given the application is returned for correction, When 15 days elapse without resubmission, Then the application is marked as 'Expired' and the student is informed."
+        ],
+        "refs": [
+          "GO-5.1",
+          "GO-7.2",
+          "WF-T4",
+          "WF-T5"
+        ]
+      },
+      {
+        "title": "Sanction",
+        "description": "The system shall sanction verified applications and route them for payment processing.",
+        "actor": "District Social Welfare Officer",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the application is verified, When the District Social Welfare Officer sanctions the application, Then the system shall route the application to PFMS for payment within 15 days of receipt.",
+          "Given the application is sanctioned, When the sanction is processed, Then the system shall mark the application status as 'Sanctioned' and display it on the district dashboard.",
+          "Given the application is sanctioned, When the scholarship is paid, Then the payment is processed as a single instalment not later than 31 March of the academic year."
+        ],
+        "refs": [
+          "GO-5.2",
+          "GO-6.1",
+          "GO-6.2",
+          "GO-8.1",
+          "WF-T6",
+          "WF-T12"
+        ]
+      },
+      {
+        "title": "Reject",
+        "description": "The system shall reject applications that fail eligibility or verification criteria.",
+        "actor": "District Social Welfare Officer",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the application fails eligibility or verification, When the District Social Welfare Officer rejects the application, Then the system shall record the reason in writing and communicate it to the applicant within 15 days of receipt.",
+          "Given the application is rejected, When the rejection is processed, Then the system shall notify the applicant by SMS of the rejection reason and their right to appeal to the Director, Social Welfare within 30 days.",
+          "Given the application is rejected, When the rejection is processed, Then the system shall allow the applicant one chance to correct the application and re-apply."
+        ],
+        "refs": [
+          "GO-5.2",
+          "GO-5.3",
+          "GO-7.2",
+          "ANS-2",
+          "WF-T7",
+          "WF-T8",
+          "VB-3"
+        ]
+      },
+      {
+        "title": "Allow appeal",
+        "description": "The system shall allow applicants to file an appeal against rejection and track its disposal.",
+        "actor": "Director, Social Welfare",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the applicant files an appeal against rejection, When the appeal is filed, Then the system shall validate that the appeal is filed within 30 days of rejection.",
+          "Given the appeal is filed, When the Director, Social Welfare processes the appeal, Then the system shall allow the appeal to be allowed or dismissed within 15 days of receipt.",
+          "Given the appeal is allowed, When the appeal is allowed, Then the system shall direct the District Social Welfare Officer to re-process the application."
+        ],
+        "refs": [
+          "ANS-2",
+          "GO-7.2",
+          "WF-T9",
+          "WF-T10"
+        ]
+      },
+      {
+        "title": "Dismiss appeal",
+        "description": "The system shall dismiss appeals that are not allowed and communicate the final decision.",
+        "actor": "Director, Social Welfare",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the appeal is dismissed, When the Director, Social Welfare dismisses the appeal, Then the system shall communicate the dismissal to the applicant by SMS.",
+          "Given the appeal is dismissed, When the appeal is dismissed, Then the application is closed and the applicant is informed of their right to re-apply."
+        ],
+        "refs": [
+          "WF-T11"
+        ]
+      },
+      {
+        "title": "Handle DBT payment failure",
+        "description": "The system shall handle failures in DBT payments through PFMS.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given a DBT payment fails in PFMS, When the payment fails, Then the system shall notify the student by SMS to correct bank details within 30 days.",
+          "Given the student corrects the bank details, When the details are updated, Then the system shall re-initiate the payment in the next weekly batch.",
+          "Given the student fails to correct bank details within 30 days, When the deadline expires, Then the application is marked as 'Payment Failure' and closed."
+        ],
+        "refs": [
+          "ANS-1",
+          "GO-6.1",
+          "WF-T14",
+          "WF-T15"
+        ]
+      },
+      {
+        "title": "Display pending applications dashboard",
+        "description": "The system shall display a dashboard to the District Social Welfare Officer showing pending applications of every institution and how long they have been pending.",
+        "actor": "District Social Welfare Officer",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the District Social Welfare Officer logs in, When the dashboard is displayed, Then the system shall show district-wise status of applications and pending applications per institution.",
+          "Given an application is pending, When the dashboard is displayed, Then the system shall calculate and display the duration the application has been pending.",
+          "Given the dashboard is displayed, When the District Social Welfare Officer views the report, Then the system shall allow the export of the monthly report to the Principal Secretary, Social Welfare Department."
+        ],
+        "refs": [
+          "GO-8.1",
+          "GO-8.2",
+          "GO-9",
+          "VB-2"
+        ]
+      },
+      {
+        "title": "Process renewal applications",
+        "description": "The system shall process renewal applications by reusing verified documents from the previous year.",
+        "actor": "Applicant",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the renewal window opens on 1 July, When the applicant accesses the portal, Then the system shall prefill the renewal application with last year's verified data.",
+          "Given the applicant is a renewal beneficiary, When the renewal application is submitted, Then the system shall reuse documents already verified in the previous year and shall not require them to be uploaded again.",
+          "Given the renewal application is submitted, When the attendance is less than 75%, Then the system shall reject the renewal application and communicate the reason."
+        ],
+        "refs": [
+          "GO-3.4",
+          "GO-4.3",
+          "MIN-2",
+          "ASM-5"
+        ]
+      },
+      {
+        "title": "Handle CSC application submission",
+        "description": "The system shall permit CSC operators to apply on behalf of students who do not have internet access.",
+        "actor": "CSC operator",
+        "priority": "Should",
+        "acceptanceCriteria": [
+          "Given a student does not have internet access, When the CSC operator submits the application, Then the system shall accept the application through the CSC channel.",
+          "Given the CSC operator submits the application, When the application is submitted, Then the system shall send the acknowledgement to the student's mobile number.",
+          "Given the CSC operator submits the application, When the application is submitted, Then the system shall log the CSC operator's details for audit purposes."
+        ],
+        "refs": [
+          "GO-4.1",
+          "MIN-1",
+          "GO-7.2"
+        ]
+      },
+      {
+        "title": "Store applicant data securely",
+        "description": "The system shall store applicant data securely and retain it for the specified period.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the applicant data is collected, When the data is stored, Then the system shall retain the data for 8 years after the last payment and then anonymise it.",
+          "Given the applicant data is collected, When the data is stored, Then the system shall log all status changes, data edits and exports for audit trail.",
+          "Given the applicant data is collected, When the data is stored, Then the system shall ensure the audit trail is viewable by the State administrator."
+        ],
+        "refs": [
+          "GO-10",
+          "ASM-6",
+          "ASM-7"
+        ]
+      },
+      {
+        "title": "Display application status to applicant",
+        "description": "The system shall inform the applicant by SMS at every stage of processing the application.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the application is submitted, When the application is submitted, Then the system shall send an SMS acknowledgement to the applicant's mobile number.",
+          "Given the application is verified, When the verification is completed, Then the system shall send an SMS to the applicant confirming verification.",
+          "Given the application is sanctioned or rejected, When the decision is made, Then the system shall send an SMS to the applicant with the status and reason."
+        ],
+        "refs": [
+          "GO-7.2",
+          "WF-T3",
+          "WF-T6",
+          "WF-T7"
+        ]
+      },
+      {
+        "title": "Resolve grievances",
+        "description": "The system shall provide an online grievance facility and resolve grievances within the specified timeline.",
+        "actor": "Applicant",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the applicant files a grievance, When the grievance is filed, Then the system shall acknowledge the grievance and assign a tracking number.",
+          "Given the grievance is received, When the grievance is received, Then the system shall resolve the grievance within 7 working days of receipt.",
+          "Given the grievance is resolved, When the grievance is resolved, Then the system shall notify the applicant by SMS of the resolution."
+        ],
+        "refs": [
+          "GO-7.1",
+          "GO-7.3",
+          "WF-T16"
+        ]
+      },
+      {
+        "title": "Validate annual family income",
+        "description": "The system shall validate the annual family income against the eligibility limit.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the applicant submits the application, When the annual family income is entered, Then the system shall validate that the income does not exceed Rs. 3,00,000 per annum.",
+          "Given the income exceeds the limit, When the validation is performed, Then the system shall reject the application and communicate the reason to the applicant.",
+          "Given the income is within the limit, When the validation is performed, Then the system shall proceed with the application verification."
+        ],
+        "refs": [
+          "GO-3.1",
+          "COR1-1",
+          "GO-10",
+          "BR-002"
+        ]
+      },
+      {
+        "title": "Validate Aadhaar e-KYC",
+        "description": "The system shall perform mandatory Aadhaar-based e-KYC of the applicant.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the applicant submits the application, When the application is submitted, Then the system shall trigger Aadhaar-based e-KYC.",
+          "Given the e-KYC fails, When the e-KYC is performed, Then the system shall reject the application and communicate the reason to the applicant.",
+          "Given the e-KYC succeeds, When the e-KYC is performed, Then the system shall proceed with the application verification."
+        ],
+        "refs": [
+          "GO-4.2",
+          "GO-6.1"
+        ]
+      },
+      {
+        "title": "Validate caste and income certificates",
+        "description": "The system shall validate caste and income certificates, obtaining them from DigiLocker where available.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the applicant submits the application, When the caste and income certificates are submitted, Then the system shall attempt to retrieve them from DigiLocker where available.",
+          "Given the certificates are not available in DigiLocker, When the certificates are submitted, Then the system shall validate the uploaded certificate in the prescribed format in Annexure A.",
+          "Given the certificates are invalid, When the validation is performed, Then the system shall reject the application and communicate the reason to the applicant."
+        ],
+        "refs": [
+          "GO-4.3",
+          "RES-3",
+          "GO-10"
+        ]
+      },
+      {
+        "title": "Display application status to District Social Welfare Officer",
+        "description": "The system shall display a dashboard to the District Social Welfare Officer showing district-wise status of applications.",
+        "actor": "District Social Welfare Officer",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the District Social Welfare Officer logs in, When the dashboard is displayed, Then the system shall show the district-wise status of applications.",
+          "Given the dashboard is displayed, When the District Social Welfare Officer views the report, Then the system shall allow the export of the monthly report to the Principal Secretary, Social Welfare Department."
+        ],
+        "refs": [
+          "GO-8.1",
+          "GO-8.2"
+        ]
+      },
+      {
+        "title": "Display application status to applicant",
+        "description": "The system shall inform the applicant by SMS at every stage of processing of the application.",
+        "actor": "System",
+        "priority": "Must",
+        "acceptanceCriteria": [
+          "Given the application is submitted, When the application is submitted, Then the system shall send an SMS acknowledgement to the applicant's mobile number.",
+          "Given the application is verified, When the verification is completed, Then the system shall send an SMS to the applicant confirming verification.",
+          "Given the application is sanctioned or rejected, When the decision is made, Then the system shall send an SMS to the applicant with the status and reason."
+        ],
+        "refs": [
+          "GO-7.2",
+          "WF-T3",
+          "WF-T6",
+          "WF-T7"
+        ]
+      }
+    ]
+  },
+  "request": {
+    "step": "requirements",
+    "variant": "VER",
+    "blocks": {
+      "SOURCES": "[GO-1] (Info) The State Post-Matric Scholarship Scheme is presently administered through paper applications submitted at institutions and forwarded to District Social Welfare Offices. Applications take 6 to 9 months to be sanctioned, files are lost in transit, and students have no means of knowing the status of their application.\n[GO-2] (Info) Government has decided that all applications under the scheme, fresh and renewal, shall be received, verified, sanctioned and paid online from the academic year 2026-27, so that eligible students receive the scholarship in a transparent and time-bound manner.\n[GO-3.1] (Rule) The applicant shall be a domicile of Rajyapradesh.\n[GO-3.3] (Rule) The applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh.\n[GO-3.4] (Rule) For renewal, the applicant shall have attended at least 75% of classes in the previous academic year, as certified by the institution.\n[GO-4.1] (Mandate) Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs).\n[GO-4.2] (Mandate) Aadhaar-based e-KYC of the applicant shall be mandatory.\n[GO-4.3] (Mandate) Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A.\n[GO-5.1] (Timeline) The nodal officer of the institution shall verify the application within 15 days of submission.\n[GO-5.2] (Timeline) The District Social Welfare Officer shall sanction or reject the verified application within 15 days of receipt.\n[GO-5.3] (Mandate) Reasons shall be recorded in writing for every rejection and communicated to the applicant.\n[GO-6.1] (Mandate) The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant.\n[GO-6.2] (Timeline) The scholarship shall be paid in a single instalment not later than 31 March of the academic year.\n[GO-7.1] (Mandate) An online grievance facility shall be provided to applicants.\n[GO-7.2] (Mandate) The applicant shall be informed by SMS at every stage of processing of the application.\n[GO-7.3] (Timeline) Grievances shall be resolved within 7 working days of receipt.\n[GO-8.1] (Mandate) A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications.\n[GO-8.2] (Mandate) A monthly report shall be submitted to the Principal Secretary, Social Welfare Department.\n[GO-9] (Timeline) The scholarship shall be sanctioned within 30 working days of submission of a complete application, and the service is notified under the Rajyapradesh Right to Service Act.\n[GO-10] (Mandate) Personal data collected under the scheme shall be used only for the purposes of the scheme.\n[COR1-1] (Rule) In paragraph 3.2 of the G.O. read above, for \"Rs. 2,50,000 (Rupees two lakh fifty thousand only)\" read \"Rs. 3,00,000 (Rupees three lakh only)\". The annual family income limit for eligibility is accordingly Rs. 3,00,000 per annum.\n[COR1-2] (Info) All other conditions of the G.O. remain unchanged.\n[MIN-1] (Mandate) CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number.\n[MIN-2] (Mandate) For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again.\n[MIN-3] (Mandate) The portal shall be available in Hindi and English.\n[MIN-5] (Mandate) The portal shall work on low-end Android phones on 3G connections.\n[VB-1] (Mandate) There should also be a mobile application for students, because most students have only a mobile phone.\n[VB-2] (Mandate) The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.\n[VB-3] (Mandate) If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again.\n[FORM-1] (Info) Name of the applicant (as in Aadhaar)\n[FORM-2] (Info) Father's / Guardian's name\n[FORM-3] (Info) Date of birth (DD/MM/YYYY)\n[FORM-4] (Info) Gender (Male / Female / Transgender)\n[FORM-5] (Info) Category (SC / ST / OBC / EWS)\n[FORM-6] (Info) Aadhaar number\n[FORM-7] (Info) Mobile number\n[FORM-8] (Info) Permanent address\n[FORM-9] (Info) District\n[FORM-10] (Info) PIN code\n[FORM-11] (Info) Name of the institution\n[FORM-12] (Info) Course\n[FORM-13] (Info) Year of study\n[FORM-14] (Info) Annual family income (Rs.)\n[FORM-15] (Info) Bank account number\n[FORM-16] (Info) IFSC code\n[FORM-17] (Info) Attendance in previous year (%) (for renewal only)\n[FORM-18] (Info) Caste certificate number\n[FORM-19] (Info) Income certificate number\n[FORM-20] (Info) Declaration: I declare that the information given above is true. Signature of applicant and date.",
+      "SUPERSEDED": "[GO-3.2] superseded by COR1-1: The annual income of the applicant's family from all sources shall not exceed Rs. 2,50,000 (Rupees two lakh fifty thousand only).\n[MIN-4] superseded by GO-5.1: Institution verification shall be completed within 10 days of submission.",
+      "RESOLUTIONS": "[RES-1] Supersession GO-3.2, COR1-1: COR1-1 prevails.\n[RES-2] Conflict GO-5.1, MIN-4: GO-5.1 prevails.\n[RES-3] MissingReference GO-4.3: deferred to the department (open issue).",
+      "ANSWERS": "[ANS-1] When a DBT payment fails in PFMS (for example the account is not Aadhaar-seeded or is closed), what should happen to the application? Answer: Notify the student by SMS to correct bank details within 30 days; re-initiate in the next weekly batch\n[ANS-2] Can a student appeal against rejection by the District Social Welfare Officer, and to whom? Answer: Appeal to the Director, Social Welfare within 30 days",
+      "ASSUMPTIONS": "[ASM-3] Legacy data migration: Only 2025-26 beneficiaries are migrated as a beneficiary master for renewal; pending paper applications are not migrated.\n[ASM-4] Escalation on SLA breach: Institution delays are escalated to the District Social Welfare Officer, and DSWO delays to the Joint Director, Social Welfare.\n[ASM-5] Renewal: The renewal window opens on 1 July and last year's beneficiaries receive a prefilled renewal application.\n[ASM-6] Data retention: Applicant data is retained for 8 years after the last payment and then anonymised.\n[ASM-7] Audit: All status changes, data edits and exports are logged, and the audit trail is viewable by the State administrator.",
+      "MODEL": "{\"workflow\":[{\"id\":\"WF-T1\",\"action\":\"Submit application\",\"actor\":\"Applicant\"},{\"id\":\"WF-T2\",\"action\":\"Forward to institution\",\"actor\":\"System\"},{\"id\":\"WF-T3\",\"action\":\"Verify application\",\"actor\":\"Institution nodal officer\",\"sla\":15},{\"id\":\"WF-T4\",\"action\":\"Return for correction\",\"actor\":\"Institution nodal officer\",\"sla\":15},{\"id\":\"WF-T5\",\"action\":\"Resubmit corrected application\",\"actor\":\"Applicant\"},{\"id\":\"WF-T6\",\"action\":\"Sanction\",\"actor\":\"District Social Welfare Officer\",\"sla\":15},{\"id\":\"WF-T7\",\"action\":\"Reject\",\"actor\":\"District Social Welfare Officer\",\"sla\":15},{\"id\":\"WF-T8\",\"action\":\"Re-apply once\",\"actor\":\"Applicant\"},{\"id\":\"WF-T9\",\"action\":\"File appeal\",\"actor\":\"Applicant\"},{\"id\":\"WF-T10\",\"action\":\"Allow appeal\",\"actor\":\"Director, Social Welfare\",\"sla\":15},{\"id\":\"WF-T11\",\"action\":\"Dismiss appeal\",\"actor\":\"Director, Social Welfare\",\"sla\":15},{\"id\":\"WF-T12\",\"action\":\"Push payment to PFMS\",\"actor\":\"System\"},{\"id\":\"WF-T13\",\"action\":\"Confirm credit\",\"actor\":\"System\"},{\"id\":\"WF-T14\",\"action\":\"Record payment failure\",\"actor\":\"System\"},{\"id\":\"WF-T15\",\"action\":\"Update bank details and re-initiate\",\"actor\":\"Applicant\"},{\"id\":\"WF-T16\",\"action\":\"Close application\",\"actor\":\"System\"}],\"rules\":[{\"id\":\"BR-001\",\"name\":\"Domicile\"},{\"id\":\"BR-002\",\"name\":\"Annual family income\"},{\"id\":\"BR-003\",\"name\":\"Course and institution\"},{\"id\":\"BR-004\",\"name\":\"Renewal attendance\"}],\"fields\":[]}",
+      "EXAMPLES": "[FR-GRV-001 in Online Building Plan Approval] Appeal against rejection: The system shall allow the owner to file an appeal to the Director of Town Planning within 30 days of rejection and track its disposal.\n[FR-REG-001 in Online Building Plan Approval] Architect registration: The system shall register architects after verification of their Council of Architecture registration number and licensed engineers after verification of their ULB licence number.\n[FR-VER-004 in Online Building Plan Approval] Post-approval audit of self-certified cases: The system shall randomly select 10% of self-certified approvals each month for site inspection.\n[FR-VER-001 in Online Building Plan Approval] Approval or rejection: The system shall allow the Commissioner to approve or reject within 5 working days of the inspection report, with reasons mandatory for rejection.\n[FR-VER-003 in Online Building Plan Approval] Deemed approval: The system shall mark an application as deemed approved and issue the permit when 30 working days elapse after a complete application without a decision.",
+      "INPUT": "Module: VER (Verification and approval)\nAlready generated from the model (do not repeat):\nFR-VER-001 Verify application (Pending institution verification)\nFR-VER-002 Return for correction (Pending institution verification)\nFR-VER-003 Sanction (Pending district approval)\nFR-VER-004 Reject (Pending district approval)\nFR-VER-005 Allow appeal (Under appeal)\nFR-VER-006 Dismiss appeal (Under appeal)"
+    }
+  }
+}

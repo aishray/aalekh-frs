@@ -17,5 +17,6 @@ export const reconcile: PromptDef<z.infer<typeof schema>> = {
 - Supersession: a corrigendum clause replaces an earlier clause (cite the old clause first, then the corrigendum clause). INPUT lists which document each corrigendum amends.
 - Duplicate: the same mandate stated in two places.
 - MissingReference: a clause refers to an annexure, form or document that is not among the sources (cite that clause only).
+Method: for every Timeline clause, find clauses in other documents about the same step or officer (for example institution verification) and compare the number of days; different numbers for the same step are a Conflict, not a Duplicate. Duplicate is only for the same obligation with the same values. For every numeric limit in a Rule clause, check whether another document states a different limit.
 Describe each finding in one or two sentences with the exact values. Report only real findings; return an empty list if there are none.`,
 };

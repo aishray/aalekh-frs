@@ -1,0 +1,56 @@
+{
+  "capturedAt": "2026-09-25T14:13:59.488Z",
+  "ms": 4791,
+  "ok": true,
+  "model": "sarvam-105b",
+  "reasoning": "off",
+  "usage": [
+    {
+      "model": "sarvam-105b",
+      "promptTokens": 1432,
+      "completionTokens": 265,
+      "latencyMs": 4786
+    }
+  ],
+  "response": {
+    "findings": [
+      {
+        "kind": "Supersession",
+        "clauses": [
+          "GO-3.2",
+          "COR1-1"
+        ],
+        "description": "COR1-1 supersedes GO-3.2 by amending the annual family income limit for eligibility from Rs. 2,50,000 to Rs. 3,00,000 per annum."
+      },
+      {
+        "kind": "Duplicate",
+        "clauses": [
+          "GO-5.1",
+          "MIN-4"
+        ],
+        "description": "Both GO-5.1 and MIN-4 mandate that the institution shall verify the application within 15 days and 10 days of submission respectively, representing a duplicate mandate with conflicting timelines."
+      },
+      {
+        "kind": "MissingReference",
+        "clauses": [
+          "GO-3.3"
+        ],
+        "description": "GO-3.3 mandates that the applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh, but the specific competent authority is not defined in the provided sources."
+      },
+      {
+        "kind": "MissingReference",
+        "clauses": [
+          "GO-4.3"
+        ],
+        "description": "GO-4.3 requires uploading the certificate in the prescribed format in Annexure A, but Annexure A is not among the provided sources."
+      }
+    ]
+  },
+  "request": {
+    "step": "reconcile",
+    "blocks": {
+      "SOURCES": "[GO-3.1] (Rule) The applicant shall be a domicile of Rajyapradesh.\n[GO-3.2] (Rule) The annual income of the applicant's family from all sources shall not exceed Rs. 2,50,000 (Rupees two lakh fifty thousand only).\n[GO-3.3] (Rule) The applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh.\n[GO-3.4] (Rule) For renewal, the applicant shall have attended at least 75% of classes in the previous academic year, as certified by the institution.\n[GO-4.1] (Mandate) Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs).\n[GO-4.2] (Mandate) Aadhaar-based e-KYC of the applicant shall be mandatory.\n[GO-4.3] (Mandate) Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A.\n[GO-5.1] (Timeline) The nodal officer of the institution shall verify the application within 15 days of submission.\n[GO-5.2] (Timeline) The District Social Welfare Officer shall sanction or reject the verified application within 15 days of receipt.\n[GO-5.3] (Mandate) Reasons shall be recorded in writing for every rejection and communicated to the applicant.\n[GO-6.1] (Mandate) The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant.\n[GO-6.2] (Timeline) The scholarship shall be paid in a single instalment not later than 31 March of the academic year.\n[GO-7.1] (Mandate) An online grievance facility shall be provided to applicants.\n[GO-7.2] (Mandate) The applicant shall be informed by SMS at every stage of processing of the application.\n[GO-7.3] (Timeline) Grievances shall be resolved within 7 working days of receipt.\n[GO-8.1] (Mandate) A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications.\n[GO-8.2] (Mandate) A monthly report shall be submitted to the Principal Secretary, Social Welfare Department.\n[GO-9] (Timeline) The scholarship shall be sanctioned within 30 working days of submission of a complete application, and the service is notified under the Rajyapradesh Right to Service Act.\n[GO-10] (Mandate) Personal data collected under the scheme shall be used only for the purposes of the scheme.\n[COR1-1] (Rule) In paragraph 3.2 of the G.O. read above, for \"Rs. 2,50,000 (Rupees two lakh fifty thousand only)\" read \"Rs. 3,00,000 (Rupees three lakh only)\". The annual family income limit for eligibility is accordingly Rs. 3,00,000 per annum.\n[MIN-1] (Mandate) CSC operators shall be permitted to apply on behalf of students who do not have internet access, and the acknowledgement shall be sent to the student's mobile number.\n[MIN-2] (Mandate) For renewal applications, documents already verified in the previous year shall be reused and shall not be uploaded again.\n[MIN-3] (Mandate) The portal shall be available in Hindi and English.\n[MIN-4] (Timeline) Institution verification shall be completed within 10 days of submission.\n[MIN-5] (Mandate) The portal shall work on low-end Android phones on 3G connections.\n[VB-1] (Mandate) There should also be a mobile application for students, because most students have only a mobile phone.\n[VB-2] (Mandate) The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.\n[VB-3] (Mandate) If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again.",
+      "INPUT": "Documents provided:\nGO: GO, GO on online Post-Matric Scholarship, SW/2026/SCH/118\nCOR1: Corrigendum, Corrigendum 1: income limit, SW/2026/SCH/118-A\nMIN: Minutes, Minutes of kick-off meeting\nVB: VoiceBrief, Voice brief by Joint Director, Social Welfare (Hindi)\nFORM: Form, Existing paper application form (scanned)\n\nCorrigenda:\nCOR1 (SW/2026/SCH/118-A) amends GO"
+    }
+  }
+}
