@@ -27,7 +27,7 @@ export async function runAi<T>(step: AiTask, project: Project, blocks: Blocks, v
     res = await fetch(`/api/ai/${step}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ recorded: s.recorded, sample: project.sample, variant, blocks, model: s.model, reasoning: s.reasoning[step] }),
+      body: JSON.stringify({ recorded: s.recorded, sample: project.sample, variant, blocks, reasoning: s.reasoning[step] }),
     });
   } catch {
     throw new ClientAiError('Could not reach the application server. Check that it is running.');
@@ -42,7 +42,7 @@ export async function streamNarrative(project: Project, section: string, blocks:
   const res = await fetch('/api/ai/narrative', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ section, recorded: s.recorded, sample: project.sample, blocks, model: s.model }),
+    body: JSON.stringify({ section, recorded: s.recorded, sample: project.sample, blocks }),
   }).catch(() => {
     throw new ClientAiError('Could not reach the application server.');
   });

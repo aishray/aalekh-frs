@@ -8,21 +8,17 @@ import { nowIso, uid } from '@/lib/util';
 import { buildSeed, SEED_VERSION } from '@/lib/seed';
 import { buildScholarshipProject } from '@/lib/seed/scholarship';
 
-export type AiTask =
-  | 'classify' | 'reconcile' | 'discovery' | 'questions' | 'workflow' | 'fields' | 'rules' | 'permissions'
-  | 'narrative' | 'requirements' | 'review' | 'fix' | 'impact' | 'cr' | 'interview' | 'segment';
+import { TASKS, type AiTask, type Reasoning } from '@/lib/ai/models';
+export type { AiTask };
 
 export type Settings = {
   recorded: boolean;
-  model: 'sarvam-105b' | 'sarvam-30b';
-  reasoning: Record<AiTask, 'off' | 'low' | 'medium'>;
+  /** Per-task reasoning override; the model per task is fixed in lib/ai/models.ts. */
+  reasoning: Record<AiTask, Reasoning>;
   orgLine: string;
 };
 
-export const defaultReasoning: Settings['reasoning'] = {
-  classify: 'off', segment: 'off', reconcile: 'low', discovery: 'low', questions: 'low', workflow: 'low', fields: 'off',
-  rules: 'low', permissions: 'off', narrative: 'off', requirements: 'off', review: 'low', fix: 'off', impact: 'low', cr: 'low', interview: 'off',
-};
+export const defaultReasoning = Object.fromEntries(Object.entries(TASKS).map(([k, v]) => [k, v.reasoning])) as Settings['reasoning'];
 
 type State = {
   seedVersion: number;
@@ -50,7 +46,7 @@ const initial = (): State => {
     projects: seed.projects,
     activity: seed.activity,
     persona: 'author',
-    settings: { recorded: true, model: 'sarvam-105b', reasoning: { ...defaultReasoning }, orgLine: 'Directorate of Information Technology, Government of Rajyapradesh' },
+    settings: { recorded: true, reasoning: { ...defaultReasoning }, orgLine: 'Directorate of Information Technology, Government of Rajyapradesh' },
   };
 };
 

@@ -9,12 +9,14 @@
     "typecheck": "tsc --noEmit",
     "unit": "vitest run",
     "e2e": "playwright test",
-    "record": "tsx scripts/record.ts",
+    "record": "tsx --conditions=react-server scripts/record.ts",
     "form-image": "tsx scripts/render-form.ts",
     "copy-pdf-worker": "node -e \"require('fs').copyFileSync(require.resolve('pdfjs-dist/build/pdf.worker.min.mjs'),'public/pdf.worker.min.mjs')\"",
-    "predev": "npm run copy-pdf-worker",
-    "prebuild": "npm run copy-pdf-worker",
-    "lint": "next lint"
+    "predev": "npm run copy-pdf-worker && npm run index-recordings",
+    "prebuild": "npm run copy-pdf-worker && npm run index-recordings",
+    "lint": "next lint",
+    "sarvam:check": "tsx --conditions=react-server scripts/sarvam-check.ts",
+    "index-recordings": "tsx scripts/index-recordings.ts"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

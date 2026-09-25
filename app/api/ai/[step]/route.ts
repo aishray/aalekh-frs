@@ -3,33 +3,52 @@ import { prompts } from '@/lib/ai/prompts';
 import { BASE_SYSTEM, userMessage, type Blocks } from '@/lib/ai/prompts/base';
 import { AiError, chatJSON, hasKey } from '@/lib/ai/sarvam';
 import { findRecording, replayDelay, wait } from '@/lib/ai/recordings';
+import { taskConfig, type Reasoning } from '@/lib/ai/models';
+import { rateLimit, readJson } from '@/lib/ai/guard';
+import { capture } from '@/lib/ai/capture';
 import { z } from 'zod';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+export const maxDuration = 300;
 
 type Body = {
   recorded?: boolean;
   sample?: string;
   variant?: string;
   blocks?: Blocks;
-  model?: 'sarvam-105b' | 'sarvam-30b';
-  reasoning?: 'off' | 'low' | 'medium';
+  reasoning?: Reasoning;
 };
+
+const REASONING = new Set<Reasoning>(['off', 'low', 'high']);
 
 export async function POST(req: Request, { params }: { params: { step: string } }) {
   const step = params.step;
   const def = prompts[step];
   if (!def) return NextResponse.json({ error: `Unknown AI step "${step}".` }, { status: 404 });
-  let body: Body;
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
-  }
+  const { body, error } = await readJson<Body>(req);
+  if (error || !body) return error;
+
+  const cfg = taskConfig(def.task, body.reasoning && REASONING.has(body.reasoning) ? body.reasoning : undefined);
+  const live = async () => {
+    const { data, usage } = await chatJSON(
+      [
+        { role: 'system', content: BASE_SYSTEM },
+        { role: 'user', content: userMessage(def.instruction, body.blocks ?? {}) },
+      ],
+      { name: def.name, schema: z.toJSONSchema(def.schema) as object },
+      (v) => def.schema.parse(v),
+      { model: cfg.model, reasoning: cfg.reasoning, maxTokens: Math.max(cfg.maxTokens, def.maxTokens ?? 0), temperature: cfg.temperature, timeoutMs: cfg.timeoutMs, task: step },
+    );
+    return { data, usage };
+  };
 
   const rec = findRecording(body.sample, step, body.variant);
   if (body.recorded && rec) {
+    capture(body.sample, body.variant ? `${step}.${body.variant}` : step, { step, variant: body.variant, blocks: body.blocks }, async () => {
+      const { data, usage } = await live();
+      return { response: data, meta: { model: cfg.model, reasoning: cfg.reasoning, usage } };
+    });
     await wait(replayDelay(step, rec));
     return NextResponse.json({ data: rec.response, source: 'recorded' });
   }
@@ -40,23 +59,20 @@ export async function POST(req: Request, { params }: { params: { step: string } 
       return NextResponse.json({ data: rec.response, source: 'fallback', note: 'AI engine not configured; used the recorded response.' });
     }
     return NextResponse.json(
-      { error: 'The AI engine is not configured, and there is no recorded response for this step. Add SARVAM_API_KEY to .env.local, or turn on recorded responses for the sample project in Settings.' },
+      { error: 'The AI engine is not configured, and there is no recorded response for this step. Add SARVAM_API_KEY to the server environment, or turn on recorded responses for the sample project in Settings.' },
       { status: 503 },
     );
   }
 
+  const limited = rateLimit(req);
+  if (limited) {
+    if (rec) return NextResponse.json({ data: rec.response, source: 'fallback', note: 'Live AI limit reached; used the recorded response.' });
+    return limited;
+  }
+
   try {
-    const jsonSchema = z.toJSONSchema(def.schema) as object;
-    const data = await chatJSON(
-      [
-        { role: 'system', content: BASE_SYSTEM },
-        { role: 'user', content: userMessage(def.instruction, body.blocks ?? {}) },
-      ],
-      { name: def.name, schema: jsonSchema },
-      (v) => def.schema.parse(v),
-      { model: body.model, reasoning: body.reasoning, maxTokens: def.maxTokens ?? 4000 },
-    );
-    return NextResponse.json({ data, source: 'live' });
+    const { data, usage } = await live();
+    return NextResponse.json({ data, source: 'live', model: cfg.model, usage });
   } catch (e) {
     // Live failures fall back silently to recordings where they exist.
     if (rec) return NextResponse.json({ data: rec.response, source: 'fallback', note: (e as Error).message });

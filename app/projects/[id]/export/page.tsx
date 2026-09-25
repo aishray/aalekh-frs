@@ -64,7 +64,7 @@ export default function ExportPage() {
     const texts = hindiStrings(p);
     setHindi({ done: 0, total: texts.length });
     const map = new Map<string, string>();
-    const batch = 12;
+    const batch = 40;
     for (let i = 0; i < texts.length; i += batch) {
       const part = texts.slice(i, i + batch);
       const out = await translateTexts(p, part, 'en', 'hi');

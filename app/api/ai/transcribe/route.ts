@@ -1,16 +1,22 @@
 import { NextResponse } from 'next/server';
 import { hasKey, transcribe, translate } from '@/lib/ai/sarvam';
+import { fileTooLarge, rateLimit } from '@/lib/ai/guard';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+export const maxDuration = 300;
 
-/** Speech to text (saaras:v3), then translation to English. */
+/** Speech to text (saaras:v3, transcribe mode), then text translation to English. */
 export async function POST(req: Request) {
   if (!hasKey())
-    return NextResponse.json({ error: 'Voice transcription needs the AI engine. Add SARVAM_API_KEY to .env.local, or paste the transcript as text.' }, { status: 503 });
+    return NextResponse.json({ error: 'Voice transcription needs the AI engine. Add SARVAM_API_KEY to the server environment, or paste the transcript as text.' }, { status: 503 });
   const form = await req.formData();
   const file = form.get('file');
   if (!(file instanceof Blob)) return NextResponse.json({ error: 'No audio file received.' }, { status: 400 });
+  const big = fileTooLarge(file);
+  if (big) return big;
+  const limited = rateLimit(req);
+  if (limited) return limited;
   try {
     const name = (file as File).name || 'audio.webm';
     const { transcript, language } = await transcribe(file, name);
