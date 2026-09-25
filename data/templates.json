@@ -36,6 +36,7 @@
     "SCR": "Scrutiny",
     "INS": "Inspection",
     "CRT": "Certificates",
-    "FEE": "Fees"
+    "FEE": "Fees",
+    "PRIV": "Privacy"
   }
 }

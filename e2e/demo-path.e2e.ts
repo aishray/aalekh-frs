@@ -95,4 +95,42 @@ test('demo path', async ({ page }) => {
   await expect(result).toContainText('₹3,00,001');
   await expect(result.getByRole('button', { name: 'COR1 1' }).first()).toBeVisible();
   await shot(page, '05c-rule-tester');
+
+  // 6. Generate FRS: builds from the model; click GO 4.2; reused requirement from Building Plan Approval.
+  await page.goto('/projects/pms-scholarship/document');
+  await page.getByRole('button', { name: 'Generate FRS' }).first().click();
+  await expect(page.locator('article[data-req]')).not.toHaveCount(0, { timeout: 60000 });
+  await expect(page.getByRole('button', { name: 'Regenerate all' })).toBeEnabled({ timeout: 90000 });
+  const count = await page.locator('article[data-req]').count();
+  expect(count).toBeGreaterThanOrEqual(50);
+  expect(count).toBeLessThanOrEqual(80);
+  await page.locator('#FR-REG-002').getByRole('button', { name: 'GO 4.2' }).click();
+  await expect(page.getByRole('complementary', { name: 'Reference GO 4.2' })).toContainText('Aadhaar-based e-KYC');
+  await shot(page, '06-document-ref');
+  await page.keyboard.press('Escape');
+  const reuse = page.getByTestId('reuse-FR-APP-002');
+  await expect(reuse).toContainText('FR-APP-011');
+  await expect(reuse).toContainText('Online Building Plan Approval');
+  await reuse.scrollIntoViewIfNeeded();
+  await shot(page, '06b-document-reuse');
+
+  // 7. Quality: GO 7.3 uncovered, "quickly", DBT payment failure; fixing all three raises the score.
+  await page.goto('/projects/pms-scholarship/quality');
+  await page.getByRole('button', { name: 'Run full review' }).click();
+  const issues = page.getByTestId('issues');
+  await expect(issues).toContainText('DBT payment fails', { timeout: 20000 });
+  await expect(issues).toContainText('GO-7.3 (Timeline) is not cited by any requirement');
+  await expect(issues).toContainText('uses the ambiguous term "quickly"');
+  const before = Number(await page.getByTestId('score-total').innerText());
+  await shot(page, '07-quality');
+  for (const issue of ['COV-GO-7.3', 'AMB-FR-GRV-001-quickly', 'REV-1']) {
+    const row = page.locator(`tr[data-issue="${issue}"]`);
+    await row.getByRole('button', { name: /Fix|Draft requirement/ }).click();
+    await row.getByRole('button', { name: 'Accept' }).click({ timeout: 20000 });
+  }
+  await expect(issues).not.toContainText('quickly');
+  const after = Number(await page.getByTestId('score-total').innerText());
+  expect(after).toBeGreaterThan(before);
+  await shot(page, '07b-quality-fixed');
 });
+

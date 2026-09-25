@@ -1,0 +1,20 @@
+{
+ "step": "fix",
+ "variant": "COV-GO-7.3",
+ "response": {
+  "title": "Grievance resolution within 7 working days",
+  "description": "The system shall track every grievance against a resolution timeline of 7 working days from receipt, show the working days remaining to the District Social Welfare Officer, and escalate a grievance not resolved within 7 working days to the Joint Director, Social Welfare.",
+  "actor": "System",
+  "priority": "Must",
+  "acceptanceCriteria": [
+   "Given a grievance received on a Monday, when the DSWO opens the grievance list, then the grievance shows the working days remaining out of 7.",
+   "Given a grievance not resolved within 7 working days, when the daily job runs on the 8th working day, then it is escalated to the Joint Director, Social Welfare and both officers are notified by email."
+  ],
+  "refs": [
+   "GO-7.3",
+   "GO-7.1"
+  ],
+  "module": "GRV",
+  "rationale": "GO para 7.3 sets a 7 working day resolution timeline that no requirement implemented."
+ }
+}

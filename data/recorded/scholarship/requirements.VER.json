@@ -1,0 +1,34 @@
+{
+ "step": "requirements",
+ "variant": "VER",
+ "note": "Recorded requirements for module VER (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Verification checklist for the nodal officer",
+    "description": "The system shall show the institution nodal officer each application with its documents, DigiLocker verification status and the results of business rules BR-001 to BR-004, and require each checklist item to be marked before the application can be verified.",
+    "actor": "Institution nodal officer",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an application with one checklist item unmarked, when the nodal officer tries to verify it, then the system blocks the action and highlights the item."
+    ],
+    "refs": [
+     "GO-5.1",
+     "BR-003"
+    ]
+   },
+   {
+    "title": "Bulk sanction by the District Social Welfare Officer",
+    "description": "The system shall allow the District Social Welfare Officer to sanction up to 100 verified applications together after reviewing the list, recording each sanction individually in the audit trail.",
+    "actor": "District Social Welfare Officer",
+    "priority": "Should",
+    "acceptanceCriteria": [
+     "Given 40 verified applications selected, when the DSWO sanctions them together, then 40 individual sanction entries appear in the audit trail."
+    ],
+    "refs": [
+     "GO-5.2"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "step": "requirements",
+ "variant": "DOC",
+ "note": "Recorded requirements for module DOC (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Certificates from DigiLocker",
+    "description": "The system shall fetch the applicant's caste and income certificates from DigiLocker with the applicant's consent and attach them to the application as verified at source.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given the applicant grants DigiLocker consent and an income certificate exists, when fetched, then it is attached with issuer and date and marked verified at source."
+    ],
+    "refs": [
+     "GO-4.3"
+    ]
+   },
+   {
+    "title": "Upload where not in DigiLocker",
+    "description": "The system shall allow the applicant to upload a caste or income certificate as a PDF or JPEG of up to 2 MB only when it is not available in DigiLocker, in the format to be notified by the department (open issue RES-3).",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a certificate not found in DigiLocker, when the applicant proceeds, then upload of a PDF or JPEG of up to 2 MB is enabled.",
+     "Given a file of 3 MB, when uploaded, then it is refused with the size limit stated."
+    ],
+    "refs": [
+     "GO-4.3",
+     "RES-3"
+    ]
+   },
+   {
+    "title": "Reuse of verified documents for renewal",
+    "description": "The system shall reuse documents verified in the previous academic year for a renewal application and shall not ask the applicant to upload them again, unless the certificate has expired.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a renewal application with a caste certificate verified last year, when the application is opened, then the certificate is attached and no upload is requested."
+    ],
+    "refs": [
+     "MIN-2"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "step": "requirements",
+ "variant": "GRV",
+ "note": "Recorded requirements for module GRV (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Online grievance registration",
+    "description": "The system shall allow an applicant to register a grievance online against an application, with category and description, and shall route it quickly to the District Social Welfare Officer of the applicant's district.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a grievance registered against an application, when it is saved, then a grievance number is shown and it appears in the DSWO's grievance list."
+    ],
+    "refs": [
+     "GO-7.1"
+    ]
+   },
+   {
+    "title": "Grievance disposal",
+    "description": "The system shall allow the District Social Welfare Officer to record the action taken and close a grievance, and send an SMS to the applicant with the action taken.",
+    "actor": "District Social Welfare Officer",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an action taken report of at least 50 characters, when the DSWO closes the grievance, then the applicant receives an SMS with the action taken."
+    ],
+    "refs": [
+     "GO-7.1",
+     "GO-7.2"
+    ]
+   },
+   {
+    "title": "Appeal against rejection",
+    "description": "The system shall allow an applicant to file an appeal to the Director, Social Welfare within 30 days of rejection, and the Director shall decide it within 15 working days.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a rejection on 1 October, when the applicant files an appeal on 25 October, then the appeal is registered and assigned to the Director.",
+     "Given 31 days since rejection, when an appeal is attempted, then it is refused."
+    ],
+    "refs": [
+     "ANS-2",
+     "WF-T9"
+    ]
+   }
+  ]
+ }
+}

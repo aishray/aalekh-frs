@@ -1,0 +1,34 @@
+{
+ "step": "requirements",
+ "variant": "NFR",
+ "note": "Recorded requirements for module NFR (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Low-end Android phones on 3G",
+    "description": "The mobile application and the portal shall work on Android 8 or later with 2 GB RAM, and each applicant screen shall load within 5 seconds on a 3G connection of 1 Mbps.",
+    "actor": "",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a device with Android 8 and 2 GB RAM on a throttled 1 Mbps connection, when each applicant screen is opened, then it is usable within 5 seconds."
+    ],
+    "refs": [
+     "MIN-5"
+    ]
+   },
+   {
+    "title": "Retention of applicant data",
+    "description": "The system shall retain applicant data for 8 years after the last payment and then anonymise personal data fields, logging each anonymisation run.",
+    "actor": "",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given records 8 years past the last payment, when the retention job runs, then personal data fields are anonymised and the run is logged."
+    ],
+    "refs": [
+     "ASM-6",
+     "GO-10"
+    ]
+   }
+  ]
+ }
+}

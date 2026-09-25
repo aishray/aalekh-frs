@@ -1,0 +1,7 @@
+{
+ "step": "narrative",
+ "variant": "introduction",
+ "response": {
+  "text": "This Functional Requirements Specification describes the State Post-Matric Scholarship Portal to be developed by the Directorate of Information Technology for the Social Welfare Department, Government of Rajyapradesh. It implements G.O. No. SW/2026/SCH/118 dated 14 August 2026, under which all fresh and renewal applications of the scheme are to be received, verified, sanctioned and paid online from the academic year 2026-27 [GO-2], as amended by Corrigendum No. SW/2026/SCH/118-A dated 2 September 2026, which raises the annual family income limit to Rs. 3,00,000 [COR1-1].\n\nThe document is intended for the Social Welfare Department, the Directorate of IT, and the agency that will develop and operate the system. Every requirement cites the clause of the GO, corrigendum, meeting minutes, voice brief or clarification from which it arises, and each requirement has acceptance criteria against which it will be tested. The scope covers online and assisted application, Aadhaar e-KYC, document sourcing from DigiLocker, two-level verification, DBT payment through PFMS, notifications, grievances and monitoring [GO-4.1] [GO-5.1] [GO-6.1] [GO-7.1] [GO-8.1]."
+ }
+}

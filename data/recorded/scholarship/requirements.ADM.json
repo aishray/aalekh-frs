@@ -1,0 +1,61 @@
+{
+ "step": "requirements",
+ "variant": "ADM",
+ "note": "Recorded requirements for module ADM (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Institution, course and district masters",
+    "description": "The system shall allow the State administrator to maintain institution, course and district masters, with LGD codes for districts and a recognition flag for institutions.",
+    "actor": "State administrator",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an institution marked not recognised, when an applicant selects it, then the course eligibility rule BR-003 fails."
+    ],
+    "refs": [
+     "GO-3.3",
+     "STD-EGOV"
+    ]
+   },
+   {
+    "title": "User and role management",
+    "description": "The system shall allow the State administrator to create officer accounts and map each nodal officer to one institution and each District Social Welfare Officer to one district.",
+    "actor": "State administrator",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a nodal officer transferred, when their mapping is changed, then pending applications move to the new nodal officer of the institution."
+    ],
+    "refs": [
+     "GO-5.1",
+     "GO-5.2"
+    ]
+   },
+   {
+    "title": "Import of 2025-26 beneficiaries",
+    "description": "The system shall import the list of 2025-26 beneficiaries as a master for renewal, with name, institution, course and bank details, and report records that fail validation.",
+    "actor": "State administrator",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an import file of 10,000 records, when imported, then accepted and rejected counts add up to 10,000 and rejected records are downloadable with reasons."
+    ],
+    "refs": [
+     "ASM-3"
+    ]
+   },
+   {
+    "title": "Scheme parameters",
+    "description": "The system shall allow the State administrator to configure the income limit, attendance threshold and stage timelines as parameters with effective dates, without code changes.",
+    "actor": "State administrator",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a new income limit effective from a date, when an application submitted after that date is checked, then the new limit is applied."
+    ],
+    "refs": [
+     "COR1-1",
+     "GO-3.4",
+     "GO-9"
+    ]
+   }
+  ]
+ }
+}

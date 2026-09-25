@@ -1,0 +1,58 @@
+{
+ "step": "requirements",
+ "variant": "RPT",
+ "note": "Recorded requirements for module RPT (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "District dashboard of pending applications",
+    "description": "The system shall show the District Social Welfare Officer a dashboard of applications by status for the district, with pending applications of each institution and the working days each has been pending, refreshed every 15 minutes.",
+    "actor": "District Social Welfare Officer",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given 12 applications pending with an institution, when the DSWO opens the dashboard, then the institution row shows 12 with the oldest pending days."
+    ],
+    "refs": [
+     "GO-8.1",
+     "VB-2"
+    ]
+   },
+   {
+    "title": "Monthly report to the Principal Secretary",
+    "description": "The system shall generate on the 1st of every month a report for the Principal Secretary, Social Welfare, with district-wise applications received, sanctioned, rejected, paid and pending, as PDF and Excel.",
+    "actor": "Principal Secretary, Social Welfare",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given month end, when the report is generated, then district totals match the application data as of the last day of the month."
+    ],
+    "refs": [
+     "GO-8.2"
+    ]
+   },
+   {
+    "title": "Right to Service compliance report",
+    "description": "The system shall report, for each district, applications that exceeded the 30 working day service timeline, with the stage at which the delay occurred.",
+    "actor": "District Social Welfare Officer",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an application sanctioned on working day 34, when the report runs, then it is listed with the stage that exceeded its SLA."
+    ],
+    "refs": [
+     "GO-9"
+    ]
+   },
+   {
+    "title": "Payment reconciliation report",
+    "description": "The system shall report sanctioned, paid, failed and pending payments by district and PFMS batch.",
+    "actor": "District Social Welfare Officer",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a PFMS batch, when the report is opened, then paid, failed and pending counts add up to the batch size."
+    ],
+    "refs": [
+     "GO-6.1"
+    ]
+   }
+  ]
+ }
+}

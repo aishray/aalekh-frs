@@ -1,0 +1,7 @@
+{
+ "step": "narrative",
+ "variant": "tobe",
+ "response": {
+  "text": "A student, or a CSC operator on the student's behalf, registers with mobile OTP and Aadhaar e-KYC and submits the application online, with caste and income certificates fetched from DigiLocker where available [GO-4.1] [GO-4.2] [GO-4.3] [MIN-1]. The institution nodal officer verifies the application within 15 days, or returns it for correction with reasons [GO-5.1] [WF-T3] [WF-T4]. The District Social Welfare Officer sanctions or rejects the verified application within 15 days, with reasons recorded for every rejection, so that sanction is completed within the 30 working day service timeline [GO-5.2] [GO-5.3] [GO-9].\n\nSanctioned applications are paid through PFMS DBT to the Aadhaar-seeded bank account in a single instalment before 31 March [GO-6.1] [GO-6.2]. The applicant receives an SMS at every stage and can track status and raise grievances online or on the mobile application [GO-7.1] [GO-7.2] [VB-1]. District officers monitor pendency on a dashboard, and a monthly report is submitted to the Principal Secretary [GO-8.1] [GO-8.2] [VB-2]."
+ }
+}

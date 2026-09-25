@@ -1,0 +1,90 @@
+{
+ "step": "requirements",
+ "variant": "APP",
+ "note": "Recorded requirements for module APP (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Fresh application",
+    "description": "The system shall allow a registered applicant to fill a fresh application with personal, institution, course, income and bank details, save it as a draft at every step, and submit it only after accepting the declaration.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given all mandatory fields are completed and the declaration is accepted, when the applicant submits, then an application number in the format PMS/<district code>/<year>/<serial> is generated and shown."
+    ],
+    "refs": [
+     "GO-4.1",
+     "GO-2"
+    ]
+   },
+   {
+    "title": "Assisted application with applicant consent at CSC",
+    "description": "The system shall allow a CSC operator to submit an application on behalf of an applicant after recording the applicant's consent by OTP to the applicant's mobile number, and shall record the CSC ID on the application.",
+    "actor": "CSC operator",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a CSC operator signed in through CSC Digital Seva, when the applicant enters the OTP sent to their mobile number, then the application is submitted with the CSC ID recorded and the acknowledgement is sent to the applicant's mobile number.",
+     "Given the OTP is not entered within 10 minutes, when submission is attempted, then it is refused."
+    ],
+    "refs": [
+     "GO-4.1",
+     "MIN-1"
+    ]
+   },
+   {
+    "title": "Renewal application",
+    "description": "The system shall allow a student sanctioned in the previous academic year to submit a renewal application prefilled from the previous year's application, requiring only the previous year's attendance and any changed details.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a student sanctioned in 2026-27, when the renewal window opens, then a prefilled renewal application is available with the previous year's data."
+    ],
+    "refs": [
+     "GO-3.4",
+     "MIN-2",
+     "ASM-5"
+    ]
+   },
+   {
+    "title": "Student mobile application",
+    "description": "The system shall provide an Android mobile application for students with registration, application, document upload, status tracking and grievance functions equivalent to the portal.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given the mobile application, when a student completes an application on it, then the application appears on the portal with the same number and status."
+    ],
+    "refs": [
+     "VB-1",
+     "GO-4.1"
+    ]
+   },
+   {
+    "title": "Application status tracking",
+    "description": "The system shall show the applicant the current status, the office with which the application is pending, and the working days elapsed against the 30 working day service timeline.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an application pending with the institution for 6 working days, when the applicant views status, then it shows \"Pending institution verification, 6 of 30 working days\"."
+    ],
+    "refs": [
+     "GO-9",
+     "GO-7.2"
+    ]
+   },
+   {
+    "title": "One re-application after rejection",
+    "description": "The system shall allow an applicant whose application is rejected to submit one corrected re-application in the same academic year, reusing documents not cited in the rejection reason.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a rejected application, when the applicant re-applies, then documents not cited in the rejection are carried over.",
+     "Given a student has already re-applied once in the academic year, when a second re-application is attempted, then it is refused."
+    ],
+    "refs": [
+     "VB-3",
+     "WF-T8"
+    ]
+   }
+  ]
+ }
+}

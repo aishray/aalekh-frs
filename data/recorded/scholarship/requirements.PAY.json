@@ -1,0 +1,47 @@
+{
+ "step": "requirements",
+ "variant": "PAY",
+ "note": "Recorded requirements for module PAY (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "DBT payment batch to PFMS",
+    "description": "The system shall generate a PFMS DBT payment batch every week for sanctioned applications, crediting the Aadhaar-seeded bank account of each applicant, push it to PFMS and record the PFMS acknowledgement against each application.",
+    "actor": "System",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given 250 sanctioned applications in a week, when the weekly batch runs, then one batch with 250 payment records is pushed and each application shows the PFMS acknowledgement number."
+    ],
+    "refs": [
+     "GO-6.1",
+     "STD-PFMS"
+    ]
+   },
+   {
+    "title": "Single instalment by 31 March",
+    "description": "The system shall pay the full scholarship amount in a single instalment and list to the District Social Welfare Officer, from 1 March, sanctioned applications not yet paid for that academic year.",
+    "actor": "System",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a sanctioned application unpaid on 1 March, when the DSWO opens the payment list, then the application appears with the days remaining to 31 March."
+    ],
+    "refs": [
+     "GO-6.2"
+    ]
+   },
+   {
+    "title": "Payment credit confirmation",
+    "description": "The system shall update an application to Paid on receipt of the PFMS credit confirmation and show the UTR number and credit date to the applicant.",
+    "actor": "System",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given PFMS confirms credit, when the status file is processed, then the application shows Paid with the UTR number."
+    ],
+    "refs": [
+     "GO-6.1",
+     "WF-T13"
+    ]
+   }
+  ]
+ }
+}

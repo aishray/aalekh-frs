@@ -154,6 +154,7 @@ export type Requirement = {
   reusedFrom?: string;
   status: 'Draft' | 'Reviewed' | 'Approved';
   generatedAt: string;
+  modelKey?: string; // for requirements generated from a model artefact: keeps IDs stable across regeneration
 };
 
 export type IssueSeverity = 'High' | 'Medium' | 'Low';

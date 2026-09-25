@@ -1,0 +1,22 @@
+{
+ "step": "requirements",
+ "variant": "NOT",
+ "note": "Recorded requirements for module NOT (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "SMS language and delivery status",
+    "description": "The system shall send every SMS in the applicant's chosen language, Hindi or English, using DLT-registered templates, and record the delivery status of each message.",
+    "actor": "System",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given an applicant who chose Hindi, when any SMS is triggered, then the Hindi template is used and the delivery report is stored."
+    ],
+    "refs": [
+     "GO-7.2",
+     "MIN-3"
+    ]
+   }
+  ]
+ }
+}

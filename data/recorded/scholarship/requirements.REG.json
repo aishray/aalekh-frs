@@ -1,0 +1,49 @@
+{
+ "step": "requirements",
+ "variant": "REG",
+ "note": "Recorded requirements for module REG (hand-authored, see README).",
+ "response": {
+  "requirements": [
+   {
+    "title": "Applicant registration with mobile OTP",
+    "description": "The system shall register an applicant with a mobile number verified by a 6-digit OTP valid for 10 minutes, and allow one active registration per mobile number.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a new mobile number, when the correct OTP is entered within 10 minutes, then the applicant account is created.",
+     "Given a mobile number already registered, when registration is attempted, then the system refuses it and offers sign-in."
+    ],
+    "refs": [
+     "GO-4.1"
+    ]
+   },
+   {
+    "title": "Aadhaar e-KYC of the applicant",
+    "description": "The system shall perform Aadhaar OTP e-KYC of every applicant through the State AUA/KUA before an application can be submitted, prefill name, date of birth and gender from the e-KYC response as read-only fields, and store the Aadhaar number only in the Aadhaar Data Vault.",
+    "actor": "Applicant",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given consent is recorded and a valid Aadhaar number is entered, when the e-KYC OTP is verified, then name, date of birth and gender are prefilled and cannot be edited.",
+     "Given e-KYC fails three times, when the applicant retries, then the system directs the applicant to a CSC for biometric e-KYC."
+    ],
+    "refs": [
+     "GO-4.2",
+     "STD-AADHAAR"
+    ]
+   },
+   {
+    "title": "Officer sign-in with jurisdiction",
+    "description": "The system shall authenticate institution nodal officers and District Social Welfare Officers through Jan Parichay with two-factor authentication and show each officer only the applications of their institution or district.",
+    "actor": "Institution nodal officer",
+    "priority": "Must",
+    "acceptanceCriteria": [
+     "Given a nodal officer mapped to one institution, when they sign in, then only applications of that institution are listed."
+    ],
+    "refs": [
+     "GO-5.1",
+     "GO-5.2"
+    ]
+   }
+  ]
+ }
+}

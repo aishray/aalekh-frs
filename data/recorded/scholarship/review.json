@@ -1,0 +1,18 @@
+{
+ "step": "review",
+ "note": "Recorded semantic review for the sample (hand-authored to match F9 acceptance: one missing exception flow).",
+ "response": {
+  "issues": [
+   {
+    "type": "MissingException",
+    "severity": "High",
+    "message": "No requirement specifies what happens when a DBT payment fails in PFMS (account not Aadhaar-seeded, account closed or frozen): FR-PAY-001 and FR-PAY-003 cover only successful credit. ANS-1 requires the applicant to be notified to correct bank details within 30 days and payment to be re-initiated in the next weekly batch.",
+    "targetIds": [
+     "FR-PAY-001",
+     "FR-PAY-003"
+    ],
+    "suggestion": "Add a payment failure requirement: record the PFMS failure reason, notify the applicant, allow bank details to be corrected and re-validated through PFMS, and include the application in the next weekly batch."
+   }
+  ]
+ }
+}
