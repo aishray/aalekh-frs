@@ -1,0 +1,87 @@
+{
+ "step": "rules",
+ "note": "Recorded decision tables for the sample; income uses the corrigendum value (COR1-1).",
+ "response": {
+  "tables": [
+   {
+    "name": "Domicile",
+    "appliesTo": "All",
+    "conditions": [
+     {
+      "attribute": "domicileState",
+      "label": "State of domicile",
+      "operator": "=",
+      "value": "Rajyapradesh",
+      "unit": null
+     }
+    ],
+    "outcome": "Eligible on domicile",
+    "failOutcome": "Ineligible: not a domicile of Rajyapradesh",
+    "refs": [
+     "GO-3.1"
+    ]
+   },
+   {
+    "name": "Annual family income",
+    "appliesTo": "All",
+    "conditions": [
+     {
+      "attribute": "annualFamilyIncome",
+      "label": "Annual family income",
+      "operator": "<=",
+      "value": "300000",
+      "unit": "INR"
+     }
+    ],
+    "outcome": "Eligible on income",
+    "failOutcome": "Ineligible: annual family income exceeds the limit",
+    "refs": [
+     "COR1-1"
+    ]
+   },
+   {
+    "name": "Course and institution",
+    "appliesTo": "All",
+    "conditions": [
+     {
+      "attribute": "courseLevel",
+      "label": "Course level",
+      "operator": "=",
+      "value": "Post-matric",
+      "unit": null
+     },
+     {
+      "attribute": "institutionRecognised",
+      "label": "Institution recognised in Rajyapradesh",
+      "operator": "=",
+      "value": "Yes",
+      "unit": null
+     }
+    ],
+    "outcome": "Eligible on course",
+    "failOutcome": "Ineligible: not a post-matric course in a recognised institution",
+    "refs": [
+     "GO-3.3"
+    ]
+   },
+   {
+    "name": "Renewal attendance",
+    "appliesTo": "Renewal",
+    "conditions": [
+     {
+      "attribute": "previousYearAttendance",
+      "label": "Attendance in previous year",
+      "operator": ">=",
+      "value": "75",
+      "unit": "%"
+     }
+    ],
+    "outcome": "Eligible for renewal",
+    "failOutcome": "Ineligible for renewal: attendance below the minimum",
+    "refs": [
+     "GO-3.4"
+    ]
+   }
+  ]
+ }
+}

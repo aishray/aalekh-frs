@@ -44,4 +44,55 @@ test('demo path', async ({ page }) => {
   await page.getByTestId('resolve-RES-3').getByRole('button', { name: 'Defer as open issue' }).click();
   await expect(page.getByTestId('reconcile-gate')).toContainText('All findings resolved');
   await shot(page, '03b-reconciled');
+
+  // 4. Discovery: checklist shows missing payment failure, appeal, legacy migration; answer two questions.
+  await page.goto('/projects/pms-scholarship/discovery');
+  await page.getByRole('button', { name: 'Run discovery' }).first().click();
+  const checklist = page.getByTestId('checklist');
+  await expect(checklist).toBeVisible({ timeout: 20000 });
+  for (const topic of ['Payment failure handling', 'Appeal against rejection', 'Legacy data migration']) {
+    await expect(checklist.getByRole('row', { name: new RegExp(topic) })).toContainText('Missing');
+  }
+  await shot(page, '04-discovery');
+  await page.getByRole('tab', { name: /Questions and assumptions/ }).click();
+  await page.getByRole('button', { name: /Notify the student by SMS to correct bank details/ }).click();
+  await page.getByRole('button', { name: 'Save answer' }).first().click();
+  await page.getByRole('button', { name: /Appeal to the Director, Social Welfare within 30 days/ }).click();
+  await page.getByRole('button', { name: 'Save answer' }).first().click();
+  await expect(page.getByText('Answered, citable as ANS-1')).toBeVisible();
+  await expect(page.getByText('Answered, citable as ANS-2')).toBeVisible();
+  for (let i = 0; i < 5; i++) await page.getByRole('button', { name: 'Use default assumption' }).first().click();
+  await shot(page, '04b-questions');
+
+  // 5. Workflow: RTS 30 of 30 compliant; SLA 15 to 20 fails; rules tester.
+  await page.goto('/projects/pms-scholarship/workflow');
+  await page.getByRole('button', { name: 'Propose workflow' }).first().click();
+  await expect(page.getByTestId('rts')).toContainText('Total 30 working days against notified 30 days: compliant', { timeout: 20000 });
+  await expect(page.locator('.mermaid-host svg')).toBeVisible({ timeout: 20000 });
+  await shot(page, '05-workflow');
+  await page.getByRole('button', { name: 'Edit WF-T3' }).click();
+  await page.getByLabel('SLA (working days)').fill('20');
+  await page.getByRole('button', { name: 'Save transition' }).click();
+  await expect(page.getByTestId('rts')).toContainText('35 working days exceeds the notified 30 days');
+  await shot(page, '05b-workflow-rts-fail');
+  await page.getByRole('button', { name: 'Edit WF-T3' }).click();
+  await page.getByLabel('SLA (working days)').fill('15');
+  await page.getByRole('button', { name: 'Save transition' }).click();
+  await expect(page.getByTestId('rts')).toContainText('compliant');
+
+  await page.goto('/projects/pms-scholarship/rules');
+  await page.getByRole('button', { name: 'Build decision tables' }).first().click();
+  await page.getByRole('tab', { name: /Boundary tests/ }).click({ timeout: 20000 });
+  await expect(page.getByText('₹3,00,001').first()).toBeVisible();
+  await page.getByRole('tab', { name: 'Rule tester' }).click();
+  await page.getByLabel('State of domicile').fill('Rajyapradesh');
+  await page.getByLabel(/Annual family income/).fill('300001');
+  await page.getByLabel('Course level').fill('Post-matric');
+  await page.getByLabel('Institution recognised in Rajyapradesh').selectOption('Yes');
+  await page.getByRole('button', { name: 'Check eligibility' }).click();
+  const result = page.getByTestId('rule-result');
+  await expect(result).toContainText('Ineligible: BR-002');
+  await expect(result).toContainText('₹3,00,001');
+  await expect(result.getByRole('button', { name: 'COR1 1' }).first()).toBeVisible();
+  await shot(page, '05c-rule-tester');
 });

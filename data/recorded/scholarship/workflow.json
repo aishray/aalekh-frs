@@ -1,0 +1,340 @@
+{
+ "step": "workflow",
+ "note": "Recorded workflow proposal for the sample (hand-authored). GO-5.1 15 days applies after the GO-prevails resolution.",
+ "response": {
+  "states": [
+   {
+    "id": "draft",
+    "name": "Draft",
+    "terminal": false
+   },
+   {
+    "id": "submitted",
+    "name": "Submitted",
+    "terminal": false
+   },
+   {
+    "id": "inst",
+    "name": "Pending institution verification",
+    "terminal": false
+   },
+   {
+    "id": "returned",
+    "name": "Returned for correction",
+    "terminal": false
+   },
+   {
+    "id": "district",
+    "name": "Pending district approval",
+    "terminal": false
+   },
+   {
+    "id": "sanctioned",
+    "name": "Sanctioned",
+    "terminal": false
+   },
+   {
+    "id": "rejected",
+    "name": "Rejected",
+    "terminal": false
+   },
+   {
+    "id": "appeal",
+    "name": "Under appeal",
+    "terminal": false
+   },
+   {
+    "id": "payinit",
+    "name": "Payment initiated",
+    "terminal": false
+   },
+   {
+    "id": "paid",
+    "name": "Paid",
+    "terminal": false
+   },
+   {
+    "id": "payfailed",
+    "name": "Payment failed",
+    "terminal": false
+   },
+   {
+    "id": "closed",
+    "name": "Closed",
+    "terminal": true
+   }
+  ],
+  "transitions": [
+   {
+    "from": "draft",
+    "to": "submitted",
+    "action": "Submit application",
+    "actor": "Applicant",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Application {no} submitted on {date}. Track status on the scholarship portal."
+    },
+    "refs": [
+     "GO-4.1",
+     "MIN-1",
+     "GO-7.2"
+    ]
+   },
+   {
+    "from": "submitted",
+    "to": "inst",
+    "action": "Forward to institution",
+    "actor": "System",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "GO-5.1"
+    ]
+   },
+   {
+    "from": "inst",
+    "to": "district",
+    "action": "Verify application",
+    "actor": "Institution nodal officer",
+    "conditions": [],
+    "slaDays": 15,
+    "escalation": {
+     "afterDays": 15,
+     "to": "District Social Welfare Officer"
+    },
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Application {no} verified by your institution and forwarded to the District Social Welfare Officer."
+    },
+    "refs": [
+     "GO-5.1",
+     "RES-2",
+     "GO-7.2"
+    ]
+   },
+   {
+    "from": "inst",
+    "to": "returned",
+    "action": "Return for correction",
+    "actor": "Institution nodal officer",
+    "conditions": [],
+    "slaDays": 15,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Application {no} returned for correction: {reason}. Correct and resubmit within 7 days."
+    },
+    "refs": [
+     "GO-5.3",
+     "VB-3"
+    ]
+   },
+   {
+    "from": "returned",
+    "to": "submitted",
+    "action": "Resubmit corrected application",
+    "actor": "Applicant",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "VB-3"
+    ]
+   },
+   {
+    "from": "district",
+    "to": "sanctioned",
+    "action": "Sanction",
+    "actor": "District Social Welfare Officer",
+    "conditions": [
+     "BR-001",
+     "BR-002",
+     "BR-003",
+     "BR-004"
+    ],
+    "slaDays": 15,
+    "escalation": {
+     "afterDays": 15,
+     "to": "Joint Director, Social Welfare"
+    },
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Scholarship for application {no} sanctioned. The amount will be credited to your Aadhaar-seeded bank account."
+    },
+    "refs": [
+     "GO-5.2",
+     "GO-9",
+     "GO-7.2"
+    ]
+   },
+   {
+    "from": "district",
+    "to": "rejected",
+    "action": "Reject",
+    "actor": "District Social Welfare Officer",
+    "conditions": [],
+    "slaDays": 15,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Application {no} rejected: {reason}. You may correct and re-apply once, or appeal within 30 days."
+    },
+    "refs": [
+     "GO-5.2",
+     "GO-5.3",
+     "VB-3"
+    ]
+   },
+   {
+    "from": "rejected",
+    "to": "draft",
+    "action": "Re-apply once",
+    "actor": "Applicant",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "VB-3"
+    ]
+   },
+   {
+    "from": "rejected",
+    "to": "appeal",
+    "action": "File appeal",
+    "actor": "Applicant",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "ANS-2"
+    ]
+   },
+   {
+    "from": "appeal",
+    "to": "district",
+    "action": "Allow appeal",
+    "actor": "Director, Social Welfare",
+    "conditions": [],
+    "slaDays": 15,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Appeal on application {no} allowed. The application is sent back to the District Social Welfare Officer."
+    },
+    "refs": [
+     "ANS-2"
+    ]
+   },
+   {
+    "from": "appeal",
+    "to": "closed",
+    "action": "Dismiss appeal",
+    "actor": "Director, Social Welfare",
+    "conditions": [],
+    "slaDays": 15,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Appeal on application {no} dismissed: {reason}."
+    },
+    "refs": [
+     "ANS-2",
+     "GO-5.3"
+    ]
+   },
+   {
+    "from": "sanctioned",
+    "to": "payinit",
+    "action": "Push payment to PFMS",
+    "actor": "System",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "GO-6.1",
+     "GO-6.2"
+    ]
+   },
+   {
+    "from": "payinit",
+    "to": "paid",
+    "action": "Confirm credit",
+    "actor": "System",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Scholarship of Rs {amount} for application {no} credited to your bank account ending {acct}."
+    },
+    "refs": [
+     "GO-6.1",
+     "GO-7.2"
+    ]
+   },
+   {
+    "from": "payinit",
+    "to": "payfailed",
+    "action": "Record payment failure",
+    "actor": "System",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": {
+     "channel": "SMS",
+     "recipient": "Applicant",
+     "template": "Scholarship payment for application {no} failed: {reason}. Update your bank details within 30 days."
+    },
+    "refs": [
+     "GO-6.1",
+     "ANS-1"
+    ]
+   },
+   {
+    "from": "payfailed",
+    "to": "payinit",
+    "action": "Update bank details and re-initiate",
+    "actor": "Applicant",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "ANS-1"
+    ]
+   },
+   {
+    "from": "paid",
+    "to": "closed",
+    "action": "Close application",
+    "actor": "System",
+    "conditions": [],
+    "slaDays": null,
+    "escalation": null,
+    "notification": null,
+    "refs": [
+     "GO-6.2"
+    ]
+   }
+  ],
+  "rtsDays": 30,
+  "rtsRef": "GO-9"
+ }
+}

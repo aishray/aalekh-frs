@@ -11,5 +11,5 @@ body { font-size: 14px; -webkit-font-smoothing: antialiased; }
 .tabular-nums { font-variant-numeric: tabular-nums; }
 .ins { background: #E6F2EB; color: #1F7A4D; text-decoration: underline; text-decoration-color: #1F7A4D; }
 .del { background: #F9E7E5; color: #B3362D; text-decoration: line-through; }
-.mermaid-host svg { max-width: 100%; height: auto; }
+.mermaid-host svg { max-width: none; height: auto; }
 @media print { nav, header { display: none !important; } main { padding: 0 !important; } }

@@ -1,0 +1,458 @@
+{
+ "step": "discovery",
+ "note": "Recorded discovery analysis and gap checklist for the sample (hand-authored to match F3 acceptance).",
+ "response": {
+  "objective": "Receive, verify, sanction and pay all fresh and renewal applications under the State Post-Matric Scholarship Scheme online from academic year 2026-27, so that eligible students receive the scholarship in a transparent and time-bound manner.",
+  "objectiveRefs": [
+   "GO-2",
+   "GO-1"
+  ],
+  "scopeIn": [
+   {
+    "text": "Online application through the portal and CSCs, including assisted applications",
+    "refs": [
+     "GO-4.1",
+     "MIN-1"
+    ]
+   },
+   {
+    "text": "Aadhaar e-KYC and document sourcing from DigiLocker",
+    "refs": [
+     "GO-4.2",
+     "GO-4.3"
+    ]
+   },
+   {
+    "text": "Two-level verification by institution and District Social Welfare Officer",
+    "refs": [
+     "GO-5.1",
+     "GO-5.2"
+    ]
+   },
+   {
+    "text": "DBT payment through PFMS in a single instalment",
+    "refs": [
+     "GO-6.1",
+     "GO-6.2"
+    ]
+   },
+   {
+    "text": "SMS at every stage and online grievance",
+    "refs": [
+     "GO-7.1",
+     "GO-7.2"
+    ]
+   },
+   {
+    "text": "District dashboard and monthly report",
+    "refs": [
+     "GO-8.1",
+     "GO-8.2",
+     "VB-2"
+    ]
+   },
+   {
+    "text": "Mobile application for students",
+    "refs": [
+     "VB-1"
+    ]
+   }
+  ],
+  "scopeOut": [
+   {
+    "text": "Scholarship schemes other than the State Post-Matric Scholarship",
+    "refs": [
+     "GO-2"
+    ]
+   },
+   {
+    "text": "Fee reimbursement to institutions (not mentioned in the GO)",
+    "refs": [
+     "GO-6.1"
+    ]
+   }
+  ],
+  "roles": [
+   {
+    "name": "Applicant",
+    "description": "Student applying for a fresh or renewal scholarship.",
+    "refs": [
+     "GO-3.1",
+     "GO-4.1"
+    ]
+   },
+   {
+    "name": "CSC operator",
+    "description": "Common Service Centre operator applying on behalf of a student.",
+    "refs": [
+     "GO-4.1",
+     "MIN-1"
+    ]
+   },
+   {
+    "name": "Institution nodal officer",
+    "description": "Verifies applications of students of the institution.",
+    "refs": [
+     "GO-5.1"
+    ]
+   },
+   {
+    "name": "District Social Welfare Officer",
+    "description": "Sanctions or rejects verified applications and monitors the district.",
+    "refs": [
+     "GO-5.2",
+     "GO-8.1"
+    ]
+   },
+   {
+    "name": "Principal Secretary, Social Welfare",
+    "description": "Receives the monthly report.",
+    "refs": [
+     "GO-8.2"
+    ]
+   },
+   {
+    "name": "State administrator",
+    "description": "Maintains masters, users and configuration for the Social Welfare Department.",
+    "refs": [
+     "GO-2"
+    ]
+   }
+  ],
+  "channels": [
+   {
+    "text": "Web portal",
+    "refs": [
+     "GO-4.1"
+    ]
+   },
+   {
+    "text": "Common Service Centres (assisted)",
+    "refs": [
+     "GO-4.1",
+     "MIN-1"
+    ]
+   },
+   {
+    "text": "Mobile application for students",
+    "refs": [
+     "VB-1"
+    ]
+   },
+   {
+    "text": "SMS notifications",
+    "refs": [
+     "GO-7.2"
+    ]
+   }
+  ],
+  "entities": [
+   {
+    "text": "Application (fresh and renewal)",
+    "refs": [
+     "GO-4.1"
+    ]
+   },
+   {
+    "text": "Applicant profile",
+    "refs": [
+     "GO-4.2"
+    ]
+   },
+   {
+    "text": "Institution and course",
+    "refs": [
+     "GO-3.3"
+    ]
+   },
+   {
+    "text": "Documents (caste and income certificates)",
+    "refs": [
+     "GO-4.3"
+    ]
+   },
+   {
+    "text": "Payment",
+    "refs": [
+     "GO-6.1"
+    ]
+   },
+   {
+    "text": "Grievance",
+    "refs": [
+     "GO-7.1"
+    ]
+   }
+  ],
+  "integrations": [
+   {
+    "name": "Aadhaar e-KYC",
+    "refs": [
+     "GO-4.2"
+    ]
+   },
+   {
+    "name": "DigiLocker",
+    "refs": [
+     "GO-4.3"
+    ]
+   },
+   {
+    "name": "PFMS DBT",
+    "refs": [
+     "GO-6.1"
+    ]
+   },
+   {
+    "name": "SMS gateway",
+    "refs": [
+     "GO-7.2"
+    ]
+   },
+   {
+    "name": "CSC Digital Seva",
+    "refs": [
+     "GO-4.1",
+     "MIN-1"
+    ]
+   }
+  ],
+  "modules": [
+   {
+    "code": "REG",
+    "name": "Registration and identity",
+    "refs": [
+     "GO-4.2"
+    ]
+   },
+   {
+    "code": "APP",
+    "name": "Application",
+    "refs": [
+     "GO-4.1"
+    ]
+   },
+   {
+    "code": "DOC",
+    "name": "Documents",
+    "refs": [
+     "GO-4.3"
+    ]
+   },
+   {
+    "code": "VER",
+    "name": "Verification and sanction",
+    "refs": [
+     "GO-5.1",
+     "GO-5.2"
+    ]
+   },
+   {
+    "code": "PAY",
+    "name": "Payment and disbursement",
+    "refs": [
+     "GO-6.1"
+    ]
+   },
+   {
+    "code": "NOT",
+    "name": "Notifications",
+    "refs": [
+     "GO-7.2"
+    ]
+   },
+   {
+    "code": "GRV",
+    "name": "Grievance",
+    "refs": [
+     "GO-7.1"
+    ]
+   },
+   {
+    "code": "RPT",
+    "name": "Reports and MIS",
+    "refs": [
+     "GO-8.1",
+     "GO-8.2"
+    ]
+   },
+   {
+    "code": "ADM",
+    "name": "Administration",
+    "refs": [
+     "GO-2"
+    ]
+   }
+  ],
+  "checklist": [
+   {
+    "topic": "Application channels",
+    "status": "Covered",
+    "refs": [
+     "GO-4.1",
+     "MIN-1",
+     "VB-1"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Assisted mode (CSC)",
+    "status": "Covered",
+    "refs": [
+     "GO-4.1",
+     "MIN-1"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Identity verification",
+    "status": "Covered",
+    "refs": [
+     "GO-4.2"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Document sourcing",
+    "status": "Partial",
+    "refs": [
+     "GO-4.3",
+     "MIN-2"
+    ],
+    "note": "Upload format in Annexure A is not provided (RES-3)."
+   },
+   {
+    "topic": "Eligibility rules",
+    "status": "Covered",
+    "refs": [
+     "GO-3.1",
+     "COR1-1",
+     "GO-3.3",
+     "GO-3.4"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Verification hierarchy",
+    "status": "Covered",
+    "refs": [
+     "GO-5.1",
+     "GO-5.2"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "SLA per stage",
+    "status": "Covered",
+    "refs": [
+     "GO-5.1",
+     "GO-5.2"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Right to Service timeline",
+    "status": "Covered",
+    "refs": [
+     "GO-9"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Escalation on SLA breach",
+    "status": "Partial",
+    "refs": [
+     "GO-9"
+    ],
+    "note": "The authority to whom delayed applications are escalated is not named."
+   },
+   {
+    "topic": "Rejection and re-application",
+    "status": "Covered",
+    "refs": [
+     "GO-5.3",
+     "VB-3"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Appeal against rejection",
+    "status": "Missing",
+    "refs": [],
+    "note": "No appeal against rejection is described."
+   },
+   {
+    "topic": "Payment method",
+    "status": "Covered",
+    "refs": [
+     "GO-6.1",
+     "GO-6.2"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Payment failure handling",
+    "status": "Missing",
+    "refs": [],
+    "note": "Nothing is said about DBT failures (account not Aadhaar-seeded, account closed)."
+   },
+   {
+    "topic": "Notifications",
+    "status": "Covered",
+    "refs": [
+     "GO-7.2",
+     "VB-3"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Grievance",
+    "status": "Covered",
+    "refs": [
+     "GO-7.1",
+     "GO-7.3"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Renewal",
+    "status": "Partial",
+    "refs": [
+     "GO-3.4",
+     "MIN-2"
+    ],
+    "note": "Renewal window and how renewals are initiated are not stated."
+   },
+   {
+    "topic": "Data retention",
+    "status": "Partial",
+    "refs": [
+     "GO-10"
+    ],
+    "note": "Purpose limitation is stated but no retention period."
+   },
+   {
+    "topic": "Legacy data migration",
+    "status": "Missing",
+    "refs": [],
+    "note": "No direction on existing paper records or current beneficiaries."
+   },
+   {
+    "topic": "MIS and reports",
+    "status": "Covered",
+    "refs": [
+     "GO-8.1",
+     "GO-8.2",
+     "VB-2"
+    ],
+    "note": ""
+   },
+   {
+    "topic": "Audit",
+    "status": "Missing",
+    "refs": [],
+    "note": "No audit trail requirement is stated."
+   }
+  ]
+ }
+}

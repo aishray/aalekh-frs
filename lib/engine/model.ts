@@ -137,3 +137,25 @@ export function citing(reqs: Requirement[], ref: Ref) {
 export function unresolvedFindings(p: Pick<Project, 'reconciliations'>) {
   return p.reconciliations.filter((r) => !r.resolution);
 }
+
+/**
+ * Validates refs from AI output. ANS-n and ASM-n are interchangeable (the same question answered or assumed).
+ * Invalid refs are dropped and returned so they can be raised as issues. `forward` keeps BR-/FLD- refs
+ * that will exist once the corresponding artefact is built.
+ */
+export function normalizeRefs(p: Project, refs: Ref[], opts: { forward?: boolean } = {}) {
+  const valid = validRefs(p);
+  const kept: Ref[] = [];
+  const dropped: Ref[] = [];
+  for (const r of refs) {
+    let x = r.trim();
+    if (!valid.has(x)) {
+      const swap = x.startsWith('ANS-') ? x.replace('ANS-', 'ASM-') : x.startsWith('ASM-') ? x.replace('ASM-', 'ANS-') : '';
+      if (swap && valid.has(swap)) x = swap;
+    }
+    if (valid.has(x) || (opts.forward && /^(BR-|FLD-)/.test(x))) {
+      if (!kept.includes(x)) kept.push(x);
+    } else dropped.push(r);
+  }
+  return { kept, dropped };
+}

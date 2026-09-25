@@ -1,0 +1,40 @@
+{
+ "step": "interview",
+ "note": "Recorded interview questions for the District Social Welfare Officer.",
+ "response": {
+  "questions": [
+   {
+    "question": "How many fresh and renewal applications does your district receive in a year, and in which months do most arrive?",
+    "purpose": "Sizing and peak load."
+   },
+   {
+    "question": "How many institutions in the district have a nodal officer today, and do all of them have internet access?",
+    "purpose": "Verification capacity and assisted mode."
+   },
+   {
+    "question": "What are the most common reasons you reject an application?",
+    "purpose": "Rejection reasons master and validations."
+   },
+   {
+    "question": "How do you track applications that are pending with institutions today?",
+    "purpose": "Dashboard and escalation design."
+   },
+   {
+    "question": "Which reports do you send to the Directorate each month, and in what format?",
+    "purpose": "MIS and report formats."
+   },
+   {
+    "question": "How do you handle payments that fail to reach the student's account?",
+    "purpose": "Payment failure flow."
+   },
+   {
+    "question": "What grievances do students raise most often, and how long do they take to resolve?",
+    "purpose": "Grievance categories and SLA."
+   },
+   {
+    "question": "Which decisions would you like the system to take automatically, and which must remain with you?",
+    "purpose": "Automation boundaries and accountability."
+   }
+  ]
+ }
+}

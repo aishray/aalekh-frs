@@ -1,0 +1,82 @@
+{
+ "step": "questions",
+ "note": "Recorded clarifying questions for the sample (hand-authored).",
+ "response": {
+  "questions": [
+   {
+    "topic": "Payment failure handling",
+    "question": "When a DBT payment fails in PFMS (for example the account is not Aadhaar-seeded or is closed), what should happen to the application?",
+    "whyItMatters": "Without a defined failure flow, failed payments stay unresolved and the vendor will treat re-payment as a change request.",
+    "suggestedAnswers": [
+     "Notify the student by SMS to correct bank details within 30 days; re-initiate in the next weekly batch",
+     "Notify the institution to follow up with the student",
+     "Re-initiate automatically after the account is seeded"
+    ],
+    "defaultAssumption": "The student is notified by SMS to correct bank details within 30 days, and payment is re-initiated in the next weekly PFMS batch."
+   },
+   {
+    "topic": "Appeal against rejection",
+    "question": "Can a student appeal against rejection by the District Social Welfare Officer, and to whom?",
+    "whyItMatters": "An appeal adds a role, a workflow state and a timeline, and is expected under the Right to Service Act.",
+    "suggestedAnswers": [
+     "Appeal to the Director, Social Welfare within 30 days",
+     "Appeal to the District Collector within 30 days",
+     "No appeal; the student may re-apply once"
+    ],
+    "defaultAssumption": "The student may appeal to the Director, Social Welfare within 30 days of rejection, to be decided within 15 working days."
+   },
+   {
+    "topic": "Legacy data migration",
+    "question": "Should records from the paper process be migrated, such as last year's beneficiaries who will apply for renewal?",
+    "whyItMatters": "Migration affects effort, the renewal flow and the go-live plan.",
+    "suggestedAnswers": [
+     "Migrate 2025-26 beneficiaries as a master for renewal",
+     "Migrate all pending paper applications",
+     "No migration"
+    ],
+    "defaultAssumption": "Only 2025-26 beneficiaries are migrated as a beneficiary master for renewal; pending paper applications are not migrated."
+   },
+   {
+    "topic": "Escalation on SLA breach",
+    "question": "To whom should an application be escalated when the institution or the District Social Welfare Officer misses the 15-day timeline?",
+    "whyItMatters": "Escalation rules are needed to keep within the 30-day Right to Service timeline.",
+    "suggestedAnswers": [
+     "Institution delay to DSWO; DSWO delay to Joint Director, Social Welfare",
+     "All delays to the Director, Social Welfare"
+    ],
+    "defaultAssumption": "Institution delays are escalated to the District Social Welfare Officer, and DSWO delays to the Joint Director, Social Welfare."
+   },
+   {
+    "topic": "Renewal",
+    "question": "When does the renewal window open, and should last year's beneficiaries get a prefilled renewal application?",
+    "whyItMatters": "Defines the renewal trigger and which data is reused.",
+    "suggestedAnswers": [
+     "Window opens 1 July; prefilled renewal for last year's beneficiaries",
+     "Same window as fresh applications, no prefill"
+    ],
+    "defaultAssumption": "The renewal window opens on 1 July and last year's beneficiaries receive a prefilled renewal application."
+   },
+   {
+    "topic": "Data retention",
+    "question": "How long should applicant data be retained after the final payment?",
+    "whyItMatters": "Retention is mandatory under the DPDP Act and affects storage and archival design.",
+    "suggestedAnswers": [
+     "8 years, as for financial records",
+     "3 years",
+     "Until the course ends plus 1 year"
+    ],
+    "defaultAssumption": "Applicant data is retained for 8 years after the last payment and then anonymised."
+   },
+   {
+    "topic": "Audit",
+    "question": "Which actions must be recorded in the audit trail, and who may view it?",
+    "whyItMatters": "Determines logging scope and access to sensitive records.",
+    "suggestedAnswers": [
+     "All status changes and data edits; State nodal officer can view",
+     "Only approvals and payments"
+    ],
+    "defaultAssumption": "All status changes, data edits and exports are logged, and the audit trail is viewable by the State administrator."
+   }
+  ]
+ }
+}
