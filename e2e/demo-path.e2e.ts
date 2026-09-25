@@ -179,5 +179,30 @@ test('demo path', async ({ page }) => {
   const [note] = await Promise.all([page.waitForEvent('download'), page.getByRole('listitem').filter({ hasText: 'CR assessment note' }).getByRole('button', { name: 'Download' }).click()]);
   await note.saveAs('test-results/demo-cr-note.docx');
   await shot(page, '09-export');
+
+  // Beyond the demo path: data dictionary, roles, deliverables and library on the same state.
+  await page.goto('/projects/pms-scholarship/data');
+  await page.getByRole('button', { name: 'Build from form' }).first().click();
+  await expect(page.locator('tr[data-field="FLD-aadhaarNumber"]')).toContainText('Verhoeff', { timeout: 20000 });
+  await expect(page.getByText(/Aadhaar number.*classified Aadhaar or sensitive/)).toBeVisible();
+  await shot(page, '10-data');
+  await page.goto('/projects/pms-scholarship/roles');
+  await page.getByRole('button', { name: 'Propose matrix' }).first().click();
+  await expect(page.getByText('No role both verifies and sanctions')).toBeVisible({ timeout: 20000 });
+  await page.getByLabel('Institution nodal officer can Sanction').check();
+  await expect(page.getByTestId('perm-findings')).toContainText('Maker-checker');
+  await page.getByLabel('Institution nodal officer can Sanction').uncheck();
+  await shot(page, '11-roles');
+  await page.goto('/projects/pms-scholarship/deliverables');
+  await expect(page.getByText('TC-WF-1')).toBeVisible();
+  await page.getByRole('tab', { name: /Screen inventory/ }).click();
+  await expect(page.getByText('Application detail with actions').first()).toBeVisible();
+  await page.getByRole('tab', { name: 'Indicative size estimate' }).click();
+  await expect(page.getByText('Indicative, for planning only.')).toBeVisible();
+  await shot(page, '12-estimate');
+  await page.goto('/library');
+  await page.getByLabel('Search the library').fill('assisted application consent OTP');
+  await expect(page.getByText('FR-APP-011').first()).toBeVisible();
+  await shot(page, '13-library');
 });
 
