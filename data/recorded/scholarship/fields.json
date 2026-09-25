@@ -1,0 +1,391 @@
+{
+ "step": "fields",
+ "note": "Recorded data dictionary from the digitised form (hand-authored).",
+ "response": {
+  "entities": [
+   {
+    "name": "Applicant",
+    "fields": [
+     {
+      "label": "Name of the applicant",
+      "labelOriginal": null,
+      "name": "applicantName",
+      "type": "String",
+      "length": 100,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Aadhaar eKYC",
+      "masterList": null,
+      "pii": "Personal",
+      "refs": [
+       "FORM-1",
+       "GO-4.2"
+      ]
+     },
+     {
+      "label": "Father's or guardian's name",
+      "labelOriginal": null,
+      "name": "guardianName",
+      "type": "String",
+      "length": 100,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "Personal",
+      "refs": [
+       "FORM-2"
+      ]
+     },
+     {
+      "label": "Date of birth",
+      "labelOriginal": null,
+      "name": "dateOfBirth",
+      "type": "Date",
+      "length": null,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Aadhaar eKYC",
+      "masterList": null,
+      "pii": "Personal",
+      "refs": [
+       "FORM-3",
+       "GO-4.2"
+      ]
+     },
+     {
+      "label": "Gender",
+      "labelOriginal": null,
+      "name": "gender",
+      "type": "Enum",
+      "length": null,
+      "mandatory": true,
+      "validation": "One of Male, Female, Transgender",
+      "valueSource": "Aadhaar eKYC",
+      "masterList": "Gender",
+      "pii": "Personal",
+      "refs": [
+       "FORM-4",
+       "GO-4.2"
+      ]
+     },
+     {
+      "label": "Category",
+      "labelOriginal": null,
+      "name": "category",
+      "type": "Enum",
+      "length": null,
+      "mandatory": true,
+      "validation": "One of SC, ST, OBC, EWS; must match the caste certificate",
+      "valueSource": "DigiLocker",
+      "masterList": "Category",
+      "pii": "Sensitive",
+      "refs": [
+       "FORM-5",
+       "GO-4.3"
+      ]
+     },
+     {
+      "label": "Aadhaar number",
+      "labelOriginal": null,
+      "name": "aadhaarNumber",
+      "type": "String",
+      "length": 12,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "Aadhaar",
+      "refs": [
+       "FORM-6",
+       "GO-4.2"
+      ]
+     },
+     {
+      "label": "Mobile number",
+      "labelOriginal": null,
+      "name": "mobileNumber",
+      "type": "String",
+      "length": 10,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "Personal",
+      "refs": [
+       "FORM-7",
+       "GO-7.2"
+      ]
+     },
+     {
+      "label": "Permanent address",
+      "labelOriginal": null,
+      "name": "permanentAddress",
+      "type": "String",
+      "length": 250,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Aadhaar eKYC",
+      "masterList": null,
+      "pii": "Personal",
+      "refs": [
+       "FORM-8",
+       "GO-4.2"
+      ]
+     },
+     {
+      "label": "District",
+      "labelOriginal": null,
+      "name": "district",
+      "type": "Enum",
+      "length": null,
+      "mandatory": true,
+      "validation": "From the district master (LGD codes)",
+      "valueSource": "Master",
+      "masterList": "District",
+      "pii": "None",
+      "refs": [
+       "FORM-9",
+       "GO-8.1"
+      ]
+     },
+     {
+      "label": "PIN code",
+      "labelOriginal": null,
+      "name": "pinCode",
+      "type": "String",
+      "length": 6,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "Personal",
+      "refs": [
+       "FORM-10"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Academic details",
+    "fields": [
+     {
+      "label": "Name of the institution",
+      "labelOriginal": null,
+      "name": "institution",
+      "type": "Enum",
+      "length": null,
+      "mandatory": true,
+      "validation": "From the institution master; institution must be recognised (BR-003)",
+      "valueSource": "Master",
+      "masterList": "Institution",
+      "pii": "None",
+      "refs": [
+       "FORM-11",
+       "GO-3.3"
+      ]
+     },
+     {
+      "label": "Course",
+      "labelOriginal": null,
+      "name": "course",
+      "type": "Enum",
+      "length": null,
+      "mandatory": true,
+      "validation": "From the course master; must be a post-matric course (BR-003)",
+      "valueSource": "Master",
+      "masterList": "Course",
+      "pii": "None",
+      "refs": [
+       "FORM-12",
+       "GO-3.3"
+      ]
+     },
+     {
+      "label": "Year of study",
+      "labelOriginal": null,
+      "name": "yearOfStudy",
+      "type": "Number",
+      "length": 1,
+      "mandatory": true,
+      "validation": "1 to the duration of the course",
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "None",
+      "refs": [
+       "FORM-13"
+      ]
+     },
+     {
+      "label": "Attendance in previous year (%)",
+      "labelOriginal": null,
+      "name": "previousYearAttendance",
+      "type": "Number",
+      "length": null,
+      "mandatory": false,
+      "validation": "Mandatory for renewal; certified by the institution (BR-004)",
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "None",
+      "refs": [
+       "FORM-17",
+       "GO-3.4"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Income and bank",
+    "fields": [
+     {
+      "label": "Annual family income (Rs.)",
+      "labelOriginal": null,
+      "name": "annualFamilyIncome",
+      "type": "Number",
+      "length": null,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "DigiLocker",
+      "masterList": null,
+      "pii": "Financial",
+      "refs": [
+       "FORM-14",
+       "COR1-1"
+      ]
+     },
+     {
+      "label": "Bank account number",
+      "labelOriginal": null,
+      "name": "bankAccountNumber",
+      "type": "String",
+      "length": 18,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "Financial",
+      "refs": [
+       "FORM-15",
+       "GO-6.1"
+      ]
+     },
+     {
+      "label": "IFSC code",
+      "labelOriginal": null,
+      "name": "ifsc",
+      "type": "String",
+      "length": 11,
+      "mandatory": true,
+      "validation": null,
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "Financial",
+      "refs": [
+       "FORM-16",
+       "GO-6.1"
+      ]
+     },
+     {
+      "label": "Caste certificate number",
+      "labelOriginal": null,
+      "name": "casteCertificateNumber",
+      "type": "String",
+      "length": 30,
+      "mandatory": true,
+      "validation": "Fetched with the certificate from DigiLocker where available",
+      "valueSource": "DigiLocker",
+      "masterList": null,
+      "pii": "Sensitive",
+      "refs": [
+       "FORM-18",
+       "GO-4.3"
+      ]
+     },
+     {
+      "label": "Income certificate number",
+      "labelOriginal": null,
+      "name": "incomeCertificateNumber",
+      "type": "String",
+      "length": 30,
+      "mandatory": true,
+      "validation": "Fetched with the certificate from DigiLocker where available",
+      "valueSource": "DigiLocker",
+      "masterList": null,
+      "pii": "Financial",
+      "refs": [
+       "FORM-19",
+       "GO-4.3"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Declaration",
+    "fields": [
+     {
+      "label": "Declaration accepted",
+      "labelOriginal": null,
+      "name": "declarationAccepted",
+      "type": "Boolean",
+      "length": null,
+      "mandatory": true,
+      "validation": "Must be accepted before submission; timestamp recorded",
+      "valueSource": "Applicant",
+      "masterList": null,
+      "pii": "None",
+      "refs": [
+       "FORM-20",
+       "GO-10"
+      ]
+     }
+    ]
+   }
+  ],
+  "masters": [
+   {
+    "name": "District",
+    "values": [
+     "Nagarpur",
+     "Rampur",
+     "Devgarh",
+     "Sitapur",
+     "Kalyanpur"
+    ],
+    "owner": "State administrator (LGD codes)"
+   },
+   {
+    "name": "Category",
+    "values": [
+     "SC",
+     "ST",
+     "OBC",
+     "EWS"
+    ],
+    "owner": "Social Welfare Department"
+   },
+   {
+    "name": "Gender",
+    "values": [
+     "Male",
+     "Female",
+     "Transgender"
+    ],
+    "owner": "Social Welfare Department"
+   },
+   {
+    "name": "Institution",
+    "values": [
+     "Maintained by the Higher Education and Technical Education Departments"
+    ],
+    "owner": "State administrator"
+   },
+   {
+    "name": "Course",
+    "values": [
+     "Post-matric courses of recognised institutions"
+    ],
+    "owner": "State administrator"
+   }
+  ]
+ }
+}

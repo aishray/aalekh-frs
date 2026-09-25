@@ -1,0 +1,120 @@
+{
+ "step": "permissions",
+ "note": "Recorded permission matrix proposal (hand-authored).",
+ "response": {
+  "roles": [
+   {
+    "name": "Applicant",
+    "jurisdiction": "Self",
+    "admin": false
+   },
+   {
+    "name": "CSC operator",
+    "jurisdiction": "Self",
+    "admin": false
+   },
+   {
+    "name": "Institution nodal officer",
+    "jurisdiction": "Institution",
+    "admin": false
+   },
+   {
+    "name": "District Social Welfare Officer",
+    "jurisdiction": "District",
+    "admin": false
+   },
+   {
+    "name": "Director, Social Welfare",
+    "jurisdiction": "State",
+    "admin": false
+   },
+   {
+    "name": "Principal Secretary, Social Welfare",
+    "jurisdiction": "State",
+    "admin": false
+   },
+   {
+    "name": "State administrator",
+    "jurisdiction": "State",
+    "admin": true
+   }
+  ],
+  "actions": [
+   "Submit application",
+   "Resubmit corrected application",
+   "Re-apply once",
+   "File appeal",
+   "Update bank details and re-initiate",
+   "Verify application",
+   "Return for correction",
+   "Sanction",
+   "Reject",
+   "Allow appeal",
+   "Dismiss appeal",
+   "View",
+   "Export",
+   "Configure masters"
+  ],
+  "grants": [
+   {
+    "role": "Applicant",
+    "actions": [
+     "Submit application",
+     "Resubmit corrected application",
+     "Re-apply once",
+     "File appeal",
+     "Update bank details and re-initiate",
+     "View"
+    ]
+   },
+   {
+    "role": "CSC operator",
+    "actions": [
+     "Submit application",
+     "View"
+    ]
+   },
+   {
+    "role": "Institution nodal officer",
+    "actions": [
+     "Verify application",
+     "Return for correction",
+     "View"
+    ]
+   },
+   {
+    "role": "District Social Welfare Officer",
+    "actions": [
+     "Sanction",
+     "Reject",
+     "View",
+     "Export"
+    ]
+   },
+   {
+    "role": "Director, Social Welfare",
+    "actions": [
+     "Allow appeal",
+     "Dismiss appeal",
+     "View",
+     "Export"
+    ]
+   },
+   {
+    "role": "Principal Secretary, Social Welfare",
+    "actions": [
+     "View",
+     "Export"
+    ]
+   },
+   {
+    "role": "State administrator",
+    "actions": [
+     "Configure masters",
+     "View",
+     "Export"
+    ]
+   }
+  ]
+ }
+}
