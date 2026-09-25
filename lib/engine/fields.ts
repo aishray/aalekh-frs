@@ -7,7 +7,7 @@ const camel = (s: string) => s.replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/
  * Deterministic enrichment after AI extraction: standard validations by field label, Aadhaar never stored in full,
  * e-KYC fields read-only, stable FLD IDs.
  */
-export function enrichFields(entities: Omit<DataEntity, 'id'>[]): DataEntity[] {
+export function enrichFields(entities: { name: string; fields: Omit<Field, "id">[] }[]): DataEntity[] {
   const used = new Set<string>();
   return entities.map((e, i) => ({
     id: `ENT-${i + 1}`,
