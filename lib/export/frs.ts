@@ -3,6 +3,7 @@
 import { AlignmentType, Document, ImageRun, Packer, PageBreak, Paragraph } from 'docx';
 import type { Project, Requirement } from '@/lib/types';
 import { branding, projectTypes } from '@/config/branding';
+import { orgLine } from './org';
 import { assumptions, clauseState, coverageClauses } from '@/lib/engine/model';
 import { fmtValue } from '@/lib/engine/rules';
 import { sortRequirements } from '@/lib/engine/generate';
@@ -78,7 +79,7 @@ export async function buildFrsDocx(p: Project, opts: { t?: Translate; language?:
     para(p.name, { alignment: AlignmentType.CENTER, bold: true, size: 32 }),
     para(`${t('File number')}: ${p.fileNo}`, { alignment: AlignmentType.CENTER, spacing: { before: 600 } }),
     para(`${t('Version')} ${p.version} · ${fmtDate(p.updatedAt)}`, { alignment: AlignmentType.CENTER }),
-    para(`${t('Prepared by')} ${branding.directorate}`, { alignment: AlignmentType.CENTER }),
+    para(`${t('Prepared by')} ${orgLine()}`, { alignment: AlignmentType.CENTER }),
     ...(draft ? [para(t('DRAFT: NOT APPROVED'), { alignment: AlignmentType.CENTER, spacing: { before: 600 }, bold: true, size: 28, color: 'B3362D' })] : [para(`${t('Approved baseline')} v${p.baseline?.version}, ${fmtDate(p.baseline?.approvedAt)}`, { alignment: AlignmentType.CENTER, spacing: { before: 600 }, bold: true, color: '1F7A4D' })]),
     new Paragraph({ children: [new PageBreak()] }),
   );
@@ -185,13 +186,13 @@ export async function buildFrsDocx(p: Project, opts: { t?: Translate; language?:
   }), [14, 12, 24, 50]));
 
   const doc = new Document({
-    creator: branding.directorate,
+    creator: orgLine(),
     title: `FRS: ${p.name}`,
     styles: docStyles,
     sections: [{
       properties: { page: { margin: { top: 1100, bottom: 1100, left: 1100, right: 1000 } } },
       headers: { default: pageHeader(`FRS: ${p.name} · v${p.version}`, draft) },
-      footers: { default: pageFooter(`${branding.directorate}, ${branding.state} · File ${p.fileNo}`) },
+      footers: { default: pageFooter(`${orgLine()} · File ${p.fileNo}`) },
       children: body,
     }],
   });

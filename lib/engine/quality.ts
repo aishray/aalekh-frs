@@ -1,15 +1,19 @@
 import type { Issue, Project, Requirement } from '@/lib/types';
-import ambiguous from '@/data/ambiguous-terms.json';
-import checklists from '@/data/checklists.json';
+import { ambiguousTerms, complianceItems, referenceVersion } from './reference';
 import { assumptions, coverageClauses, validRefs } from './model';
 import { rtsCheck, validateWorkflow } from './workflow';
 import { checkPermissions } from './permissions';
 
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const termRes = ambiguous.map((t) => ({ ...t, re: new RegExp(`(^|[^a-z])${esc(t.term)}(?=$|[^a-z])`, 'i') }));
+let termCache: { v: number; list: { term: string; hint: string; re: RegExp }[] } | undefined;
+function termRes() {
+  if (!termCache || termCache.v !== referenceVersion())
+    termCache = { v: referenceVersion(), list: ambiguousTerms().map((t) => ({ ...t, re: new RegExp(`(^|[^a-z])${esc(t.term)}(?=$|[^a-z])`, 'i') })) };
+  return termCache.list;
+}
 
 export function findAmbiguous(text: string) {
-  return termRes.filter((t) => t.re.test(text)).map(({ term, hint }) => ({ term, hint }));
+  return termRes().filter((t) => t.re.test(text)).map(({ term, hint }) => ({ term, hint }));
 }
 
 export const isModelRef = (r: string) => /^(FR|NFR|IR)-/.test(r);
@@ -22,7 +26,7 @@ export function outOfDate(p: Project, r: Requirement) {
 export type ComplianceItem = { id: string; title: string; std: string; category: string; keyword: string; satisfied: boolean; by: string[]; note?: string };
 
 export function complianceFor(p: Project): ComplianceItem[] {
-  const items = (checklists.compliance as Record<string, Omit<ComplianceItem, 'satisfied' | 'by'>[]>)[p.type] ?? [];
+  const items = complianceItems(p.type);
   return items.map((it) => {
     const by = p.requirements
       .filter((r) => r.refs.includes(it.std) && `${r.title} ${r.description} ${r.acceptanceCriteria.join(' ')}`.toLowerCase().includes(it.keyword.toLowerCase()))

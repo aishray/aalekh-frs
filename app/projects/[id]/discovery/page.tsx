@@ -12,7 +12,7 @@ import { standardBlocks } from '@/lib/ai/context';
 import { ansId, asmId, unresolvedFindings, validRefs } from '@/lib/engine/model';
 import { guessClauseType } from '@/lib/engine/segment';
 import { prefixFor } from '@/lib/engine/ingest';
-import checklists from '@/data/checklists.json';
+import { gapTopics } from '@/lib/engine/reference';
 import catalogue from '@/data/catalogue.json';
 import type { Discovery, Project, Question, SourceDoc } from '@/lib/types';
 import { nowIso, uid } from '@/lib/util';
@@ -29,7 +29,7 @@ export default function DiscoveryPage() {
   const ai = useAiRun();
   const [tab, setTab] = useState<'analysis' | 'questions' | 'interview'>('analysis');
   const blocked = !p.reconciledAt || unresolvedFindings(p).length > 0;
-  const topics: string[] = (checklists.gap as Record<string, string[]>)[p.type] ?? [];
+  const topics: string[] = gapTopics(p.type);
 
   async function runDiscovery() {
     const out = await ai.run(

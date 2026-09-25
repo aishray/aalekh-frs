@@ -3,6 +3,7 @@
 import { AlignmentType, Document, Packer } from 'docx';
 import type { CrAssessment, ImpactAnalysis, Project } from '@/lib/types';
 import { branding } from '@/config/branding';
+import { orgLine } from './org';
 import { clauseById } from '@/lib/engine/model';
 import { fmtDate, nowIso } from '@/lib/util';
 import { docStyles, heading, pageFooter, para, table } from './docxkit';
@@ -11,14 +12,14 @@ function frame(p: Project, title: string, children: ReturnType<typeof para | typ
   return Packer.toBlob(
     new Document({
       styles: docStyles,
-      creator: branding.directorate,
+      creator: orgLine(),
       title,
       sections: [{
         properties: { page: { margin: { top: 1100, bottom: 1100, left: 1100, right: 1000 } } },
-        footers: { default: pageFooter(`${branding.directorate}, ${branding.state} · File ${p.fileNo}`) },
+        footers: { default: pageFooter(`${orgLine()} · File ${p.fileNo}`) },
         children: [
           para(`Government of ${branding.state}`, { alignment: AlignmentType.CENTER, bold: true }),
-          para(branding.directorate, { alignment: AlignmentType.CENTER }),
+          para(orgLine(), { alignment: AlignmentType.CENTER }),
           para(`File No. ${p.fileNo}                                   Date: ${fmtDate(nowIso())}`, { spacing: { before: 200, after: 200 } }),
           heading(title, 1),
           ...children,

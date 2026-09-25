@@ -8,6 +8,7 @@ import { nowIso, uid } from '@/lib/util';
 import { buildSeed, SEED_VERSION } from '@/lib/seed';
 import { buildScholarshipProject } from '@/lib/seed/scholarship';
 
+import type { ReferenceOverrides } from '@/lib/engine/reference';
 import { TASKS, type AiTask, type Reasoning } from '@/lib/ai/models';
 export type { AiTask };
 
@@ -16,6 +17,8 @@ export type Settings = {
   /** Per-task reasoning override; the model per task is fixed in lib/ai/models.ts. */
   reasoning: Record<AiTask, Reasoning>;
   orgLine: string;
+  /** Edits made on the Standards page; defaults ship in data/*.json. */
+  reference?: ReferenceOverrides;
 };
 
 export const defaultReasoning = Object.fromEntries(Object.entries(TASKS).map(([k, v]) => [k, v.reasoning])) as Settings['reasoning'];

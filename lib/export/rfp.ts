@@ -3,6 +3,7 @@
 import { AlignmentType, Document, Packer } from 'docx';
 import type { Project } from '@/lib/types';
 import { branding } from '@/config/branding';
+import { orgLine } from './org';
 import { sortRequirements } from '@/lib/engine/generate';
 import { moduleName } from '@/lib/generate/run';
 import { assumptions } from '@/lib/engine/model';
@@ -41,6 +42,6 @@ export async function rfpDocx(p: Project) {
   ];
   return Packer.toBlob(new Document({
     styles: docStyles,
-    sections: [{ headers: { default: pageHeader(`RFP scope annexure: ${p.name}`, p.status !== 'Approved') }, footers: { default: pageFooter(`${branding.directorate} · File ${p.fileNo}`) }, children: body }],
+    sections: [{ headers: { default: pageHeader(`RFP scope annexure: ${p.name}`, p.status !== 'Approved') }, footers: { default: pageFooter(`${orgLine()} · File ${p.fileNo}`) }, children: body }],
   }));
 }

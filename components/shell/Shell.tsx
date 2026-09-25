@@ -12,6 +12,7 @@ import { useUi } from '@/lib/repo/ui';
 import { useHydrated } from '@/lib/repo/hydrated';
 import { cn, refLabel } from '@/lib/util';
 import { RefPanel } from './RefPanel';
+import { setReferenceOverrides } from '@/lib/engine/reference';
 import { Modal } from '@/components/ui';
 
 const nav = [
@@ -30,6 +31,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const setSearch = useUi((s) => s.setSearch);
   const setPresenter = useUi((s) => s.setPresenter);
   const resetSample = useRepo((s) => s.resetSample);
+  const reference = useRepo((s) => s.settings.reference);
+  setReferenceOverrides(reference); // engines read the effective checklists and terms synchronously
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
