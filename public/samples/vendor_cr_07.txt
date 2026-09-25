@@ -1,0 +1,12 @@
+Change Request No. CR-07
+Project: State Post-Matric Scholarship Portal
+From: Vendor project manager, M/s Techsys Solutions Pvt. Ltd.
+Date: 28 October 2026
+
+The following changes have been requested during development. They were not part of our original understanding and are submitted for approval with the estimated additional effort.
+
+1. Add SMS alerts to applicants at each stage of application processing. Estimated effort: 25 person-days.
+2. Provide a district-wise dashboard of pending applications for District Social Welfare Officers. Estimated effort: 15 person-days.
+3. Integrate with the Income Tax department API for verification of the declared family income. Estimated effort: 40 person-days.
+
+Total additional effort: 80 person-days.

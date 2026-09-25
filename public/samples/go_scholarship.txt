@@ -1,0 +1,51 @@
+GOVERNMENT OF RAJYAPRADESH
+SOCIAL WELFARE DEPARTMENT
+
+G.O. No. SW/2026/SCH/118                                   Dated: 14 August 2026
+
+Subject: Online processing of the State Post-Matric Scholarship Scheme through a web portal and Common Service Centres.
+
+1. Background
+The State Post-Matric Scholarship Scheme is presently administered through paper applications submitted at institutions and forwarded to District Social Welfare Offices. Applications take 6 to 9 months to be sanctioned, files are lost in transit, and students have no means of knowing the status of their application.
+
+2. Objective
+Government has decided that all applications under the scheme, fresh and renewal, shall be received, verified, sanctioned and paid online from the academic year 2026-27, so that eligible students receive the scholarship in a transparent and time-bound manner.
+
+3. Eligibility
+3.1 The applicant shall be a domicile of Rajyapradesh.
+3.2 The annual income of the applicant's family from all sources shall not exceed Rs. 2,50,000 (Rupees two lakh fifty thousand only).
+3.3 The applicant shall be studying in a post-matric course in an institution recognised by the competent authority in Rajyapradesh.
+3.4 For renewal, the applicant shall have attended at least 75% of classes in the previous academic year, as certified by the institution.
+
+4. Application
+4.1 Applications shall be submitted online through the scholarship portal or through Common Service Centres (CSCs).
+4.2 Aadhaar-based e-KYC of the applicant shall be mandatory.
+4.3 Caste and income certificates shall be obtained from DigiLocker where available; otherwise the applicant shall upload the certificate in the prescribed format in Annexure A.
+
+5. Verification
+5.1 The nodal officer of the institution shall verify the application within 15 days of submission.
+5.2 The District Social Welfare Officer shall sanction or reject the verified application within 15 days of receipt.
+5.3 Reasons shall be recorded in writing for every rejection and communicated to the applicant.
+
+6. Disbursement
+6.1 The scholarship shall be paid through Direct Benefit Transfer using PFMS to the Aadhaar-seeded bank account of the applicant.
+6.2 The scholarship shall be paid in a single instalment not later than 31 March of the academic year.
+
+7. Grievance
+7.1 An online grievance facility shall be provided to applicants.
+7.2 The applicant shall be informed by SMS at every stage of processing of the application.
+7.3 Grievances shall be resolved within 7 working days of receipt.
+
+8. Monitoring
+8.1 A dashboard shall be provided to the District Social Welfare Officer showing district-wise status of applications.
+8.2 A monthly report shall be submitted to the Principal Secretary, Social Welfare Department.
+
+9. Service timeline
+The scholarship shall be sanctioned within 30 working days of submission of a complete application, and the service is notified under the Rajyapradesh Right to Service Act.
+
+10. Data protection
+Personal data collected under the scheme shall be used only for the purposes of the scheme.
+
+By order and in the name of the Governor of Rajyapradesh
+(M. Venkatesh)
+Principal Secretary to Government, Social Welfare Department

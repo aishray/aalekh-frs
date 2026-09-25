@@ -5,7 +5,7 @@ import { buildGrievanceProject } from './grievance';
 import { buildLightProjects } from './light';
 
 // Bump to force a reseed of browser storage when seed content changes.
-export const SEED_VERSION = 1;
+export const SEED_VERSION = 2;
 
 export function buildSeed(): { projects: Project[]; activity: ActivityEvent[] } {
   const projects = [buildScholarshipProject(), buildGrievanceProject(), buildBuildingProject(), ...buildLightProjects()];

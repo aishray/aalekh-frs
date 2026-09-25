@@ -1,0 +1,7 @@
+{
+ "step": "digitise",
+ "note": "Document Intelligence output for the sample scanned form (hand-authored).",
+ "response": {
+  "text": "GOVERNMENT OF RAJYAPRADESH - SOCIAL WELFARE DEPARTMENT\nAPPLICATION FOR POST-MATRIC SCHOLARSHIP (FRESH / RENEWAL)\nField 1: Name of the applicant (as in Aadhaar)\nField 2: Father's / Guardian's name\nField 3: Date of birth (DD/MM/YYYY)\nField 4: Gender (Male / Female / Transgender)\nField 5: Category (SC / ST / OBC / EWS)\nField 6: Aadhaar number\nField 7: Mobile number\nField 8: Permanent address\nField 9: District\nField 10: PIN code\nField 11: Name of the institution\nField 12: Course\nField 13: Year of study\nField 14: Annual family income (Rs.)\nField 15: Bank account number\nField 16: IFSC code\nField 17: Attendance in previous year (%) (for renewal only)\nField 18: Caste certificate number\nField 19: Income certificate number\nField 20: Declaration: I declare that the information given above is true. Signature of applicant and date.\n"
+ }
+}

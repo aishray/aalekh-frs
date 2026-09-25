@@ -99,10 +99,13 @@ export function segmentParagraphs(raw: string): Segment[] {
   return blocks.map((b, i) => ({ num: String(i + 1), label: `Paragraph ${i + 1}`, text: b }));
 }
 
-/** Numbered first, then paragraphs. Returns `needsLlm` when fewer than 3 clauses are found either way. */
+/**
+ * Numbered first (accepted from 2 clauses, since short corrigenda often have exactly two numbered paragraphs),
+ * then paragraphs. Returns `needsLlm` when fewer than 3 clauses are found either way.
+ */
 export function segment(raw: string): { segments: Segment[]; method: 'numbered' | 'paragraphs'; needsLlm: boolean } {
   const numbered = segmentNumbered(raw);
-  if (numbered.length >= 3) return { segments: numbered, method: 'numbered', needsLlm: false };
+  if (numbered.length >= 2) return { segments: numbered, method: 'numbered', needsLlm: false };
   const paras = segmentParagraphs(raw);
   return { segments: paras, method: 'paragraphs', needsLlm: paras.length < 3 };
 }

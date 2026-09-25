@@ -1,0 +1,11 @@
+{
+ "step": "translate",
+ "note": "Recorded Hindi to English translations of the sample voice brief.",
+ "response": {
+  "entries": {
+   "छात्रों के लिए एक मोबाइल एप्लिकेशन भी होना चाहिए, क्योंकि ज़्यादातर छात्रों के पास केवल मोबाइल फ़ोन है।": "There should also be a mobile application for students, because most students have only a mobile phone.",
+   "ज़िला समाज कल्याण अधिकारी को एक डैशबोर्ड चाहिए जिसमें हर संस्थान के लंबित आवेदन और उनकी अवधि दिखे।": "The District Social Welfare Officer needs a dashboard showing the pending applications of every institution and how long they have been pending.",
+   "अगर आवेदन अस्वीकार होता है तो छात्र को SMS में अस्वीकृति का कारण बताया जाए और उसे सुधार करके दोबारा आवेदन करने का एक मौका दिया जाए।": "If an application is rejected, the student should be told the reason for rejection by SMS and be given one chance to correct it and apply again."
+  }
+ }
+}

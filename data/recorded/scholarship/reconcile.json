@@ -1,0 +1,31 @@
+{
+ "step": "reconcile",
+ "note": "Recorded reconciliation findings for the sample (hand-authored to match acceptance criteria F2).",
+ "response": {
+  "findings": [
+   {
+    "kind": "Supersession",
+    "clauses": [
+     "GO-3.2",
+     "COR1-1"
+    ],
+    "description": "Corrigendum No. SW/2026/SCH/118-A dated 2 September 2026 raises the annual family income limit in GO para 3.2 from Rs. 2,50,000 to Rs. 3,00,000 per annum. COR1-1 is the effective clause for eligibility."
+   },
+   {
+    "kind": "Conflict",
+    "clauses": [
+     "GO-5.1",
+     "MIN-4"
+    ],
+    "description": "The GO requires the institution nodal officer to verify the application within 15 days of submission (GO-5.1), but the kick-off meeting minutes record that institution verification shall be completed within 10 days (MIN-4)."
+   },
+   {
+    "kind": "MissingReference",
+    "clauses": [
+     "GO-4.3"
+    ],
+    "description": "GO-4.3 requires certificates not available in DigiLocker to be uploaded \"in the prescribed format in Annexure A\", but Annexure A has not been provided with the sources, so the upload format cannot be specified."
+   }
+  ]
+ }
+}

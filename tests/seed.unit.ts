@@ -19,6 +19,7 @@ describe('seed data', () => {
     const ids = allClauses(p).map((c) => c.id);
     expect(ids).toContain('GO-9');
     expect(ids).toContain('COR1-1');
+    expect(allClauses(p).find((c) => c.id === 'COR1-1')!.english).toContain('3,00,000');
     expect(ids).toContain('VB-3');
     expect(ids).toContain('FORM-12');
     const vb = p.sources.find((d) => d.prefix === 'VB')!;
