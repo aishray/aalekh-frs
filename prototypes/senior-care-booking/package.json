@@ -1,0 +1,11 @@
+{
+  "name": "puducherry-senior-care-booking",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prototype: large-text, voice-guided doctor appointment booking for senior citizens in the UT of Puducherry",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=18" }
+}

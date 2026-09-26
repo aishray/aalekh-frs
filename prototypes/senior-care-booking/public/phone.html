@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phone preview: SMS inbox</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { padding-bottom: 2rem; }
+    .inbox { display: grid; gap: .8rem; }
+    .phone { max-width: 24rem; min-height: 32rem; }
+    .meta { font-size: .7rem; color: var(--muted); margin-top: .4rem; }
+    form { display: flex; gap: .6rem; align-items: end; flex-wrap: wrap; }
+    form .field { flex: 1; min-width: 12rem; margin: 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Phone preview: SMS inbox</h1>
+    <p class="context">Shows the SMS the prototype has sent to a mobile number. Use this on a second screen during a demo. Updates every 3 seconds.</p>
+    <form id="f">
+      <div class="field"><label for="m">Mobile number</label><input id="m" class="input mono" type="tel" inputmode="numeric" maxlength="10"></div>
+      <button class="btn primary" type="submit">Show</button>
+    </form>
+    <p class="form-error" id="err" role="alert"></p>
+    <div class="phone">
+      <div class="phone-bar"><span id="clock"></span><span>Messages</span></div>
+      <div class="inbox" id="inbox" aria-live="polite"></div>
+    </div>
+  </main>
+  <script>
+    const m = document.getElementById('m');
+    const inbox = document.getElementById('inbox');
+    const err = document.getElementById('err');
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    try { m.value = new URLSearchParams(location.search).get('m') || JSON.parse(localStorage.getItem('psc.mobile') || '""'); } catch { /* ignore */ }
+    async function refresh() {
+      document.getElementById('clock').textContent = new Date().toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit' });
+      if (!/^[6-9]\d{9}$/.test(m.value)) { inbox.innerHTML = '<p class="choice-meta">Enter a 10 digit mobile number to see its messages.</p>'; return; }
+      try {
+        const { messages } = await (await fetch('/api/sms?mobile=' + m.value)).json();
+        err.textContent = '';
+        inbox.innerHTML = messages.length ? messages.map((x) => `<div class="bubble" lang="${x.lang}">${esc(x.text)}<div class="meta">From PY-HLTH · ${new Date(x.at).toLocaleString('en-IN')}</div></div>`).join('')
+          : '<p class="choice-meta">No messages for this number yet.</p>';
+      } catch { err.textContent = 'Could not reach the server. Check that it is running.'; }
+    }
+    document.getElementById('f').addEventListener('submit', (e) => { e.preventDefault(); refresh(); });
+    refresh(); setInterval(refresh, 3000);
+  </script>
+</body>
+</html>
